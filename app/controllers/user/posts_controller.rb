@@ -23,9 +23,13 @@ before_action :ensure_post, only: [:show, :edit, :update, :destroy]
   end
 
   def update
+    @post.update(post_params)
+    redirect_to post_path(@post)
   end
 
   def destroy
+    @post.destroy
+    redirect_to posts_path
   end
 
   private

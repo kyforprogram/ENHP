@@ -1,0 +1,16 @@
+編集画面
+<%= form_with model:@post, local:true do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :company_name %>
+  <%= f.text_field :company_name %>
+  <%= f.label :image %>
+  <%= f.attachment_field :image %>
+  <%= f.label :introduction %>
+  <%= f.text_area :introduction %>
+  <%= f.label :assignment %>
+  <%= f.text_area :assignment %>
+  <%= f.label :target %>
+  <%= f.text_area :target %>
+  <%= f.submit %>
+<% end %>
