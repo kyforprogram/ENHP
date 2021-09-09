@@ -1,0 +1,12 @@
+詳細画面
+<%= attachment_image_tag @post, :image, :fill, 60, 60, fallback: "noimage.png" %>
+<%=@post.created_at.strftime
+<%= @post.title %>
+<%= @post.company_name %>
+<%= @post.introduction %>
+<%= @post.assignment %>
+<%= @post.target %>
+<%= attachment_image_tag @post.user, :profile_image, :fill, 60, 60, fallback: "noimage.png" %>
+<%= attachment_image_tag @post.user_profile_image, :profile_image, :fill, 60, 60, fallback: "noimage.png" %>
+<%= @post.user.name %>
+<%= @post.user.introduction %>

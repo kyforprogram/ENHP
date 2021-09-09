@@ -9,4 +9,8 @@ devise_for :users, controllers: {
   sessions:      'users/sessions',
   registrations: 'users/registrations'
 }
+
+scope module: :user do
+    resources :posts
+  end
 end

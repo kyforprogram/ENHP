@@ -1,0 +1,5 @@
+一覧画面
+<% @posts.each do |post| %>
+  <%= attachment_image_tag post, :image, :fill, 60, 60, fallback: "noimage.png" %>
+  <%= post.title %>
+<% end %>
