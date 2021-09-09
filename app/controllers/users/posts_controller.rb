@@ -1,4 +1,5 @@
 class Users::PostsController < ApplicationController
+before_action :authenticate_user!
 before_action :ensure_post, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -33,11 +34,11 @@ before_action :ensure_post, only: [:show, :edit, :update, :destroy]
   end
 
   private
-  
+
   def post_params
     params.require(:post).permit(:title, :company_name, :image, :introduction, :assignment, :target)
   end
-  
+
   def ensure_post
    @post = Post.find(params[:id])
   end
