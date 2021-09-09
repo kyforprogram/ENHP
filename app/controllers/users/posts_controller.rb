@@ -18,6 +18,7 @@ before_action :ensure_post, only: [:show, :edit, :update, :destroy]
   end
 
   def show
+    @post_comment = PostComment.new    
   end
 
   def edit
