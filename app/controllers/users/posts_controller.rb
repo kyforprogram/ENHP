@@ -1,4 +1,4 @@
-class User::PostsController < ApplicationController
+class Users::PostsController < ApplicationController
 before_action :ensure_post, only: [:show, :edit, :update, :destroy]
 
   def new
