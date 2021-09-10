@@ -1,6 +1,7 @@
 投稿詳細画面
 <%= attachment_image_tag @post, :image, :fill, 60, 60, fallback: "noimage.png" %>
 <%=@post.created_at.strftime('%Y/%m/%d') %>
+<%= render "users/likes/likes", post: @post %>
 <%= @post.title %>
 <%= @post.company_name %>
 <%= @post.introduction %>
@@ -31,5 +32,4 @@
   <%= f.submit %>
 <% end %>
 </div>
-destroyをあとからつける
-editは考え中
+コメントのeditは実装するか考え中
