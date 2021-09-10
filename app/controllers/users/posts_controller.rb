@@ -1,5 +1,5 @@
 class Users::PostsController < ApplicationController
-before_action :authenticate_user!, only: [:index]
+before_action :authenticate_user!, except: [:index]
 before_action :ensure_post, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -18,7 +18,7 @@ before_action :ensure_post, only: [:show, :edit, :update, :destroy]
   end
 
   def show
-    @post_comment = PostComment.new    
+    @post_comment = PostComment.new
   end
 
   def edit
