@@ -1,5 +1,7 @@
 投稿一覧画面
 <% @posts.each do |post| %>
+  <%= link_to post_path(post.id) do %>
   <%= attachment_image_tag post, :image, :fill, 60, 60, fallback: "noimage.png" %>
   <%= post.title %>
+  <% end %>
 <% end %>
