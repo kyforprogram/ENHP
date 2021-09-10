@@ -10,7 +10,9 @@ class Users::PostCommentsController < ApplicationController
   end
 
   def destroy
-    PostComment.find_by(id: params[:id], post_id: params[:post_id]).destroy
+    # 非同期通信をする場合は15行目だとエラーになる可能性があるのかも
+    # PostComment.find_by(id: params[:id], post_id: params[:post_id]).destroy
+    PostComment.find(params[:id]).destroy
     redirect_to post_path(params[:post_id])
   end
 

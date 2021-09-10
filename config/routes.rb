@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   scope module: :users do
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
+      resources :favorites, only: [:create, :destroy
+      ]
     end
     resources :users, only: [:index, :show, :edit, :update]
   end
