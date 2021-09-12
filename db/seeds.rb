@@ -10,6 +10,6 @@
 User.create!([
   email: "a#{n+1}@a",
   password: "aaaaaa#{n+1}",
-  name: "客#{n+1}",
+  name: "名前#{n+1}",
   ])
 end

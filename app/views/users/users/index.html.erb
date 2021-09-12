@@ -1,9 +1,16 @@
+<div class="container">
 ユーザー一覧
-<% @users.each do |user| %>
-  <%= link_to user_path(user.id) do %>
-    <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "noimage.png" %>
-    <%= user.name %>
-    <%= user.introduction %>
-    <%= user.job_category %>
-  <% end %>
-<% end %>
+  <div class="row">
+    <div class="col">
+    <% @users.each do |user| %>
+      <%= link_to user_path(user.id) do %>
+        <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "noimage.png" %>
+        <%= user.name %>
+      <% end %>
+      <%= render 'users/users/follow-btn', user: user %>
+      <%= user.introduction %>
+      <%= user.job_category %>
+    <% end %>
+    </div>
+  </div>
+</div>

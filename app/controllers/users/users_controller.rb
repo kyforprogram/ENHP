@@ -1,6 +1,6 @@
 class Users::UsersController < ApplicationController
 before_action :authenticate_user!
-before_action :ensure_user, only: [:show, :edit, :update]
+before_action :ensure_user, only: [:show, :edit, :update, :followings, :followers]
 
   def show
   end
@@ -15,6 +15,14 @@ before_action :ensure_user, only: [:show, :edit, :update]
   def update
     @user.update(user_params)
     redirect_to user_path(@user)
+  end
+
+  def followings
+    @users = @user.followings
+  end
+
+  def followers
+    @users = @user.followers
   end
 
   private
