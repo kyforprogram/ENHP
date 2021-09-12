@@ -1,0 +1,2 @@
+<!--いいね-->
+$("#likes_<%= @post.id %>").html("<%= j(render 'users/likes/likes', post: @post) %>");

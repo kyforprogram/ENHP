@@ -1,9 +1,14 @@
-投稿一覧画面
-<% @posts.each do |post| %>
-  <%= link_to post_path(post.id) do %>
-  <%= attachment_image_tag post, :image, :fill, 60, 60, fallback: "noimage.png" %>
-  <%= render "users/likes/likes", post: post %>
-  <%= post.title %>
-  <% end %>
-<% end %>
-s
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <p>投稿一覧画面</p>
+      <% @posts.each do |post| %>
+        <%= link_to post_path(post.id) do %>
+        <%= attachment_image_tag post, :image, :fill, 60, 60, fallback: "noimage.png" %>
+        <%= post.title %>
+        <% end %>
+        <span id="likes_<%= post.id %>"><%= render "users/likes/likes", post: post %></span>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -13,3 +13,14 @@ User.create!([
   name: "名前#{n+1}",
   ])
 end
+
+4.times do |n|
+Post.create!([
+  title: "TITLE",
+  company_name: "LTD CO ",
+  introduction: "HELLO WORLD",
+  assignment: "",
+  target: "",
+  user_id: "#{n+1}"
+  ])
+end
