@@ -2,7 +2,9 @@
 <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "noimage.png" %>
 <%= @user.name %>
 <p><%= link_to @user.followings.count, followings_user_path(@user) %> フォロー ：<%= link_to @user.followers.count, followers_user_path(@user) %> フォロワー</p>
+<div id="follow_btn_<%= @user.id %>">
 <%= render 'users/users/follow-btn', user: @user %>
+</div>
 <%= @user.introduction %>
 <%= @user.job_category %>
 <% if @user.id == current_user.id %>

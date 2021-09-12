@@ -7,7 +7,9 @@
         <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "noimage.png" %>
         <%= user.name %>
       <% end %>
-      <%= render 'users/users/follow-btn', user: user %>
+      <div id="follow_btn_<%= user.id %>">
+        <%= render 'users/users/follow-btn', user: user %>
+      </div>
       <%= user.introduction %>
       <%= user.job_category %>
     <% end %>
