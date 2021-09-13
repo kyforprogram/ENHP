@@ -1,0 +1,20 @@
+<div class="container">
+  <h1><%= @user.name %> さんとのチャット</h1>
+  <div class="row">
+    <div class="col">
+      <%= form_with model: @direct_message do |f| %>
+        <%= f.text_field :message, placeholder:"メッセージを作成", class:"form-control" %>
+        <%= f.hidden_field :room_id %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+  <div class="message">
+    <% @direct_messages.each do |direct_message| %>
+      <% if direct_message.user == current_user %>
+          <%= direct_message.user.name %>
+          <%= direct_message.message %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
