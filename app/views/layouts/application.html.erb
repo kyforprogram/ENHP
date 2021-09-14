@@ -15,6 +15,14 @@
       <li><%= link_to "POSTS", posts_path %></li>
       <li><%= link_to "投稿", new_post_path %></li>
       <li><%= link_to "ログアウト" , destroy_user_session_path, method: :delete %></li>
+      <li>
+        <%= form_with url: search_path, method: :get, local: true do |f| %>
+        <%= f.text_field :word %>
+        <%= f.select :category, options_for_select([['---選択してください---',''],['User','1'],['Post','2']]) %>
+        <%= f.select :search, options_for_select([["完全一致","perfect"], ["前方一致","forward"], ["後方一致","backward"], ["部分一致","partial"]]) %>
+        <%= f.submit %>
+        <% end %>
+      </li>
     <% else %>
       <li><%= link_to "新規登録", new_user_registration_path %></li>
       <li><%= link_to "ログイン", new_user_session_path %></li>

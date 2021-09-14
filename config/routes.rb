@@ -20,6 +20,9 @@ Rails.application.routes.draw do
       get :followings, :followers
     end
     end
+    #DM機能
     resources :direct_messages, only:[:show, :create]
+    #検索機能
+    get 'search' => 'searches#search'
   end
 end
