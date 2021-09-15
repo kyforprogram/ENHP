@@ -1,0 +1,2 @@
+class HashtagRelation < ApplicationRecord
+end
