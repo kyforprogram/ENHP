@@ -21,8 +21,14 @@ Rails.application.routes.draw do
     end
     end
     #DM機能
-    resources :direct_messages, only:[:show, :create]
+    resources :direct_messages, only: [:show, :create]
     #検索機能
     get 'search' => 'searches#search'
+    # 問い合わせ機能
+    resources :contacts, only: [:new, :create] do
+    post 'confirm', on: :new, as: 'confirm'
+    end
+    get 'thanks' => 'contacts#thanks', as: 'thanks'
+
   end
 end

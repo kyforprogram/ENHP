@@ -1,6 +1,6 @@
 class Users::UsersController < ApplicationController
 before_action :authenticate_user!
-before_action :ensure_user, only: [:show, :edit, :update, :followings, :followers]
+before_action :find_user,  except: :index
 
   def show
   end
@@ -31,7 +31,7 @@ before_action :ensure_user, only: [:show, :edit, :update, :followings, :follower
   params.require(:user).permit(:name, :profile_image, :introduction, :job_category)
   end
 
-  def ensure_user
+  def find_user
     @user = User.find(params[:id])
   end
 

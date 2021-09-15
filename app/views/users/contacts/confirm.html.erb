@@ -1,0 +1,28 @@
+<table>
+  <tbody>
+    <tr>
+      <%= @contact.name %>
+    </tr>
+    <tr>
+      <%= @contact.email %>
+    </tr>
+    <tr>
+      <%= @contact.tel %>
+    </tr>
+    <tr>
+      <%= @contact.subject %>
+    </tr>
+    <tr>
+      <%= @contact.message %>
+    </tr>
+  </tbody>
+</table>
+<%= form_for @contact do |f| %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :email %>
+  <%= f.hidden_field :tel %>
+  <%= f.hidden_field :subject %>
+  <%= f.hidden_field :message %>
+  <%= f.submit 'back', name: 'back' %>
+  <%= f.submit '送信' %>
+<% end %>

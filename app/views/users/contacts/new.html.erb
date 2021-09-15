@@ -1,0 +1,25 @@
+<%= form_with model: @contact, url: confirm_new_contact_path, method: :post, local: true do |f|  %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+    <div class="form-group">
+      <%= f.label :tel %>
+      <%= f.text_field :tel %>
+    </div>
+    <div class="form-group">
+      <%= f.label :subject %>
+      <%= f.text_field :subject %>
+    </div>
+    <div class="form-group">
+      <%= f.label :message %>
+      <%= f.text_area :message %>
+    </div>
+    <div class="form-group">
+      <%= f.submit '確認画面に進む' %>
+    </div>
+<% end %>
