@@ -10,6 +10,7 @@
   </head>
 
   <body>
+    <header>
     <% if user_signed_in? %>
       <li><%= link_to "USERS", users_path %></li>
       <li><%= link_to "POSTS", posts_path %></li>
@@ -27,7 +28,12 @@
       <li><%= link_to "新規登録", new_user_registration_path %></li>
       <li><%= link_to "ログイン", new_user_session_path %></li>
     <% end %>
+    </header>
 
     <%= yield %>
+
+    <footer>
+      <%=  link_to '問い合わせ', new_contact_path %>
+    </footer>
   </body>
 </html>
