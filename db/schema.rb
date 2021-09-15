@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_14_130546) do
+ActiveRecord::Schema.define(version: 2021_09_15_160827) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -53,6 +53,13 @@ ActiveRecord::Schema.define(version: 2021_09_14_130546) do
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
+  create_table "hashtags", force: :cascade do |t|
+    t.string "hashname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hashname"], name: "index_hashtags_on_hashname", unique: true
+  end
+
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
@@ -68,13 +75,22 @@ ActiveRecord::Schema.define(version: 2021_09_14_130546) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "post_hashtag_relations", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "hashtag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hashtag_id"], name: "index_post_hashtag_relations_on_hashtag_id"
+    t.index ["post_id"], name: "index_post_hashtag_relations_on_post_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.string "company_name"
     t.string "image_id"
     t.text "introduction"
     t.text "assignment"
-    t.text "target"
+    t.string "target"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

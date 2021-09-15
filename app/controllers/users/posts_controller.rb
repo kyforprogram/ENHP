@@ -1,6 +1,6 @@
 class Users::PostsController < ApplicationController
 before_action :authenticate_user!, except: [:index]
-before_action :ensure_post, only: [:show, :edit, :update, :destroy]
+before_action :find_post, only: [:show, :edit, :update, :destroy]
 
   def new
     @post = Post.new
@@ -34,13 +34,19 @@ before_action :ensure_post, only: [:show, :edit, :update, :destroy]
     redirect_to posts_path
   end
 
+  def hashtag
+    @user = current_user
+    @tag = Hashtag.find_by(hashname: params[:name])
+    @posts = @tag.posts
+  end
+
   private
 
   def post_params
     params.require(:post).permit(:title, :company_name, :image, :introduction, :assignment, :target)
   end
 
-  def ensure_post
+  def find_post
    @post = Post.find(params[:id])
   end
 

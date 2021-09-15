@@ -19,8 +19,8 @@ Post.create!([
   title: "TITLE",
   company_name: "LTD CO ",
   introduction: "HELLO WORLD",
-  assignment: "",
-  target: "",
+  assignment: "ビジネス相手を探している",
+  target: "#ハッシュタグ#{n+1}",
   user_id: "#{n+1}"
   ])
 end

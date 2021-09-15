@@ -1,0 +1,8 @@
+<%= @tag.hashname %>
+<% @posts.each do |post| %>
+  <%= link_to post_path(post.id) do %>
+  <%= attachment_image_tag post, :image, :fill, 60, 60, fallback: "noimage.png" %>
+  <%= post.title %>
+  <% end %>
+  <span id="likes_<%= post.id %>"><%= render "users/likes/likes", post: post %></span>
+<% end %>

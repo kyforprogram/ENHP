@@ -6,9 +6,9 @@ class CreatePosts < ActiveRecord::Migration[5.2]
     t.string "image_id"
     t.text "introduction"
     t.text "assignment"
-    t.text "target"
+    t.string "target"
     t.integer "user_id"
-      t.timestamps
+    t.timestamps
     end
   end
 end

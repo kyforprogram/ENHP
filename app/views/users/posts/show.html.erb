@@ -9,7 +9,7 @@
       <%= @post.company_name %>
       <%= @post.introduction %>
       <%= @post.assignment %>
-      <%= @post.target %>
+      <%= render_with_hashtags(@post.target) %>
       <%= link_to user_path(@post.user.id) do%>
       <%= attachment_image_tag @post.user, :profile_image, :fill, 60, 60, fallback: "noimage.png" %>
       <%= @post.user.name %>
@@ -18,7 +18,6 @@
       <div id="post_comment_index_<%= @post.id %>">
         <%= render "users/post_comments/index", post: @post %>
       </div>
-
       <%= form_with model:[@post, @post_comment] do |f| %>
           <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class:"form-control" %>
           <%= f.submit %>
