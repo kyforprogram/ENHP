@@ -17,7 +17,7 @@
     </tr>
   </tbody>
 </table>
-<%= form_for @contact do |f| %>
+<%= form_with model: @contact, local: true do |f| %>
   <%= f.hidden_field :name %>
   <%= f.hidden_field :email %>
   <%= f.hidden_field :tel %>

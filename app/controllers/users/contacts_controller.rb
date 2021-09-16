@@ -1,15 +1,16 @@
 class Users::ContactsController < ApplicationController
-before_action :contact_new, except: [:new, :thanks]
 
   def new
     @contact = Contact.new
   end
 
   def confirm
+    @contact = Contact.new(contact_params)
     render :new unless @contact.valid?
   end
 
   def create
+    @contact = Contact.new(contact_params)
     if params[:back].present?
       render :new
       return
@@ -31,7 +32,4 @@ before_action :contact_new, except: [:new, :thanks]
     params.require(:contact).permit(:name, :email, :tel, :subject, :message)
   end
 
-  def contact_new
-    @contact = Contact.new(contact_params)
-  end
 end

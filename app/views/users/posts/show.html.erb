@@ -19,8 +19,8 @@
         <%= render "users/post_comments/index", post: @post %>
       </div>
       <%= form_with model:[@post, @post_comment] do |f| %>
-          <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class:"form-control" %>
-          <%= f.submit %>
+        <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class:"form-control" %>
+        <%= f.submit %>
       <% end %>
     </div>
   </div>

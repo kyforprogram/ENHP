@@ -7,6 +7,7 @@ before_action :find_post, only: [:create, :destroy]
     comment.user_id = current_user.id
     comment.post_id = @post.id
     comment.save
+    @post.create_notification_comment!(current_user, post_comment.id)
     #redirect_to request.referer || post_path(post)
   end
 

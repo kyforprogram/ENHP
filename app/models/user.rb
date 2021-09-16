@@ -14,12 +14,22 @@ class User < ApplicationRecord
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: :follower_id# フォロワー取得
   has_many :followings, through: :relationships, source: :follower# 自分がフォローしている人
   has_many :followers, through: :reverse_of_relationships, source: :following# 自分をフォローしている人
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy#active_notifications：自分からの通知
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy#passive_notifications：相手からの通知
+
+
   def is_followed_by?(user)# フォローしてたらtrueを返すi
     followings.include?(user)# find_byよりincludeの方がN＋１問題を解消できる
   end
 
-  #DM機能アソシエーション---------------------------------
-
+  #フォロー通知機能------------------------------------------------------
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(visited_id: id, action: 'follow')
+      notification.save if notification.valid?
+    end
+  end
   # ユーザー検索機能--------------------------------------
   def self.search(search, word)
     if search == "perfect_match"#完全一致

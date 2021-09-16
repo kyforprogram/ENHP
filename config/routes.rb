@@ -27,11 +27,10 @@ Rails.application.routes.draw do
     #検索機能
     get 'search' => 'searches#search'
     # 問い合わせ機能
-    resources :contacts, only: [:new, :create] do
-    get 'confirm' => 'contacts#confirm'
-    post 'confirm', on: :new, as: 'confirm'
-    end
+    resources :contacts, only: [:new, :create]
+    get 'contacts/new/confirm' => 'contacts#confirm'
     get 'thanks' => 'contacts#thanks', as: 'thanks'
-
+    # 通知機能
+    resources :notifications, only: :index
   end
 end
