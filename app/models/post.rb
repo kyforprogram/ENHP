@@ -5,6 +5,8 @@ class Post < ApplicationRecord
   has_many :post_hashtag_relations, dependent: :destroy
   has_many :hashtags, through: :post_hashtag_relations
   has_many :likes, dependent: :destroy
+  has_many :view_counts, dependent: :destroy
+  
   
   # ハッシュタグ機能----------------------------------
   after_create do

@@ -1,6 +1,6 @@
 class Users::PostsController < ApplicationController
 before_action :authenticate_user!, except: [:index]
-before_action :find_post, only: [:show, :edit, :update, :destroy]
+before_action :find_post, only: %i[show edit update destroy]
 
   def new
     @post = Post.new
@@ -19,6 +19,12 @@ before_action :find_post, only: [:show, :edit, :update, :destroy]
 
   def show
     @post_comment = PostComment.new
+    unless ViewCount.find_by(user_id: current_user.id, post_id: @post.id)
+    view_counts = ViewCount.new
+    view_counts.user_id = current_user.id
+    view_counts.post_id = @post.id
+    view_counts.save
+    end
   end
 
   def edit

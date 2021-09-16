@@ -5,12 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   attachment :profile_image#画像refile用
 
-  has_many :posts, dependent: :destroy
-
-  has_many :post_comments, dependent: :destroy
-
-  has_many :likes, dependent: :destroy
-
+  has_many :posts, dependent: :destroy#投稿
+  has_many :posts_comments, dependent: :destroy#コメント
+  has_many :likes, dependent: :destroy#いいね
+  has_many :direct_messages, dependent: :destroy#DMの中間テーブル
+  has_many :entries, dependent: :destroy#DMの中間テーブル
   has_many :relationships, foreign_key: :following_id# フォロー取得
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: :follower_id# フォロワー取得
   has_many :followings, through: :relationships, source: :follower# 自分がフォローしている人
@@ -20,8 +19,7 @@ class User < ApplicationRecord
   end
 
   #DM機能アソシエーション---------------------------------
-  has_many :direct_messages, dependent: :destroy
-  has_many :entries, dependent: :destroy
+
   # ユーザー検索機能--------------------------------------
   def self.search(search, word)
     if search == "perfect_match"#完全一致

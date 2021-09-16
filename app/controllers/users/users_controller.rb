@@ -1,6 +1,6 @@
 class Users::UsersController < ApplicationController
 before_action :authenticate_user!
-before_action :find_user,  except: :index
+before_action :find_user, only: %i[show edit update followings followers]#可読性を上げるため
 
   def show
   end

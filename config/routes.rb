@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     get 'search' => 'searches#search'
     # 問い合わせ機能
     resources :contacts, only: [:new, :create] do
+    get 'confirm' => 'contacts#confirm'
     post 'confirm', on: :new, as: 'confirm'
     end
     get 'thanks' => 'contacts#thanks', as: 'thanks'
