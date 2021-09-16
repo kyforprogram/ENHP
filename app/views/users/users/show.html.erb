@@ -10,8 +10,6 @@
 <% if @user.id == current_user.id %>
   <%= link_to '編集', edit_user_path(@user) %>
 <% end %>
-
-<!--DM機能相互フォローのみ表示-->
 <% if @user != current_user %>
 <%= link_to "メッセージルーム", direct_message_path(@user) %>
 <% end %>
