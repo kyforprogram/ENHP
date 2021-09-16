@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col">
       <h1>投稿詳細画面</h1>
-      <%= attachment_image_tag @post, :image, :fill, 60, 60, fallback: "noimage.png" %>
+      <%= attachment_image_tag @post, :image, :fill, 60, 60, fallback: "noimage.png", size:'200x200' %>
       <%=@post.created_at.strftime('%Y/%m/%d') %>
       <span id="likes_<%= @post.id %>"><%= render "users/likes/likes", post: @post %></span>
       <%= @post.title %>
@@ -11,7 +11,7 @@
       <%= @post.assignment %>
       <%= render_with_hashtags(@post.target) %>
       <%= link_to user_path(@post.user.id) do%>
-      <%= attachment_image_tag @post.user, :profile_image, :fill, 60, 60, fallback: "noimage.png" %>
+      <%= attachment_image_tag @post.user, :profile_image, :fill, 60, 60, fallback: "noimage.png", size:'200x200' %>
       <%= @post.user.name %>
       <% end %>
       <%= @post.user.introduction %>

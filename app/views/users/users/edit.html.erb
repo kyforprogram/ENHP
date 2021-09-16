@@ -1,7 +1,7 @@
 ユーザー編集
 <%= form_with model:@user, local:true do |f| %>
 <%= f.label :profile_image %>
-<%= attachment_image_tag @user, :profile_image, :fill, 30, 30, fallback: "noimage.png"%>
+<%= attachment_image_tag @user, :profile_image, :fill, 30, 30, fallback: "noimage.png", size:'200x200'%>
 <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
 <%= f.label :name %>
 <%= f.text_field :name %>

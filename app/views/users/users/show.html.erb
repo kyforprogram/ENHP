@@ -1,5 +1,5 @@
-マイページ
-<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "noimage.png" %>
+<h2>ユーザー詳細ページ</h2>
+<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "noimage.png", size:'200x200' %>
 <%= @user.name %>
 <p><%= link_to @user.followings.count, followings_user_path(@user) %> フォロー ：<%= link_to @user.followers.count, followers_user_path(@user) %> フォロワー</p>
 <div id="follow_btn_<%= @user.id %>">
