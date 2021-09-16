@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   attachment :profile_image#画像refile用
 
-  has_many :Users, dependent: :destroy
+  has_many :posts, dependent: :destroy
 
-  has_many :User_comments, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
 
   has_many :likes, dependent: :destroy
 
