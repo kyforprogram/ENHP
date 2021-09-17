@@ -24,6 +24,7 @@
         <%= f.submit %>
         <% end %>
       </li>
+      <li><%= link_to "通知", notifications_path %></li>
     <% else %>
       <li><%= link_to "新規登録", new_user_registration_path %></li>
       <li><%= link_to "ログイン", new_user_session_path %></li>

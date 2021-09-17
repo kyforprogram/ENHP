@@ -6,7 +6,7 @@ class Users::DirectMessagesController < ApplicationController
     entries = Entry.find_by(user_id: @user.id, room_id: rooms)
 
     unless entries.nil?#以前そのユーザーと話したことがあるかないか
-      @room = entries.room#Entryモデルに既にデータがある場合は@roomにentries.roomを代入
+      @room = entries.room#Entryモデルに既にデータがある場合は@roomに既存のentries.roomを代入
     else
       @room = Room.new#以前そのユーザーと話したことがない場合は新しいroomを作る
       @room.save

@@ -17,3 +17,27 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require moment
+//= require fullcalendar
+
+/*global $*/
+/*global ScrollReveal*/
+$(document).on('turbolinks:load', function () {
+  ScrollReveal().reveal('.left', {
+    duration: 1600,
+    origin: 'left',
+    distance: '50px',
+    viewFactor: 0.4,
+    reset: true
+  });
+});
+
+$(document).on('turbolinks:load', function () {
+  ScrollReveal().reveal('.right', {
+    duration: 1600,
+    origin: 'right',
+    distance: '50px',
+    viewFactor: 0.4,
+    reset: true
+  });
+});

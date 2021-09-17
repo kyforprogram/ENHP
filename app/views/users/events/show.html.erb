@@ -1,2 +1,44 @@
-<h1>Users::Events#show</h1>
-<p>Find me in app/views/users/events/show.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class="col mx-auto">
+    <h1>スケジュール詳細</h1>
+    <div class="row">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th class="active">
+              スケジュール名
+            </th>
+            <td>
+              <%= @event.title %>
+            </td>
+          </tr>
+          <tr>
+            <th class="active">
+              スケジュール内容
+            </th>
+            <td>
+              <%= @event.body %>
+            </td>
+          </tr>
+          <tr>
+            <th class="active">開始日時</th>
+            <td>
+              <%= @event.start_date.to_s(:datetime_jp) %>
+            </td>
+          </tr>
+          <tr>
+            <th class="active">終了日時</th>
+            <td><%= @event.end_date.to_s(:datetime_jp) %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <% if @event.user == current_user %>
+     <%= link_to 'スケジュール登録', new_event_path, class: 'btn btn-success' %>
+     <%= link_to '編集', edit_event_path(@event), class: 'btn btn-primary' %>
+     <%= link_to '削除', event_path(@event), method: :delete, "data-confirm" => "本当に消しますか?", class: 'btn btn-danger' %>
+    <% end %>
+    </div>
+  </div>
+</div>

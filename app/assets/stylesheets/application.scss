@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  *= require fullcalendar
+ 
  */
 @import "bootstrap";
 @import 'font-awesome-sprockets';
@@ -21,3 +22,8 @@
 //   background-image: image-url("hoge.jpg");
 
 // }
+
+.datetime-form {
+  display: inline-block;
+  width: auto;
+}
