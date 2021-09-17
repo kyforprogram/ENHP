@@ -3,6 +3,7 @@
     <div class="col mx-auto">
     <h1>スケジュール詳細</h1>
     <div class="row">
+     <%= link_to 'スケジュール登録', new_event_path, class: 'btn btn-success' %>
       <table class="table table-bordered">
         <tbody>
           <tr>
@@ -24,18 +25,17 @@
           <tr>
             <th class="active">開始日時</th>
             <td>
-              <%= @event.start_date.to_s(:datetime_jp) %>
+              <%= @event.start_date.strftime("%Y-%m-%d %H:%M") %>
             </td>
           </tr>
           <tr>
             <th class="active">終了日時</th>
-            <td><%= @event.end_date.to_s(:datetime_jp) %></td>
+            <td><%= @event.end_date.strftime("%Y-%m-%d %H:%M") %></td>
           </tr>
         </tbody>
       </table>
     </div>
     <% if @event.user == current_user %>
-     <%= link_to 'スケジュール登録', new_event_path, class: 'btn btn-success' %>
      <%= link_to '編集', edit_event_path(@event), class: 'btn btn-primary' %>
      <%= link_to '削除', event_path(@event), method: :delete, "data-confirm" => "本当に消しますか?", class: 'btn btn-danger' %>
     <% end %>
