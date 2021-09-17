@@ -6,16 +6,29 @@
   <%= attachment_image_tag user, :profile_image, :fill, 80, 80, fallback: "noimage.png", size:'200x200' %>
   <%= user.name %>
   <% end %>
+  <span id="follow_count"> フォロー：<%= link_to user.followings.count, followings_user_path(user) %></span>
+  <span id="follower_count">フォロワー：<%= link_to user.followers.count, followers_user_path(user) %></span>
+  <div id="follow_btn_<%= user.id %>">
+  <%= render 'users/users/follow-btn', user: user %>
+  </div>
   <%= user.introduction %>
+  <%= user.job_category %>
+  <% if user != current_user %>
+  <%= link_to "メッセージルーム", direct_message_path(user) %>
+  <% end %>
   <% end %>
 <% end %>
 
 
 <% if @category == '2' %>
   <% @post.each do |post| %>
+  <%= link_to post_path(post.id) do %>
   <%= attachment_image_tag post, :image, :fill, 80, 80, fallback: "noimage.png", size:'200x200' %>
   <%= post.title %>
+  <% end %>
   <%= post.introduction %>
+  <%= post.target %>
+  <span id="post_comment_count">コメント数：<%= post.post_comments.count %></span>
   <% end %>
 <% end %>
 

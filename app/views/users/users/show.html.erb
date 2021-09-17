@@ -4,7 +4,7 @@
   <span id="follow_count"> フォロー：<%= link_to @user.followings.count, followings_user_path(@user) %></span>
   <span id="follower_count">フォロワー：<%= link_to @user.followers.count, followers_user_path(@user) %></span>
 <div id="follow_btn_<%= @user.id %>">
-<%= render 'users/users/follow-btn', user: @user %>
+  <%= render 'users/users/follow-btn', user: @user %>
 </div>
 <%= @user.introduction %>
 <%= @user.job_category %>
@@ -12,6 +12,6 @@
   <%= link_to '編集', edit_user_path(@user) %>
 <% end %>
 <% if @user != current_user %>
-<%= link_to "メッセージルーム", direct_message_path(@user) %>
+  <%= link_to "メッセージルーム", direct_message_path(@user) %>
 <% end %>
 

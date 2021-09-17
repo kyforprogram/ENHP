@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :view_counts, dependent: :destroy
   has_many :notifications, dependent: :destroy
-  
+
   # 投稿に対する通知機能-----------------------------------------------------------
   def create_notification_like!(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
@@ -19,7 +19,7 @@ class Post < ApplicationRecord
       notification.save if notification.valid?
     end
   end
-  
+
   def create_notification_comment!(current_user, post_comment_id)
     temp_ids = PostComment.select(:user_id).where(post_id: id).where.not(user_id: current_user.id).distinct
     temp_ids.each do |temp_id|
@@ -27,7 +27,7 @@ class Post < ApplicationRecord
     end
     save_notification_comment!(current_user, post_comment_id, user_id) if temp_ids.blank?
   end
-  
+
   def save_notification_comment!(current_user, post_comment_id, visited_id)
     notification = current_user.active_notifications.new(post_id: id, post_comment_id: post_comment_id, visited_id: visited_id, action: 'comment')
     if notification.visitor_id == notification.visited_id
@@ -59,7 +59,7 @@ class Post < ApplicationRecord
     likes.where(user_id: user.id).exists?
   end
   # 検索機能star--------------------------------------
-  def self.search(word)
+  def self.search(search, word)
     if search == "perfect_match"#完全一致
       @post = Post.where("title LIKE? OR company_name LIKE OR target LIKE", "#{word}","#{word}","#{word}")
     elsif search == "forward_match"#前一致
