@@ -9,28 +9,32 @@ Rails.application.routes.draw do
     sessions:      'users/sessions',
     registrations: 'users/registrations'
   }
+  namespace :admins do
+    resources :users, only: %i[index show edit update]
+  end
+
   scope module: :users do
     resources :posts do
-      resources :post_comments, only: [:create, :destroy]
-      resource :likes, only: [:create, :destroy]
+      resources :post_comments, only: %i[create destroy]
+      resource :likes, only: %i[create destroy]
     end
     get 'post/hashtag/:name' => 'posts#hashtag'
 
-    resources :users, only: [:index, :show, :edit, :update] do
-      resource :relationships, only: [:create, :destroy]
+    resources :users, only: %i[index show edit update] do
+      resource :relationships, only: %i[create destroy]
     member do
       get :followings, :followers
     end
     end
     #DM機能
-    resources :direct_messages, only: [:show, :create]
+    resources :direct_messages, only: %i[show create]
     #検索機能
     get 'search' => 'searches#search'
     # 問い合わせ機能
-    resources :contacts, only: [:new, :create]
+    resources :contacts, only: %i[new create]
     get 'contacts/new/confirm' => 'contacts#confirm'
     get 'thanks' => 'contacts#thanks', as: 'thanks'
     # 通知機能
-    resources :notifications, only: :index
+    resources :notifications, only: [:index]
   end
 end

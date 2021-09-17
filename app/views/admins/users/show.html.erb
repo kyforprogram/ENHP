@@ -1,0 +1,11 @@
+<h2>ユーザー詳細ページ</h2>
+<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "noimage.png", size:'200x200' %>
+<%= @user.name %>
+<%= @user.introduction %>
+<%= @user.job_category %>
+<% if @user.is_deleted == true%>
+<td class="fw-light" style="color: gray">退会</td>
+<% else %>
+<td class="fw-bold" style="color:green">有効</td>
+<% end %>
+<%= link_to '編集', edit_admins_user_path(@user) %>

@@ -136,7 +136,7 @@ ActiveRecord::Schema.define(version: 2021_09_16_081131) do
     t.string "profile_image_id"
     t.text "introduction"
     t.string "job_category"
-    t.boolean "is_deleted"
+    t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

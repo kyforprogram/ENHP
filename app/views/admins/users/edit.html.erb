@@ -1,0 +1,18 @@
+ユーザー編集
+<%= form_with model:@user, url: admins_user_path(@user.id), local:true do |f| %>
+<%= f.label :profile_image %>
+<%= attachment_image_tag @user, :profile_image, :fill, 30, 30, fallback: "noimage.png", size:'200x200'%>
+<%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+<%= f.label :introduction %>
+<%= f.text_area :introduction %>
+<%= f.label :job_category %>
+<%= f.text_field :job_category %>
+<%= f.label :"会員ステータス" %>
+<%= f.radio_button :is_deleted, false %>
+<%= f.label :is_deleted, '有効', value: false %>
+<%= f.radio_button :is_deleted, true %>
+<%= f.label :is_deleted, "退会", value: true %>
+<%= f.submit %>
+<% end %>

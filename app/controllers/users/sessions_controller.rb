@@ -2,11 +2,12 @@
 
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-
+    before_action :reject_inactive_user, only: [:create]
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def new
+    redirect_to :root if user_signed_in?
+    super
+  end
 
   # POST /resource/sign_in
   # def create
@@ -24,6 +25,19 @@ class Users::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
+    def reject_inactive_user
+      @user = User.find_by(email: params[:user][:email])
+      if @user
+        if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == true)
+          flash[:error] = "退会済みです。"
+          redirect_to new_user_registration_path
+        end
+      else
+        flash[:alert] = "項目を入力してください"
+      end
+    end
+
   def after_sign_in_path_for(resource)
     user_path(current_user)
   end

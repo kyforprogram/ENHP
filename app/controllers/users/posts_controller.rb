@@ -1,5 +1,5 @@
 class Users::PostsController < ApplicationController
-before_action :authenticate_user!, except: [:index]
+before_action :authenticate_user!, only: %i[new create show edit update destroy]
 before_action :find_post, only: %i[show edit update destroy]
 
   def new
