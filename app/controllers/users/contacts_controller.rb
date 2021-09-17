@@ -10,6 +10,9 @@ class Users::ContactsController < ApplicationController
   end
 
   def create
+    if params.nil?
+      render :new
+    end
     @contact = Contact.new(contact_params)
     if params[:back].present?
       render :new

@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h1>投稿詳細画面</h1>閲覧数: <%= @post.view_counts.count %>
+      <h1>投稿詳細画面</h1><span >閲覧数: <%= @post.view_counts.count %></span>
+      <span id="post_comment_count">コメント数：<%= @post.post_comments.count %></span>
       <%= attachment_image_tag @post, :image, :fill, 60, 60, fallback: "noimage.png", size:'200x200' %>
-      <%=@post.created_at.strftime('%Y/%m/%d') %>
+      <%= @post.created_at.strftime('%Y/%m/%d') %>
       <span id="likes_<%= @post.id %>"><%= render "users/likes/likes", post: @post %></span>
       <%= @post.title %>
       <%= @post.company_name %>

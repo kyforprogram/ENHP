@@ -19,7 +19,6 @@ Rails.application.routes.draw do
       resource :likes, only: %i[create destroy]
     end
     get 'post/hashtag/:name' => 'posts#hashtag'
-
     resources :users, only: %i[index show edit update] do
       resource :relationships, only: %i[create destroy]
     member do
@@ -32,9 +31,13 @@ Rails.application.routes.draw do
     get 'search' => 'searches#search'
     # 問い合わせ機能
     resources :contacts, only: %i[new create]
-    get 'contacts/new/confirm' => 'contacts#confirm'
+    get 'contacts' => 'contacts#new'
+    get 'contacts/confirm' => 'contacts#confirm'
     get 'thanks' => 'contacts#thanks', as: 'thanks'
     # 通知機能
     resources :notifications, only: [:index]
+    #スケジュール機能
+    resources :events
+    get 'my_calendar' => 'events#my_calendar'
   end
 end
