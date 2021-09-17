@@ -9,11 +9,9 @@
   <% case notification.action %>
     <% when 'follow' then %>
       <p>あなたをフォローしました</p>
-      
     <% when 'like' then %>
       <%= link_to 'あなたの投稿', notification.post %>
       <p>にいいねしました</p>
-      
     <% when 'comment' then %>
       <% if notification.post.user_id == visited.id %>
         <%= link_to "あなたの投稿", notification.post %>
@@ -23,7 +21,7 @@
         <% end %>
       <% end %>
       コメントしました
-      <%= PostComment.find_by(id: notification.post_comment_id).comment %>
+      <%= PostComment.find_by(id: notification.post_comment_id)&.comment %>
   <% end %>
 </div>
 <div>
