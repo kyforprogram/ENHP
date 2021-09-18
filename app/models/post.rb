@@ -47,11 +47,11 @@ class Post < ApplicationRecord
   end
   before_update do
     post = Post.find_by(id: self.id)
-    post.target.clear
+    post.hashtags.clear
     hashtags = self.target.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
     hashtags.uniq.map do |hashtag|
       tag = Hashtag.find_or_create_by(hashname: hashtag.downcase.delete('#'))
-      post.target << tag
+      post.hashtags << tag
     end
   end
   # いいね機能----------------------------------------
