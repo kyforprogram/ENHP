@@ -1,16 +1,38 @@
-投稿編集画面
-<%= form_with model:@post, local:true do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :company_name %>
-  <%= f.text_field :company_name %>
-  <%= f.label :image %>
-  <%= f.attachment_field :image %>
-  <%= f.label :introduction %>
-  <%= f.text_area :introduction %>
-  <%= f.label :assignment %>
-  <%= f.text_area :assignment %>
-  <%= f.label :target %>
-  <%= f.text_area :target %>
-  <%= f.submit %>
-<% end %>
+<div data-turbolinks='false'>
+<div class="container">
+  <div class="row">
+    <div class="col">
+    投稿新規投稿
+    <div>
+      <%= form_with model:@post, local:true do |f| %>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+        <%= f.label :company_name %>
+        <%= f.text_field :company_name %>
+          <div class="append__category">
+            <div class="category">
+              <div class="form__label">
+                <div class="weight-bold-text lavel__name ">
+                  カテゴリー
+                </div>
+                <div class="lavel__Required">
+                  <%= f.collection_select :category_id, @parents, :id, :name,{ include_blank: "選択してください"},class:"serect_field", id:"item_category_id" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <%= f.label :image %>
+        <%= f.attachment_field :image %>
+        <%= f.label :introduction %>
+        <%= f.text_area :introduction %>
+        <%= f.label :assignment %>
+        <%= f.text_area :assignment %>
+        <%= f.label :target %>
+        <%= f.text_area :target %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+    </div>
+  </div>
+</div>
+</div>

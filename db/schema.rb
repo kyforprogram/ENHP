@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_17_082400) do
+ActiveRecord::Schema.define(version: 2021_09_18_162605) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 2021_09_17_082400) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "ancestry"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
+    t.index ["name"], name: "index_categories_on_name"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -116,6 +125,7 @@ ActiveRecord::Schema.define(version: 2021_09_17_082400) do
     t.text "introduction"
     t.text "assignment"
     t.string "target"
+    t.integer "category_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -145,7 +155,6 @@ ActiveRecord::Schema.define(version: 2021_09_17_082400) do
     t.string "name"
     t.string "profile_image_id"
     t.text "introduction"
-    t.string "job_category"
     t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

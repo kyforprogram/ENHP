@@ -7,6 +7,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
     t.text "introduction"
     t.text "assignment"
     t.string "target"
+    t.integer "category_id"
     t.integer "user_id"
     t.timestamps
     end
