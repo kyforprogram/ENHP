@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col mx-auto">
       <h1>投稿詳細画面</h1><span >閲覧数: <%= @post.view_counts.count %></span>
       <span id="post_comment_count">コメント数：<%= @post.post_comments.count %></span>
       <%= attachment_image_tag @post, :image, :fill, 60, 60, fallback: "noimage.png", size:'200x200' %>
@@ -11,7 +11,9 @@
       <% if @post.category.nil? %>
         今だけカテゴリ欄はない
       <% else %>
-        <%= @post.category.name %>
+          </br><%= @post.category.root.name %>
+          </br><%= @post.category.parent.name %>
+          </br><%= @post.category.name %>
       <% end %>
       <%= @post.introduction %>
       <%= @post.assignment %>
