@@ -1,7 +1,16 @@
 <% if post.category.nil? %>
   <p>カテゴリーが選択されてません</p>
 <% else %>
-  </br><%= post.category.root.name %>
-  </br><%= post.category.parent.name %>
-  </br><%= post.category.name %>
+  <!--ルートは必ず表示されるから-->
+  <%= post.category.root.name %>
+
+  <%# if post.category.has_children? && post.category.has_parent? %>
+  <% if post.category.has_parent? %>
+    <%= post.category.name %>
+  <!--子供なし親だけ-->
+  <% elsif post.category.is_childless? && post.category.has_parent? %>
+    </br><%= post.category.parent.name %>
+    </br><%= post.category.name %>
+  <% end %>
 <% end %>
+
