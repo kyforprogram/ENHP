@@ -9,11 +9,11 @@
       <%= @post.title %>
       <%= @post.company_name %>
       <% if @post.category.nil? %>
-        今だけカテゴリ欄はない
+        <p>カテゴリーが選択されてません</p>
       <% else %>
-          </br><%= @post.category.root.name %>
-          </br><%= @post.category.parent.name %>
-          </br><%= @post.category.name %>
+        </br><%= @post.category.root.name %>
+        </br><%= @post.category.parent.name %>
+        </br><%= @post.category.name %>
       <% end %>
       <%= @post.introduction %>
       <%= @post.assignment %>

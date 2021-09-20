@@ -1,3 +1,134 @@
 // Place all the styles related to the users::posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.datetime-form {
+  display: inline-block;
+  width: auto;
+}
+
+#tree_menu {
+  width: 200px;
+  position: absolute;
+  z-index: 10;
+  display: flex;
+}
+
+.categoryTree {
+  display: none;
+  height: 100%;
+  border: 1px solid #34AEB3;
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 4px 4px 4px #999;
+}
+
+.categoryTree a {
+  padding: 0;
+}
+
+.categoryTree input[type="button"] {
+  /* min-width: 200px; */
+  width: 100%;
+  height: 35px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #3ccace;
+  background: #ffffff;
+  outline: none;
+  transition: .4s;
+  border: #ffffff;
+  /* padding: 0 0.9em; */
+  cursor: pointer;
+}
+
+.categoryTree input[type="button"]:hover {
+  background: #62d4d7;
+  color: white;
+}
+
+.categoryTree input[type="button"]:active {
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+  background-image: linear-gradient(#b1e9eb 0%, #30a1a4 100%);
+}
+
+.categoryTree-child {
+  display: none;
+  height: 100%;
+  border: 1px solid #34AEB3;
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 4px 4px 4px #999;
+}
+
+.category_child a {
+  padding: 0;
+}
+
+.category_child input[type="button"] {
+  min-width: 230px;
+  width: 100%;
+  height: 35px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #3ccace;
+  background: #ffffff;
+  outline: none;
+  transition: .4s;
+  border: #ffffff;
+  padding: 0 0.9em;
+  cursor: pointer;
+}
+
+.category_child input[type="button"]:hover {
+  background: #62d4d7;
+  color: white;
+}
+
+.category_child input[type="button"]:active {
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+  background-image: linear-gradient(#b1e9eb 0%, #30a1a4 100%);
+}
+
+.categoryTree-grandchild {
+  display: none;
+  height: 100%;
+  border: 1px solid #34AEB3;
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 4px 4px 4px #999;
+}
+.categoryTree-grandchild a {
+      padding: 0;
+}
+
+.categoryTree-grandchild input[type="button"] {
+  min-width: 250px;
+  height: 35px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #3ccace;
+  background: #ffffff;
+  outline: none;
+  transition: .4s;
+  border: #ffffff;
+  padding: 0 0.9em;
+  cursor: pointer;
+}
+
+.categoryTree-grandchild input[type="button"]:hover {
+  border: 1px solid #62d4d7;
+  background: #62d4d7;
+  color: white;
+}
+
+.categoryTree-grandchild input[type="button"]:active {
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+  background-image: linear-gradient(#b1e9eb 0%, #30a1a4 100%);
+}

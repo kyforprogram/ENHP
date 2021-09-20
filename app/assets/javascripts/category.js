@@ -132,6 +132,7 @@ $(document).ready(function () {
             $(childcol).css('color', 'white');
             $(childcol).css('background-color', '#b1e9eb');
             $('#tree_menu').css('max-height', '490px');
+            $('#tree_menu').addClass('li list-unstyled');
           })
           .fail(function () {
             alert("カテゴリーを選択してください");

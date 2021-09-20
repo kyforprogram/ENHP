@@ -1,3 +1,4 @@
+<div data-turbolinks='false'>
   <div class="container">
     <div class="row">
       <div calss="col-3">
@@ -12,7 +13,7 @@
         <ul class="categoryTree">
           <% @parents.each do |parent| %>
             <li class="category_parent">
-              <%= link_to search_post_path(parent) do %>
+              <%= link_to search_post_path(parent), 'data-turbolinks': false do %>
                 <input type="button" value="<%= parent.name %>" name="<%= parent.id %>" class="parent_btn">
               <% end %>
             </li>
@@ -40,9 +41,9 @@
           <% if post.category.nil? %>
             <p>nil</p>
           <% else %>
-            </br><%= post.category.root.name %>
-            </br><%= post.category.parent.name %>
-            </br><%= post.category.children.name %>
+          </br><%= post.category.root.name %>
+          </br><%= post.category.parent.name %>
+          </br><%= post.category.name %>
           <% end %>
           </div>
           <div>
@@ -53,3 +54,4 @@
       </div>
     </div>
   </div>
+</div>

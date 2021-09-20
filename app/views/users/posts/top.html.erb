@@ -7,10 +7,10 @@
         カテゴリーから探す
       <% end %>
       <div id="tree_menu">
-        <ul class="categoryTree">
+        <ul class="categoryTree list-unstyled">
           <% @parents.each do |parent| %>
             <li class="category_parent">
-              <%= link_to search_post_path(parent) do %>
+              <%= link_to search_post_path(parent),'data-turbolinks': false do %>
                 <input type="button" value="<%= parent.name %>" name="<%= parent.id %>" class="parent_btn">
               <% end %>
             </li>

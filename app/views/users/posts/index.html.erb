@@ -1,50 +1,52 @@
-<div class="container">
-  <div class="row">
-    <div class="col-3">
-      <div class="item-categories">
-        <h2>
-          カテゴリー一覧
-        </h2>
-        <%= link_to  top_posts_path, class: "category-button", id: 'categoBtn', 'data-turbolinks': false do %>
-          カテゴリーから探す
-        <% end %>
-        <div id="tree_menu">
-          <ul class="categoryTree">
-            <% @parents.each do |parent| %>
-              <li class="category_parent">
-                <%= link_to search_post_path(parent) do %>
-                  <input type="button" value="<%= parent.name %>" name="<%= parent.id %>" class="parent_btn">
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-          <ul class="categoryTree-child">
-          </ul>
-          <ul class="categoryTree-grandchild">
-          </ul>
+<div data-turbolinks='false'>
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <div class="item-categories">
+          <h2>
+            カテゴリー一覧
+          </h2>
+          <%= link_to  top_posts_path, class: "category-button", id: 'categoBtn', 'data-turbolinks': false do %>
+            カテゴリーから探す
+          <% end %>
+          <div id="tree_menu">
+            <ul class="categoryTree">
+              <% @parents.each do |parent| %>
+                <li class="category_parent">
+                  <%= link_to search_post_path(parent) do %>
+                    <input type="button" value="<%= parent.name %>" name="<%= parent.id %>" class="parent_btn">
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+            <ul class="categoryTree-child">
+            </ul>
+            <ul class="categoryTree-grandchild">
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-9">
-      <p>投稿一覧画面</p>
-      <% @posts.each do |post| %>
-        <%= link_to post_path(post.id) do %>
-          <%= attachment_image_tag post, :image, :fill, 60, 60, fallback: "noimage.png", size:'200x200' %>
-          <%= post.title %>
+      <div class="col-9">
+        <p>投稿一覧画面</p>
+        <% @posts.each do |post| %>
+          <%= link_to post_path(post.id) do %>
+            <%= attachment_image_tag post, :image, :fill, 60, 60, fallback: "noimage.png", size:'200x200' %>
+            <%= post.title %>
+          <% end %>
+          <div>
+          <% if post.category.nil? %>
+            <p>カテゴリーが選択されてません</p>
+          <% else %>
+            </br><%= post.category.root.name %>
+            </br><%= post.category.parent.name %>
+            </br><%= post.category.name %>
+          <% end %>
+          </div>
+          <div>
+            <span id="likes_<%= post.id %>"><%= render "users/likes/likes", post: post %></span>
+          </div>
         <% end %>
-        <div>
-        <% if post.category.nil? %>
-          <p>nil</p>
-        <% else %>
-          </br><%= post.category.root.name %>
-          </br><%= post.category.parent.name %>
-          </br><%= post.category.name %>
-        <% end %>
-        </div>
-        <div>
-          <span id="likes_<%= post.id %>"><%= render "users/likes/likes", post: post %></span>
-        </div>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>

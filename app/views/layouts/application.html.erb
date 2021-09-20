@@ -4,39 +4,19 @@
     <title>Enhp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <header>
-    <% if user_signed_in? %>
-      <li><%= link_to "USERS", users_path %></li>
-      <li><%= link_to "POSTS", posts_path %></li>
-      <li><%= link_to "投稿", new_post_path, 'data-turbolinks': false %></li>
-      <li><%= link_to "ログアウト" , destroy_user_session_path, method: :delete %></li>
-      <li><%= link_to "通知", notifications_path %></li>
-      <li><%= link_to "カレンダー", my_calendar_path,'data-turbolinks': false %></li>
-      <li>
-        <%= form_with url: search_path, method: :get, local: true do |f| %>
-        <%= f.text_field :word %>
-        <%= f.select :category, options_for_select([['---選択してください---',''],['User','1'],['Post','2']]) %>
-        <%= f.select :search, options_for_select([["完全一致","perfect"], ["前方一致","forward"], ["後方一致","backward"], ["部分一致","partial"]]) %>
-        <%= f.submit %>
-        <% end %>
-      </li>
-
-    <% else %>
-      <li><%= link_to "新規登録", new_user_registration_path %></li>
-      <li><%= link_to "ログイン", new_user_session_path %></li>
+    <%= render 'shared/header' %>
+    <main class="mb-auto">
+    <% if flash[:notice] %>
+      <div class="flash mt-2"><%= flash[:notice] %></div>
     <% end %>
-    </header>
-
     <%= yield %>
-
-    <footer>
-      <%=  link_to '問い合わせ', new_contact_path %>
-    </footer>
+    </main>
+    <%= render 'shared/footer' %>
   </body>
 </html>
