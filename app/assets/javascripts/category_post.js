@@ -4,21 +4,21 @@ $(function(){
     var html = `<option value="${category.id}">${category.name}</option>`;
     return html;
   }
-  function appendChildrenBox(insertHTML){
+  function appendChildrenBox(insertHTML, parentId){
     var childSelectHtml = "";
     childSelectHtml = `<div class="category__child" id="children_wrapper">
                         <select id="child__category" name="post[category_id]" class="serect_field">
-                          <option value="">---</option>
+                          <option value="${parentId}">---</option>
                           ${insertHTML}
                         </select>
                       </div>`;
     $('.append__category').append(childSelectHtml);
   }
-  function appendGrandchildrenBox(insertHTML){
+  function appendGrandchildrenBox(insertHTML, childId){
     var grandchildSelectHtml = "";
     grandchildSelectHtml = `<div class="category__child" id="grandchildren_wrapper">
                               <select id="grandchild__category" name="post[category_id]" class="serect_field">
-                                <option value="">---</option>
+                                <option value="${childId}">---</option>
                                 ${insertHTML}
                                 </select>
                             </div>`;
@@ -41,7 +41,7 @@ $(function(){
         children.forEach(function(child){
           insertHTML += appendOption(child);
         });
-        appendChildrenBox(insertHTML);
+        appendChildrenBox(insertHTML, parentId);
         if (insertHTML == "") {
           $('#children_wrapper').remove();
         }
@@ -69,7 +69,7 @@ $(function(){
         grandchildren.forEach(function(grandchild){
           insertHTML += appendOption(grandchild);
         });
-        appendGrandchildrenBox(insertHTML);
+        appendGrandchildrenBox(insertHTML, childId);
         if (insertHTML == "") {
           $('#grandchildren_wrapper').remove();
         }

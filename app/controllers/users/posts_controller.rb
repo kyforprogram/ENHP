@@ -85,7 +85,6 @@ before_action :index_post, only: %i[top index]
 
     elsif @category.ancestry.include?("/")
       @posts = Post.where(category_id: params[:id]).order(created_at: :desc)
-
     else
       category = Category.find_by(id: params[:id]).child_ids
       @posts = []
@@ -94,7 +93,6 @@ before_action :index_post, only: %i[top index]
   end
 
   private
-  
   def post_params
     params.require(:post).permit(:title, :company_name, :image, :introduction, :assignment, :target, :category_id)
   end
