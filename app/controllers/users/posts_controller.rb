@@ -94,6 +94,7 @@ before_action :index_post, only: %i[top index]
   end
 
   private
+  
   def post_params
     params.require(:post).permit(:title, :company_name, :image, :introduction, :assignment, :target, :category_id)
   end
