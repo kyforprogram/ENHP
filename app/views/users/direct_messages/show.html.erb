@@ -12,8 +12,8 @@
   <div class="message">
     <% @direct_messages.each do |direct_message| %>
       <% if direct_message.user == current_user %>
-          <%= direct_message.user.name %>
-          <%= direct_message.message %>
+        <%= direct_message.user.name %>
+        <%= direct_message.message %>
       <% end %>
     <% end %>
   </div>
