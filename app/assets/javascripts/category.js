@@ -101,6 +101,7 @@ $(document).ready(function () {
               let parcol = $('.categoryTree').find(`input[name="${gc.root}"]`);
               $(parcol).css('color', 'white');
               $(parcol).css('background-color', '#b1e9eb');
+              $(parcol).css('margin-bottom', '100px;');
             });
             $('#tree_menu').css('max-height', '490px');
           })
@@ -157,7 +158,7 @@ $(document).ready(function () {
     // あえて何も記述しないことで親要素に外れた際のアクションだけを伝搬する
   });
 
-  // カテゴリーを非表示(カテゴリーメニュから0.8秒以上カーソルを外したら消える)
+  // カテゴリーを非表示(カテゴリーメニュから3秒以上カーソルを外したら消える)
   $(document).on({
     mouseleave: function (e) {
       e.stopPropagation();
@@ -171,7 +172,7 @@ $(document).ready(function () {
         $('.parent_btn').css('background-color', '');
         $(".category_child").remove();
         $(".category_grandchild").remove();
-      }, 2000);
+      }, 30000);
     },
     mouseenter: function () {
       timeChosed = setTimeout(function () {
@@ -183,7 +184,7 @@ $(document).ready(function () {
         $('.parent_btn').css('background-color', '');
         $(".category_child").remove();
         $(".category_grandchild").remove();
-      }, 2000);
+      }, 30000);
       clearTimeout(timeChosed);
     }
   }, '#tree_menu');
