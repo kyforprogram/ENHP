@@ -30,7 +30,7 @@
         <div class='item-contents'>
         <h2 class='title'><%= @category.name %></h2>
         <% if @posts.empty? %>
-          <p class="none-posts">該当するクチコミが見つかりません。検索条件を変えて、再度お試しください。</p>
+          <p class="none-posts">該当しませんでした。検索条件を変えて、再度お試しください。</p>
         <% end %>
         <% @posts.each do |post| %>
           <%= link_to post_path(post.id) do %>

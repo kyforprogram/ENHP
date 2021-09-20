@@ -8,13 +8,7 @@
       <span id="likes_<%= @post.id %>"><%= render "users/likes/likes", post: @post %></span>
       <%= @post.title %>
       <%= @post.company_name %>
-      <% if @post.category.nil? %>
-        <p>カテゴリーが選択されてません</p>
-      <% else %>
-        </br><%= @post.category.root.name %>
-        </br><%= @post.category.parent.name %>
-        </br><%= @post.category.name %>
-      <% end %>
+      <%= render 'users/shared/post_category', post: @post %>
       <%= @post.introduction %>
       <%= @post.assignment %>
       <%= render_with_hashtags(@post.target) %>
