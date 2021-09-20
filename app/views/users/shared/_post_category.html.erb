@@ -1,0 +1,7 @@
+<% if post.category.nil? %>
+  <p>カテゴリーが選択されてません</p>
+<% else %>
+  </br><%= post.category.root.name %>
+  </br><%= post.category.parent.name %>
+  </br><%= post.category.name %>
+<% end %>

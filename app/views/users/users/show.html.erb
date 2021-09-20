@@ -1,8 +1,12 @@
 <h2>ユーザー詳細ページ</h2>
 <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "noimage.png", size:'200x200' %>
 <%= @user.name %>
-  <span id="follow_count"> フォロー：<%= link_to @user.followings.count, followings_user_path(@user) %></span>
-  <span id="follower_count">フォロワー：<%= link_to @user.followers.count, followers_user_path(@user) %></span>
+<%= link_to followings_user_path(@user) do %>
+  <span id="follow_count"> フォロー：<%= @user.followings.count %></span>
+<% end %>
+<%= link_to followers_user_path(@user) do %>
+  <span id="follower_count">フォロワー：<%= @user.followers.count %></span>
+<% end %>
 <div id="follow_btn_<%= @user.id %>">
   <%= render 'users/users/follow-btn', user: @user %>
 </div>
@@ -13,4 +17,3 @@
 <% if @user != current_user %>
   <%= link_to "メッセージルーム", direct_message_path(@user) %>
 <% end %>
-

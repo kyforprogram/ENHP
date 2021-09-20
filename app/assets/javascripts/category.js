@@ -171,7 +171,7 @@ $(document).ready(function () {
         $('.parent_btn').css('background-color', '');
         $(".category_child").remove();
         $(".category_grandchild").remove();
-      }, 800);
+      }, 2000);
     },
     mouseenter: function () {
       timeChosed = setTimeout(function () {
@@ -183,7 +183,7 @@ $(document).ready(function () {
         $('.parent_btn').css('background-color', '');
         $(".category_child").remove();
         $(".category_grandchild").remove();
-      }, 800);
+      }, 2000);
       clearTimeout(timeChosed);
     }
   }, '#tree_menu');
