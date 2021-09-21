@@ -1,0 +1,16 @@
+.form-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5vh 0;
+  width: 60vw;
+  margin: 0 auto;
+}
+
+/* フォームタイトル */
+.form-header {
+  border-bottom: 1px solid black;
+  padding: 0 25px 15px;
+  width: 100%;
+  text-align: center;
+}

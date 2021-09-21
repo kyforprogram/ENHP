@@ -1,12 +1,12 @@
 class Users::UsersController < ApplicationController
 before_action :authenticate_user!
-before_action :set_user, only: %i[show edit update followings followers]#可読性を上げるため
+before_action :set_user, only: %i[show edit update followings followers]
 
   def show
   end
 
   def index
-    @users = User.all
+    @users = User.where.not(id: current_user.id)
   end
 
   def edit
@@ -24,6 +24,7 @@ before_action :set_user, only: %i[show edit update followings followers]#可読�
   def followers
     @users = @user.followers
   end
+
 
   private
 

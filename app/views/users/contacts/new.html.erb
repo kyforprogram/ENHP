@@ -1,25 +1,29 @@
-<%= form_with model: @contact, url: contacts_confirm_path, method: :get, local: true do |f|  %>
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-    </div>
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-    </div>
-    <div class="form-group">
-      <%= f.label :tel %>
-      <%= f.text_field :tel %>
-    </div>
-    <div class="form-group">
-      <%= f.label :subject %>
-      <%= f.text_field :subject %>
-    </div>
-    <div class="form-group">
-      <%= f.label :message %>
-      <%= f.text_area :message %>
-    </div>
-    <div class="form-group">
-      <%= f.submit '確認画面に進む' %>
-    </div>
-<% end %>
+<div class="container top-bg">
+
+  <div class="mt-5">
+    <span class="fs-3  offset-md-1 bg-light page-title">問い合わせ</span>
+  </div>
+  <%= form_with model: @contact, url: contacts_confirm_path, method: :get, local: true do |f|  %>
+      <div class="form-group">
+        <%= f.label :お名前, class:"col-2 mt-3" %>
+        <%= f.text_field :name, class:"offset-1 col-3" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :メールアドレス, class:"col-2 mt-3" %>
+        <%= f.text_field :email, class:"offset-1 col-3" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :電話番号, class:"col-2 mt-3" %>
+        <%= f.text_field :tel, class:"offset-1 col-3" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :件名, class:"col-2 mt-3" %>
+        <%= f.text_field :subject, class:"offset-1 col-3" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :メッセージ, class:"col-2 mt-3" %>
+        <%= f.text_area :message, class:"offset-1 col-3" %>
+      </div>
+        <%= f.submit '確認画面に進む' %>
+
+  <% end %>

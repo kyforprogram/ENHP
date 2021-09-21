@@ -1,34 +1,61 @@
-<%= params[:word] %>
-
+<div class="container">
+  <span>検索：【<%= params[:word] %>】</span>
+</div>
 <% if @category == '1' %>
-  <% @user.each do |user| %>
-  <%= link_to user_path(user.id) do %>
-  <%= attachment_image_tag user, :profile_image, :fill, 80, 80, fallback: "noimage.png", size:'200x200' %>
-  <%= user.name %>
-  <% end %>
-  <span id="follow_count"> フォロー：<%= link_to user.followings.count, followings_user_path(user) %></span>
-  <span id="follower_count">フォロワー：<%= link_to user.followers.count, followers_user_path(user) %></span>
-  <div id="follow_btn_<%= user.id %>">
-  <%= render 'users/users/follow-btn', user: user %>
+<div class="container">
+  <div class="row col-8 mx-auto">
+    <table class='table table-hover table-inverse' >
+      <thead class="bg-light">
+        <tr>
+          <th>User</th>
+          <th>フォロー</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @user.each do |user| %>
+      <tr>
+        <th>
+        <%= link_to user_path(user.id) do %>
+          <%= attachment_image_tag user, :profile_image, :fill, 40, 40, fallback: "noimage.png", size:'40x40' %>
+          <%= user.name %>
+        <% end %>
+        </th>
+        <th>
+        <div id="follow_btn_<%= user.id %>">
+          <%= render 'users/users/follow-btn', user: user %>
+        </div>
+        </th>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
-  <%= user.introduction %>
-  <%= user.job_category %>
-  <% if user != current_user %>
-  <%= link_to "メッセージルーム", direct_message_path(user) %>
-  <% end %>
-  <% end %>
+</div>
 <% end %>
-
-
 <% if @category == '2' %>
-  <% @post.each do |post| %>
-  <%= link_to post_path(post.id) do %>
-  <%= attachment_image_tag post, :image, :fill, 80, 80, fallback: "noimage.png", size:'200x200' %>
-  <%= post.title %>
-  <% end %>
-  <%= post.introduction %>
-  <%= post.target %>
-  <span id="post_comment_count">コメント数：<%= post.post_comments.count %></span>
-  <% end %>
-<% end %>
+  <div class='container'>
+    <div class='row'>
+      <% @post.each do |post| %>
+        <div class="card col-3 mx-3 mb-4 embed-responsive shadow-sm">
+        <%= link_to post_path(post.id) do %>
+          <%= attachment_image_tag post, :image, :fill, 40, 20, fallback: "noimage.png", size:'100x60', class:"card-img-top" %>
+        <% end %>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-2">
+              <%= attachment_image_tag post.user, :profile_image, :fill, 60, 60, fallback: "noimage.png", size:'100x60' %>
+            </div>
+            <div class="col-9 offset-2">
+              <h5 class="card-title"><%= post.title %></h5>
 
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <p class="card-text"><%= post.target %><p>
+        </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

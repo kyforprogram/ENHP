@@ -1,18 +1,33 @@
-ユーザー編集
-<%= form_with model:@user, url: admins_user_path(@user.id), local:true do |f| %>
-<%= f.label :profile_image %>
-<%= attachment_image_tag @user, :profile_image, :fill, 30, 30, fallback: "noimage.png", size:'200x200'%>
-<%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
-<%= f.label :name %>
-<%= f.text_field :name %>
-<%= f.label :introduction %>
-<%= f.text_area :introduction %>
-<%= f.label :job_category %>
-<%= f.text_field :job_category %>
-<%= f.label :"会員ステータス" %>
-<%= f.radio_button :is_deleted, false %>
-<%= f.label :is_deleted, '有効', value: false %>
-<%= f.radio_button :is_deleted, true %>
-<%= f.label :is_deleted, "退会", value: true %>
-<%= f.submit %>
-<% end %>
+<div class="container">
+
+  <div class="mt-5">
+    <span class="fs-3  offset-md-1 bg-light page-title">会員情報編集</span>
+  </div>
+
+    <%= form_with model:@user, url: admins_user_path(@user.id), local:true do |f| %>
+    <div class="form-group">
+      <%= f.label :プロフィール画像, class:"col-2 mt-3" %>
+      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "noimage.png", size:'100x100'%>
+      <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :"会員ステータス", class:"col-sm-3 col-form-label" %>
+      <div class="col">
+        <%= f.radio_button :is_deleted, false, class:"form-check-input" %>
+        <%= f.label :is_deleted, '有効', value: false, class:"form-check-label" %>
+      </div>
+      <div class="col">
+        <%= f.radio_button :is_deleted, true, class:"form-check-input" %>
+        <%= f.label :is_deleted, "退会", value: true, class:"form-check-label" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-4">
+      </div>
+      <div class="col-sm-4">
+        <%= f.submit "変更する", "data-confirm" => "変更してよろしいですか?", class:"btn btn-danger" %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

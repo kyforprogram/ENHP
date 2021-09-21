@@ -1,9 +1,14 @@
 <div data-turbolinks='false'>
-<div class="col mx-auto">
-<div class="page-header">
-<h3>マイカレンダー</h3>
-</div>
-<%= link_to 'スケジュール登録', new_event_path, class: 'btn btn-success' %>
-<div id="calendar"></div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="page-header">
+        <h3>マイカレンダー</h3>
+        </div>
+          <%= link_to 'スケジュール登録', new_event_path, class: 'btn btn-success' %>
+          <div id="calendar">
+          </div>
+        </div>
+  </div>
 </div>
 </div>

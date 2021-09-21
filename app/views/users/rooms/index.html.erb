@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="home_content_message col-md-9">
+    <h1 class="users-heading">メッセージ一覧</h1>
+      <% @another_entries.each do |entry| %>
+        <div class="users-index">
+          <div class="user-right">
+            <%= link_to direct_message_path(entry.room.id) do %>
+              <%= entry.user.name %>さんからのメッセージ
+                <small> 更新日 <%= entry.room.direct_messages.order(created_at: :desc).first.try(:created_at) %></small><br>
+            <% end %>
+              <%= entry.room.direct_messages.order(created_at: :desc).first.try(:message) %>
+          </div>
+        </div>
+        <hr>
+      <% end %>
+    <%= link_to "USERS", users_path, class:"btn btn-info text-dark" %>
+  </div>
+</div>

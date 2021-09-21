@@ -1,34 +1,54 @@
 <div data-turbolinks='false'>
 <div class="container">
-  <div class="row">
+  <div class="row mx-auto">
     <div class="col">
-    投稿新規投稿
-    <div>
+    <h2>投稿編集画面</h2>
       <%= form_with model:@post, local:true do |f| %>
-        <%= f.label :title %>
-        <%= f.text_field :title %>
-        <%= f.label :company_name %>
-        <%= f.text_field :company_name %>
-          <div class="append__category">
-            <div class="category">
-              <div class="form__label">
-                <div class="weight-bold-text lavel__name ">
-                  カテゴリー
-                </div>
-                <div class="lavel__Required">
-                  <%= f.collection_select :category_id, @parents, :id, :name,{ include_blank: "選択してください"}, class:"serect_field", id:"item_category_id" %>
-                </div>
+      <div class="mb-3 row">
+        <%= f.label :タイトル, class:"col-sm-3 col-form-label" %>
+        <%= f.text_field :title, autofocus: true, class:"form-control" %>
+      </div>
+
+      <div class="mb-3 row">
+        <%= f.label :企業名, class:"col-sm-3 col-form-label"  %>
+        <%= f.text_field :company_name, autofocus: true, class:"form-control" %>
+      </div>
+
+      <div class="mb-3 row">
+        <%= f.label "職業カテゴリー", class:"col-sm-3 col-form-label"  %>
+        <div class="append__category">
+          <div class="category">
+            <div class="form__label">
+              <div class="weight-bold-text lavel__name ">
+              </div>
+              <div class="lavel__Required">
+                <%= f.collection_select :category_id, @parents, :id, :name,{ include_blank: "選択してください"}, class:"serect_field form-control", id:"item_category_id" %>
               </div>
             </div>
           </div>
-        <%= f.label :image %>
+        </div>
+       </div>
+
+        <div class="mb-3 row">
+        <%= f.label :imag, class:"col-sm-3 col-form-label"  %>
         <%= f.attachment_field :image %>
-        <%= f.label :introduction %>
-        <%= f.text_area :introduction %>
-        <%= f.label :assignment %>
-        <%= f.text_area :assignment %>
-        <%= f.label :target %>
-        <%= f.text_area :target %>
+        </div>
+
+        <div class="mb-3 row">
+        <%= f.label :紹介文, class:"col-sm-3 col-form-label"  %>
+        <%= f.text_area :introduction, autofocus: true, class:"form-control" %>
+        </div>
+
+        <div class="mb-3 row">
+        <%= f.label :課題, class:"col-sm-3 col-form-label"  %>
+        <%= f.text_area :assignment, autofocus: true, class:"form-control" %>
+        </div>
+
+        <div class="mb-3 row">
+        <%= f.label "target", class:"col-sm-3 col-form-label"  %>
+        <%= f.text_area :target, autofocus: true, class:"form-control" %>
+        </div>
+
         <%= f.submit %>
       <% end %>
     </div>

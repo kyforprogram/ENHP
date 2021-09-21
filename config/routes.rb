@@ -22,11 +22,11 @@ Rails.application.routes.draw do
         get 'top'
         get 'get_category_children', defaults: { format: 'json' }
         get 'get_category_grandchildren', defaults: { format: 'json' }
-        get 'name_search'
       end
       member do
       get 'search'
       end
+      get 'likes'
     end
 
     get 'post/hashtag/:name' => 'posts#hashtag'
@@ -38,7 +38,8 @@ Rails.application.routes.draw do
       end
     end
     #DM機能
-    resources :direct_messages, only: %i[show create]
+    resources :direct_messages, only: %i[create index show]
+    resources :rooms, only: %i[index]
     #検索機能
     get 'search' => 'searches#search'
     # 問い合わせ機能

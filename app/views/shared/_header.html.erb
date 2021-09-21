@@ -1,32 +1,66 @@
 <header class="shadow-sm">
-  <nav class="navbar navbar-expand-lg navbar-light">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #f8ff8096">
     <div class="container">
-      <a class="navbar-brand p-3" href="/"><%= image_tag('logo.png') %></a>
+      <%= link_to image_tag("logo.png", size: "50x40"), root_path, class: "image mt-2" %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-          <% if user_signed_in? %>
-            <li class="nav-item"><%= link_to "USERS", users_path %></li>
-            <li class="nav-item"><%= link_to "POSTS", posts_path,'data-turbolinks': false %></li>
-            <li class="nav-item"><%= link_to "投稿", new_post_path, 'data-turbolinks': false %></li>
-            <li class="nav-item"><%= link_to "ログアウト" , destroy_user_session_path, method: :delete %></li>
-            <li class="nav-item"><%= link_to "通知", notifications_path %></li
-            <li class="nav-item"><%= link_to "カレンダー", my_calendar_path,'data-turbolinks': false %></li>
+        <% if user_signed_in? %>
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item dropdown">
+              <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                <p class="fas fa-book-open text-dark"> POSTS</p>
+              </span>
+              <div class="dropdown-menu">
+                <%= link_to "POSTS", posts_path, class: 'fas fa-book-open dropdown-item text-dark', 'data-turbolinks': false %>
+                <%= link_to "投稿", new_post_path, class: 'fas fa-pencil-alt dropdown-item text-dark', 'data-turbolinks': false %>
+                <%= link_to "お気に入り", post_likes_path(current_user), class: 'fas fa-thumbs-up dropdown-item text-dark'%>
+                <%= link_to "カテゴリー検索", top_posts_path, class: ' dropdown-item text-dark', 'data-turbolinks': false %>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                <p class="fas fa-book-open text-dark"> USERS</p>
+              </span>
+              <div class="dropdown-menu">
+                <%= link_to "USERS", users_path, class: 'fas fa-user-friends  dropdown-item text-dark' %>
+                <%= link_to "マイページ", user_path(current_user), class: 'fas fa-id-badge dropdown-item text-dark' %>
+                <%= link_to "プロフィール編集", edit_user_path(current_user), class: "fas fa-user-edit dropdown-item text-dark" %>
+                <%= link_to "カレンダー", my_calendar_path, class:"far fa-calendar-alt dropdown-item text-dark", 'data-turbolinks': false %>
+                <%= link_to "メッセージ一覧", rooms_path, class:"fas fa-sms dropdown-item text-dark" %>
+              </div>
+            </li>
             <li class="nav-item">
-              <%= form_with url: search_path, method: :get, local: true do |f| %>
+              <%= form_with url: search_path, method: :get, class: "search-form", local: true do |f| %>
               <%= f.text_field :word %>
               <%= f.select :category, options_for_select([['---選択してください---',''],['User','1'],['Post','2']]) %>
               <%= f.select :search, options_for_select([["完全一致","perfect"], ["前方一致","forward"], ["後方一致","backward"], ["部分一致","partial"]]) %>
-              <%= f.submit %>
+              <button type="submit" name="commit" value="検索" id="search-btn">
+                <i class="fas fa-search"></i>
+              </button>
               <% end %>
             </li>
-          <% else %>
-            <li class="nav-item"><%= link_to "新規登録", new_user_registration_path %></li>
-            <li class="nav-item"><%= link_to "ログイン", new_user_session_path %></li>
-          <% end %>
-        </ul>
+            <li class="nav-item">
+              <% if unchecked_notifications.any? %>
+                <span class="fa-stack">
+                  <%= link_to '通知', notifications_path, class: 'fas fa-bell  nav-link text-dark' %>
+                  <i class="fas fa-circle n-circle "></i>
+                </span>
+              <% else %>
+                  <%= link_to '通知', notifications_path, class: 'fas fa-bell  nav-link text-dark' %>
+              <% end %>
+            </li>
+            <li class="nav-otem">
+              <%= link_to "ログアウト" , destroy_user_session_path, method: :delete, class: 'fas fa-door-open  dropdown-item text-dark' %>
+            </li>
+          </ul>
+        <% else %>
+          <ul>
+            <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: 'fas fa-user-plus nav-link text-dark' %></li>
+            <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: 'fas fa-sign-in-alt nav-link text-dark' %></li>
+          </ul>
+        <% end %>
       </div>
     </div>
   </nav>

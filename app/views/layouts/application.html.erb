@@ -10,8 +10,12 @@
   </head>
 
   <body>
-    <%= render 'shared/header' %>
-    <main class="mb-auto">
+    <% if admin_signed_in? %>
+      <%= render 'shared/admin_header' %>
+    <% else %>
+      <%= render 'shared/header' %>
+    <% end %>
+    <main class="mx-auto" style="padding-top:50px">
     <% if flash[:notice] %>
       <div class="flash mt-2"><%= flash[:notice] %></div>
     <% end %>

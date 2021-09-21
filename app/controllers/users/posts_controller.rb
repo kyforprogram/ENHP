@@ -19,21 +19,6 @@ before_action :index_post, only: %i[top index]
     @posts = Post.all
   end
 
-  def top
-    respond_to do |format|
-      format.html
-      format.json do
-        if params[:parent_id]
-          @childrens = Category.find(params[:parent_id]).children
-        elsif params[:children_id]
-          @grandChilds = Category.find(params[:children_id]).children
-        elsif params[:gcchildren_id]
-          @parents = Category.where(id: params[:gcchildren_id])
-        end
-      end
-    end
-  end
-
   def show
     @post_comment = PostComment.new
     unless ViewCount.find_by(user_id: current_user.id, post_id: @post.id)
@@ -57,8 +42,12 @@ before_action :index_post, only: %i[top index]
     redirect_to posts_path
   end
 
+  def likes
+    likes = Like.where(user_id: current_user.id).pluck(:post_id)# ログイン中のユーザーのお気に入りのpost_idカラムを取得
+    @post_likes = Post.find(likes)# postsテーブルから、お気に入り登録済みのレコードを取得
+  end
+
   def hashtag
-    @user = current_user
     @tag = Hashtag.find_by(hashname: params[:name])
     @posts = @tag.posts
   end
@@ -66,35 +55,53 @@ before_action :index_post, only: %i[top index]
   def get_category_children
     @category_children = Category.find("#{params[:parent_id]}").children
   end
-
   def get_category_grandchildren
     @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
 
-  def search
-    @category = Category.find_by(id: params[:id])
-
-    if @category.ancestry == nil
-      category = Category.find_by(id: params[:id]).indirect_ids
-      if category.empty?
-        @posts = Post.where(category_id: @category.id).order(created_at: :desc)
-      else
-        @posts = []
-        find_item(category)
+  def top
+    respond_to do |format|
+      format.html
+      format.json do
+        if params[:parent_id]
+          @childrens = Category.find(params[:parent_id]).children
+        elsif params[:children_id]
+          @grandChilds = Category.find(params[:children_id]).children
+        elsif params[:gcchildren_id]
+          @parents = Category.where(id: params[:gcchildren_id])
+        end
       end
-
-    elsif @category.ancestry.include?("/")
-      @posts = Post.where(category_id: params[:id]).order(created_at: :desc)
-    else
-      category = Category.find_by(id: params[:id]).child_ids
-      @posts = []
-      find_item(category)
     end
   end
 
-  private
-  def post_params
-    params.require(:post).permit(:title, :company_name, :image, :introduction, :assignment, :target, :category_id)
+  def search
+    @posts = []
+    @category = Category.find_by(id: params[:id])
+    if @category.ancestry == nil#第一階層
+      category = Category.find_by(id: params[:id]).descendant_ids
+      category << @category.id#@category.id = root.id
+      if category.empty?
+        @posts = Post.where(category_id: @category.id).order(created_at: :desc)
+      else
+        find_item(category)
+      end
+    else
+      category = Category.find_by(id: params[:id]).descendant_ids#第二階層親、子
+      category << @category.id#@category.id = root.id
+      find_item(category)
+    end
+  end
+  def find_item(category)
+    category.each do |id|
+      post_array = Post.where(category_id: id).order(created_at: :desc)
+      if post_array.present?
+        post_array.each do |post|
+          if post.present?
+            @posts.push(post)
+          end
+        end
+      end
+    end
   end
 
   def set_post
@@ -107,20 +114,9 @@ before_action :index_post, only: %i[top index]
     @posts = Post.order(created_at: :desc).page(params[:page]).per(10)
   end
 
-  def find_item(category)
-    category.each do |id|
-      post_array = Post.where(category_id: id).order(created_at: :desc)
-      # find_by()メソッドで該当のレコードがなかった場合、itemオブジェクトに空の配列を入れないようにするための処理
-      if post_array.present?
-        post_array.each do |post|
-          if post.present?
-          # else
-            # find_by()メソッドで該当のレコードが見つかった場合、@item配列オブジェクトにそのレコードを追加する
-            @posts.push(post)
-          end
-        end
-      end
-    end
+  private
+  def post_params
+    params.require(:post).permit(:title, :company_name, :image, :introduction, :assignment, :target, :category_id)
   end
 
 end
