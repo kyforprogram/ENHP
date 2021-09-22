@@ -22,7 +22,6 @@ class Users::DirectMessagesController < ApplicationController
     @direct_message = current_user.direct_messages.new(direct_message_params)
     @direct_message.save
     #redirect_to request.referer
-    @user = current_user
     @room = Room.find(params[:direct_message][:room_id])
     @direct_messages = @room.direct_messages.order(created_at: :desc)
   end

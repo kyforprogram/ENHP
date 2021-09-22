@@ -14,6 +14,7 @@
  *= require fullcalendar
  *= require_tree .
  */
+
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
@@ -30,4 +31,3 @@
 li {
   list-style-type: none;
 }
-

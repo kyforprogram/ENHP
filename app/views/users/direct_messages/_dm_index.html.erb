@@ -1,94 +1,29 @@
-<main class="bg-white shadow-sm">
-  <p id="notice"></p>
-  <div class='container'>
-    <div class='row'>
-      <div class="col-md-3">
-      <%= render 'users/shared/user_info', user: @user %>
-      </div>
-      <div class='col-md-9 pb-3'>
-        <h4><%= @user.name %>さんとのチャット</h4>
-        <div class="form-inline">
-          <% @direct_messages.each do |dm| %>
-          <% if dm.user == current_user %>
-            <tr class="row justify-content-center">
-              <td class="col-2  mt-3">
-              </td>
-              <td class="col-9 mt-3">
-                <%= dm.user.name %> <br>
-                <div class="says">
-                  <p><%= safe_join(dm.message.split("\n"),tag(:br)) %></p>
-                  <span><%=  dm.created_at.strftime('%Y/%m/%d %H:%M') %></span>
-                </div>
-              </td>
-            </tr>
-          <% else %>
-            <tr class="row justify-content-center">
-              <td class="col-9 mt-3">
-                <div class="col-11 float-right">
-                  <%= dm.user.name %> <br>
-                </div>
-                <div class="other-user-says">
-                  <p><%= safe_join(dm.message.split("\n"),tag(:br)) %></p>
-                  <span><%=  dm.created_at.strftime('%Y/%m/%d %H:%M') %></span>
-                </div>
-              </td>
-              <td class="col-2 mt-3">
-              </td>
-            </tr>
-          <% end %>
-        <% end %>
+<% direct_messages.each do |direct_message| %>
+  <% if direct_message.user == current_user %>
+    <tr class="row justify-content-center">
+      <td class="col-2  mt-3">
+      </td>
+      <td class="col-9 mt-3">
+        <%= direct_message.user.name %> <br>
+        <div class="says">
+          <p><%= safe_join(direct_message.message.split("\n"),tag(:br)) %></p>
+          <span><%=  direct_message.created_at.strftime('%Y/%m/%d %H:%M') %></span>
         </div>
-        <div>
-          <table class="message">
-          <%= form_with model: @direct_message do |f| %>
-            <%= f.text_area :message, class:"form-control shadow-sm" %>
-            <%= f.hidden_field :room_id %>
-            <%= f.submit '送信する', class:"btn btn-success" %>
-          <% end %>
-          </table>
+      </td>
+    </tr>
+  <% else %>
+    <tr class="row justify-content-center">
+      <td class="col-9 mt-3">
+        <div class="col-11 float-right">
+          <%= direct_message.user.name %> <br>
         </div>
-      </div>
-    </div>
-  </div>
-</main>
-<!--<div class="page-content page-container" id="page-content">-->
-<!--    <div class="padding">-->
-<!--        <div class="row container d-flex justify-content-center">-->
-<!--            <div class="col-md-6">-->
-<!--                <div class="card card-bordered">-->
-<!--                    <div class="card-header">-->
-<!--                        <h4 class="card-title">名前：<strong><%#= user.name %> さん</strong></h4>-->
-<!--                    </div>-->
-<!--                      <div class="ps-container ps-theme-default ps-active-y" id="chat-content" style="overflow-y: scroll !important; height:400px !important;">-->
-<!--                          <%# direct_messages.each do |direct_message| %>-->
-<!--                              <%# if direct_message.user == current_user %>-->
-<!--                                  <div class="media media-chat media-chat-reverse">-->
-<!--                                        <div class="media-body">-->
-<!--                                            <%#= direct_message.user.name %>-->
-<!--                                            <%#= direct_message.message %>-->
-<!--                                        </div>-->
-<!--                                  </div>-->
-<!--                              <%# else %>-->
-<!--                                  <div class="media media-chat"> <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">-->
-<!--                                        <div class="media-body">-->
-<!--                                            <#%= direct_message.user.name %>-->
-<!--                                            <#%= direct_message.message %>-->
-<!--                                        </div>-->
-<!--                                  </div>-->
-<!--                                  <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">-->
-<!--                                      <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>-->
-<!--                                  </div>-->
-<!--                                  <div class="ps-scrollbar-y-rail" style="top: 0px; height: 0px; right: 2px;">-->
-<!--                                      <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 2px;"></div>-->
-<!--                                  </div>-->
-<!--                              <%# end %>-->
-<!--                          <%# end %>-->
-<!--                      </div>-->
-<!--                  <div class="message">-->
-<!--                    <#%= render 'users/direct_messages/dm_form', user: user, direct_message: direct_message %>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+        <div class="other-user-says">
+          <p><%= safe_join(direct_message.message.split("\n"),tag(:br)) %></p>
+          <span><%=  direct_message.created_at.strftime('%Y/%m/%d %H:%M') %></span>
+        </div>
+      </td>
+      <td class="col-2 mt-3">
+      </td>
+    </tr>
+  <% end %>
+<% end %>
