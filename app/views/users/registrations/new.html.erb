@@ -1,41 +1,36 @@
-<div class="form-wrap">
-  <div class='form-header'>
-  <h2>新規登録</h2>
-  <div class='login-flash-message login-message'>
-    <%= flash[:notice] %>
-    <%= flash[:alert] %>
-  </div>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+<div class="container top-bg">
+  <div class="mt-5">
+    <span class="fs-3 fst-italic offset-md-1 bg-light signup-form">新規会員登録</span>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "users/shared/error_messages", resource: resource %>
+        <div class="row mt-3">
+　　　　　<%= f.label :名前, class:"col-2" %>
+          <%= f.text_field :name, class:"col-3", autofocus: true, placeholder:"令和太郎" %>
+        </div>
+        <div class="row mt-3">
+          <%= f.label :メールアドレス, class:"offset-1 col-2" %>
+          <%= f.email_field :email, class:"col-3", autofocus: true, placeholder:"sample.example.com", autocomplete: "email" %>
+        </div>
+        <div class="row mt-3">
+          <%= f.label :パスワード（6文字以上）, class:"col-3" %>
+          <%= f.password_field :password, class:"col-2", autocomplete: "new-password" %>
+        </div>
+        <div class="row mt-3">
+          <%= f.label :パスワード（確認用）, class:"col-3" %>
+          <%= f.password_field :password_confirmation, class:"col-2", autocomplete: "new-password" %>
+        </div>
+        <div class="actions">
+          <%= f.submit "新規登録", class:"btn btn-signup offset-3 mt-4" %>
+        </div>
+      <% end %>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+      <div class="mt-5">
+        <span class="fs-3 fst-italic offset-md-1 bg-light">既に登録済の方</span>
+      </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up", class: "btn btn-success" %>
-  </div>
-  <% end %>
-
-  <%= render "users/shared/links" %>
-  </div>
+      <div class="offset-1 mt-3 mb-4">
+        <%= link_to "こちら", new_user_session_path, class: "signin-link" %>　からログインしてください.
+      </div>
 </div>
