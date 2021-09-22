@@ -1,0 +1,8 @@
+<div class="publisher bt-1 border-light">
+<%= attachment_image_tag user, :profile_image, fallback: "noimage.png", class:"avatar avatar-xs" %>
+  <%= form_with model: direct_message do |f| %>
+    <%= f.text_field :message, size: 25, placeholder:"メッセージを作成" %>
+    <%= f.hidden_field :room_id %>
+    <%= f.submit "送信", class:"btn btn-primary" %>
+  <% end %>
+</div>

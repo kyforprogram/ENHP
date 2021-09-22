@@ -1,7 +1,5 @@
 class Users::DirectMessagesController < ApplicationController
 
-
-
   def show
     @user = User.find(params[:id])# どのユーザーとチャットするかを取得。
     rooms = current_user.entries.pluck(:room_id)# カレントユーザーのuser_roomにあるroom_idの値の配列をroomsに代入。
@@ -24,6 +22,9 @@ class Users::DirectMessagesController < ApplicationController
     @direct_message = current_user.direct_messages.new(direct_message_params)
     @direct_message.save
     #redirect_to request.referer
+    @user = current_user
+    @room = Room.find(params[:direct_message][:room_id])
+    @direct_messages = @room.direct_messages.order(created_at: :desc)
   end
 
   private

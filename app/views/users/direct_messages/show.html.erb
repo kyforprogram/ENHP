@@ -2,81 +2,12 @@
   <p id="notice"></p>
   <div class='container'>
     <div class='row'>
-      <div class="col-md-3">
-      <%= render 'users/shared/user_info', user: @user %>
+      <div class="col-3">
+        <%= render 'users/shared/user_info', user: @user %>
       </div>
-      <div class='col-md-9 pb-3'>
-        <h4><%= @user.name %>さんとのチャット</h4>
-        <div class="form-inline">
-          <% @direct_messages.each do |dm| %>
-          <% if dm.user == current_user %>
-            <tr class="row justify-content-center">
-              <td class="col-2  mt-3">
-
-              </td>
-              <td class="col-9 mt-3">
-                <%= dm.user.name %> <br>
-                <div class="says">
-                  <p><%= safe_join(dm.message.split("\n"),tag(:br)) %></p>
-                  <span><%=  dm.created_at.strftime('%Y/%m/%d %H:%M') %></span>
-                </div>
-              </td>
-            </tr>
-          <% else %>
-            <tr class="row justify-content-center">
-              <td class="col-9 mt-3">
-                <div class="col-11 float-right">
-                  <%= dm.user.name %> <br>
-                </div>
-                <div class="other-user-says">
-                  <p><%= safe_join(dm.message.split("\n"),tag(:br)) %></p>
-                  <span><%=  dm.created_at.strftime('%Y/%m/%d %H:%M') %></span>
-                </div>
-              </td>
-              <td class="col-2 mt-3">
-              </td>
-            </tr>
-          <% end %>
-        <% end %>
-        </div>
-        <div>
-          <table class="message">
-          <%= form_with model: @direct_message do |f| %>
-            <%= f.text_area :message, class:"form-control shadow-sm" %>
-            <%= f.hidden_field :room_id %>
-            <%= f.submit '送信する', class:"btn btn-success" %>
-          <% end %>
-          </table>
-        </div>
+      <div class="col-9">
+        <%= render 'users/direct_messages/dm_index', user: @user, direct_messages: @direct_messages, direct_message: @direct_message %>
       </div>
     </div>
   </div>
 </main>
-
-<div class="page-content page-container" id="page-content">
-    <div class="padding">
-        <div class="row container d-flex justify-content-center">
-            <div class="col-md-6">
-                <div class="card card-bordered">
-                    <div class="card-header">
-                        <h4 class="card-title"><strong>Chat</strong></h4> 
-                    </div>
-                    <div class="ps-container ps-theme-default ps-active-y" id="chat-content" style="overflow-y: scroll !important; height:400px !important;">
-                        <div class="media media-chat"> <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
-                            <div class="media-body">
-                                <p>Hi</p>
-                            </div>
-                        </div>
-                        <div class="media media-chat media-chat-reverse">
-                            <div class="media-body">
-                                <p>That's awesome!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="publisher bt-1 border-light"> 
-                    <img class="avatar avatar-xs" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="..."> <input class="publisher-input" type="text" placeholder="Write something"> <span class="publisher-btn file-group"> <i class="fa fa-paperclip file-browser"></i> <input type="file"> </span> <a class="publisher-btn" href="#" data-abc="true"><i class="fa fa-smile"></i></a> <a class="publisher-btn text-info" href="#" data-abc="true"><i class="fa fa-paper-plane"></i></a> </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>

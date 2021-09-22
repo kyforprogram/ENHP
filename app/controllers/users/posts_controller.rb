@@ -91,6 +91,7 @@ before_action :index_post, only: %i[top index]
       find_item(category)
     end
   end
+  
   def find_item(category)
     category.each do |id|
       post_array = Post.where(category_id: id).order(created_at: :desc)

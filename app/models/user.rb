@@ -19,7 +19,7 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy#スケジュール機能
 
 
-  def is_followed_by?(user)# フォローしてたらtrueを返すi
+  def is_followed_by?(user)# フォローしてたらtrueを返す
     followings.include?(user)# find_byよりincludeの方がN＋１問題を解消できる
   end
 

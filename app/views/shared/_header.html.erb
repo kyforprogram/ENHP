@@ -13,10 +13,10 @@
                 <p class="fas fa-book-open text-dark"> POSTS</p>
               </span>
               <div class="dropdown-menu">
-                <%= link_to "POSTS", posts_path, class: 'fas fa-book-open dropdown-item text-dark', 'data-turbolinks': false %>
-                <%= link_to "投稿", new_post_path, class: 'fas fa-pencil-alt dropdown-item text-dark', 'data-turbolinks': false %>
+                <%= link_to "POSTS", posts_path, class: 'fas fa-book-open dropdown-item text-dark' %>
+                <%= link_to "投稿", new_post_path, class: 'fas fa-pencil-alt dropdown-item text-dark' %>
                 <%= link_to "お気に入り", post_likes_path(current_user), class: 'fas fa-thumbs-up dropdown-item text-dark'%>
-                <%= link_to "カテゴリー検索", top_posts_path, class: ' dropdown-item text-dark', 'data-turbolinks': false %>
+                <%= link_to "カテゴリー検索", top_posts_path, class: ' dropdown-item text-dark' %>
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -27,7 +27,7 @@
                 <%= link_to "USERS", users_path, class: 'fas fa-user-friends  dropdown-item text-dark' %>
                 <%= link_to "マイページ", user_path(current_user), class: 'fas fa-id-badge dropdown-item text-dark' %>
                 <%= link_to "プロフィール編集", edit_user_path(current_user), class: "fas fa-user-edit dropdown-item text-dark" %>
-                <%= link_to "カレンダー", my_calendar_path, class:"far fa-calendar-alt dropdown-item text-dark", 'data-turbolinks': false %>
+                <%= link_to "カレンダー", my_calendar_path, class:"far fa-calendar-alt dropdown-item text-dark" %>
                 <%= link_to "メッセージ一覧", rooms_path, class:"fas fa-sms dropdown-item text-dark" %>
               </div>
             </li>
