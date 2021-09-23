@@ -1,28 +1,49 @@
-<table>
-  <tbody>
-    <tr>
-      <%= @contact.name %>
-    </tr>
-    <tr>
-      <%= @contact.email %>
-    </tr>
-    <tr>
-      <%= @contact.tel %>
-    </tr>
-    <tr>
-      <%= @contact.subject %>
-    </tr>
-    <tr>
-      <%= @contact.message %>
-    </tr>
-  </tbody>
-</table>
-<%= form_with model: @contact, local: true do |f| %>
-  <%= f.hidden_field :name %>
-  <%= f.hidden_field :email %>
-  <%= f.hidden_field :tel %>
-  <%= f.hidden_field :subject %>
-  <%= f.hidden_field :message %>
-  <%= f.submit '戻る', name: 'back' %>
-  <%= f.submit '送信' %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <table class="table bordearless">
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <th><%= @contact.name %></th>
+          </tr>
+          <tr>
+            <th>mail</th>
+            <th><%= @contact.email %></th>
+          </tr>
+          <tr>
+            <th>Tel</th>
+            <th><%= @contact.tel %></th>
+          </tr>
+          <tr>
+            <th>subject</th>
+            <th><%= @contact.subject %></th>
+          </tr>
+          <tr>
+            <th>message</th>
+            <th><%= @contact.message %></th>
+          </tr>
+          <tr>
+            <th>
+            <%= form_with model: @contact, local: true do |f| %>
+              <%= f.hidden_field :name %>
+              <%= f.hidden_field :email %>
+              <%= f.hidden_field :tel %>
+              <%= f.hidden_field :subject %>
+              <%= f.hidden_field :message %>
+              <%= f.submit '戻る', name: 'back', class:"btn btn-primary" %>
+              <%= f.submit '送信', class:"btn btn-info" %>
+            <% end %>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

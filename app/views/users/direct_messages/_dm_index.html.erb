@@ -1,6 +1,6 @@
 <% @direct_messages.each do |direct_message| %>
     <% if direct_message.user == current_user %>
-    <div class="message-date"><%= direct_message.created_at.strftime("%Y.%m.%d") %></div>
+    <div class="message-date"><%= direct_message.created_at.strftime('%Y/%m/%d %H:%M') %></div>
       <div class="balloon_l">
         <div class="faceicon">
           <%= attachment_image_tag direct_message.user, :profile_image, fallback: "noimage.png", class: "mr-3 align-self-start" %>
@@ -11,7 +11,7 @@
         </p>
       </div>
     <% else %>
-    <div class="message-date"><%= direct_message.created_at.strftime("%Y.%m.%d") %></div>
+    <div class="message-date"><%= direct_message.created_at.strftime('%Y/%m/%d %H:%M') %> %></div>
       <div class="balloon_r">
         <div class="faceicon">
           <%= attachment_image_tag direct_message.user, :profile_image, fallback: "noimage.png", class: "mr-3 align-self-start" %>
