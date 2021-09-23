@@ -1,7 +1,26 @@
-<p>フォロー</p>
-<% @users.each do |user| %>
-  <%= link_to user_path(user) do %>
-    <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "noimage.png", size:'200x200' %>
-    <%= user.name %>
+<div class="container">
+  <h2>
+    フォロー一覧
+  </h2>
+  <div class="card-deck mt-3">
+  <% @users.each do |user| %>
+    <div class="col-4">
+      <div class="card text-center">
+      <%= link_to user_path(user.id) do %>
+        <%= attachment_image_tag user, :profile_image, fallback: "noimage.png", class:"card-img-top" %>
+      <% end %>
+      <p>
+        <%= user.name %>
+      </p>
+      <p>
+        <%= user.company %>
+      </p>
+      <div id="follow_btn_<%= user.id %>">
+        <%= render 'users/users/follow-btn', user: user %>
+      </div>
+      </div>
+    </div>
   <% end %>
-<% end %>
+  </div>
+</div>
+

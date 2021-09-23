@@ -1,3 +1,32 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 4%;
+}
+
+.home {
+  background-image: url("top.jpg");
+  min-height: 60vh;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+.top-content {
+  text-align: center;
+
+}
+.page-title {
+  text-transform: uppercase;
+  position: center;
+  font-size: 5rem;
+  font-family: "philsopher", serif;
+  text-transform: uppercase;
+  font-weight: normal;
+  color: rgb(0, 0, 0);
+}
+.page-title-p {
+  text-align: center;
+}

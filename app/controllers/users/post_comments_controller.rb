@@ -16,14 +16,12 @@ before_action :find_post, only: [:create, :destroy]
     #redirect_to request.referer || post_path(params[:post_id])
   end
 
-  private
-
-  def post_comments_params
-    params.require(:post_comment).permit(:comment)
-  end
-
   def find_post
     @post = Post.find(params[:post_id])
   end
 
+  private
+  def post_comments_params
+    params.require(:post_comment).permit(:comment)
+  end
 end

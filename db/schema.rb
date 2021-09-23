@@ -120,7 +120,6 @@ ActiveRecord::Schema.define(version: 2021_09_18_162605) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
-    t.string "company_name"
     t.string "image_id"
     t.text "introduction"
     t.text "assignment"
@@ -154,6 +153,7 @@ ActiveRecord::Schema.define(version: 2021_09_18_162605) do
     t.datetime "remember_created_at"
     t.string "name"
     t.string "profile_image_id"
+    t.string "company"
     t.text "introduction"
     t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false

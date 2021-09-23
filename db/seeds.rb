@@ -21,13 +21,13 @@ User.create!([
   email: "a#{n+1}@a",
   password: "aaaaaa#{n+1}",
   name: "Test#{n+1} test#{n*2}",
+  company: "LTD CO ",
   ])
 end
 
 4.times do |n|
 Post.create!([
   title: "TITLE",
-  company_name: "LTD CO ",
   introduction: "HELLO WORLD",
   assignment: "ビジネス相手を探している",
   target: "#ハッシュタグ#{n+1}",

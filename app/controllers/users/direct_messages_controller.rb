@@ -14,7 +14,7 @@ class Users::DirectMessagesController < ApplicationController
       Entry.create(user_id: @user.id, room_id: @room.id)
     end
 
-    @direct_messages = @room.direct_messages
+    @direct_messages = @room.direct_messages.order(created_at: :desc)
     @direct_message = DirectMessage.new(room_id: @room.id)
   end
 

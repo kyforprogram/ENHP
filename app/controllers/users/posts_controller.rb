@@ -12,7 +12,7 @@ before_action :index_post, only: %i[top index]
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.save
-    redirect_to posts_path
+    redirect_to post_path(@post)
   end
 
   def index
@@ -41,17 +41,17 @@ before_action :index_post, only: %i[top index]
     @post.destroy
     redirect_to posts_path
   end
-
+  # お気に入り一覧ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
   def likes
     likes = Like.where(user_id: current_user.id).pluck(:post_id)# ログイン中のユーザーのお気に入りのpost_idカラムを取得
     @post_likes = Post.find(likes)# postsテーブルから、お気に入り登録済みのレコードを取得
   end
-
+  # ハッシュタグ機能ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
   def hashtag
     @tag = Hashtag.find_by(hashname: params[:name])
     @posts = @tag.posts
   end
-
+  # カテゴリー機能ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
   def get_category_children
     @category_children = Category.find("#{params[:parent_id]}").children
   end
@@ -91,7 +91,7 @@ before_action :index_post, only: %i[top index]
       find_item(category)
     end
   end
-  
+
   def find_item(category)
     category.each do |id|
       post_array = Post.where(category_id: id).order(created_at: :desc)

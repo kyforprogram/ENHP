@@ -1,50 +1,70 @@
 // Place all the styles related to the Users::DirectMessages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-// 自分のメッセージ
+/*吹き出し*/
+.balloon_l,
+.balloon_r {
+  margin: 30px 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start; /*縦位置を上揃え*/
+/*   align-items: center; */ /*縦位置を真ん中揃え*/
+}
+.balloon_r {
+  justify-content: flex-end;/*flexコンテナの右側寄せ*/
+}
+.faceicon img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+.balloon_r .faceicon {
+  margin-left: 25px;
+}
+.balloon_l .faceicon {
+  margin-right: 25px;
+}
+.balloon_r .faceicon {
+  order: 2 !important;
+}
 .says {
-  float: left;
+  max-width: 500px; /*最大幅は任意*/
+  display: flex;
+  flex-wrap: wrap;
   position: relative;
-  width: calc(100% - 56px);
-  padding: 16px;
-  background: #E0FFFF;
-  border-radius: 15px;
+  padding: 5px 15px 5px 15px;
+  border-radius: 12px;
+  background: #78e3ff;/*色は任意*/
+  box-sizing: border-box;
+  margin: 0 !important;
   line-height: 1.5;
-  word-break: break-all;
+/*   align-items: center; */
+}
+.says p {
+  margin: 8px 0 0 !important;
+}
+.says p:first-child {
+  margin-top: 0 !important;
 }
 .says:after {
   content: "";
-  display: inline-block;
   position: absolute;
-  top: 3px;
-  left: -19px;
-  border: 8px solid transparent;
-  border-right: 18px solid #ffffff;
-  -webkit-transform: rotate(35deg);
-  transform: rotate(35deg);
+  border: 10px solid transparent;
+/*   margin-top:-3px;  */
+}
+.balloon_l .says:after {
+  left: -26px;
+  border-right: 22px solid #a8edff;
+}
+.balloon_r .says:after {
+  right: -26px;
+  border-left: 22px solid #C4DFE6;
 }
 
-// 相手のメッセージ
-.other-user-says {
-  float: right;
-  position: relative;
-  width: calc(100% - 56px);
-  padding: 16px;
-  background: #EEEEEE;
-  border-radius: 15px;
-  line-height: 1.5;
-  word-break: break-all;
-}
-.other-user-says:after {
-  content: "";
-  display: inline-block;
-  position: absolute;
-  top: 3px;
-  right: -19px;
-  border: 8px solid transparent;
-  border-right: 18px solid #ffffff;
-  -webkit-transform: rotate(145deg);
-  transform: rotate(145deg)
+.message-date {
+  text-align: center;
+  font-size: 0.85em;
 }
 
 

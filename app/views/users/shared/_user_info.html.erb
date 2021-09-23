@@ -1,13 +1,14 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
+
       <div>
         <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "noimage.png", size:'200x200' %><br>
-        <i class="fas fa-user"></i>:<%= user.name %>
+        <%= link_to user_path(user) do %>
+        <i class="fas fa-user"></i>:<%= user.name %><br>
+        <% end %>
+        Info:<%= user.company %>
       </div>
       <div>
         <%= link_to followings_user_path(user) do %>
-          <span id="follow_count"> フォロー：<%= user.followings.count %></span>
+          <span id="follow_count"> フォロー：<%= user.followings.count %></span><br>
         <% end %>
         <%= link_to followers_user_path(user) do %>
           <span id="follower_count">フォロワー：<%= user.followers.count %></span>
@@ -16,13 +17,14 @@
           <%= render 'users/users/follow-btn', user: user %>
         </div>
       </div>
-      <%= user.introduction %>
+
+      <div class="pt-2">
+
+
       <% if user.id == current_user.id %>
         <%= link_to '編集', edit_user_path(user), class: "btn btn-primary fas fa-user-edit" %>
       <% end %>
       <% if user != current_user %>
-        <%= link_to "メッセージルーム", direct_message_path(user) %>
+        <%= link_to "ダイレクトメッセージ", direct_message_path(user), class:"btn btn-info" %>
       <% end %>
-    </div>
-  </div>
-</div>
+      </div>

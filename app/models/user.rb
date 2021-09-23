@@ -34,13 +34,13 @@ class User < ApplicationRecord
   # ユーザー検索機能--------------------------------------
   def self.search(search, word)
     if search == "perfect_match"#完全一致
-      @user = User.where("name LIKE? OR job_category LIKE", "#{word}","#{word}")
+      @user = User.where("name LIKE? OR company LIKE", "#{word}","#{word}")
     elsif search == "forward_match"#前一致
-      @user = User.where("name LIKE? OR job_category LIKE", "#{word}%","#{word}%")
+      @user = User.where("name LIKE? OR company LIKE", "#{word}%","#{word}%")
     elsif search == "backward_match"#後ろ一致
-      @user = User.where("name LIKE? OR job_category LIKE", "%#{word}","%#{word}")
+      @user = User.where("name LIKE? OR company LIKE", "%#{word}","%#{word}")
     elsif search == "partial_match"#後ろ一致
-      @user = User.where("name LIKE? OR job_category LIKE", "%#{word}%","%#{word}%")
+      @user = User.where("name LIKE? OR company LIKE", "%#{word}%","%#{word}%")
     else
       @user = User.all
     end

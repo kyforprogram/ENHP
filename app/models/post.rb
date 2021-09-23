@@ -62,13 +62,13 @@ class Post < ApplicationRecord
   # 検索機能star--------------------------------------
   def self.search(search, word)
     if search == "perfect_match"#完全一致
-      @post = Post.where("title LIKE? OR company_name LIKE OR target LIKE OR category LIKE", "#{word}","#{word}","#{word}","#{word}")
+      @post = Post.where("title LIKE? OR introduction LIKE OR target LIKE OR category LIKE", "#{word}","#{word}","#{word}","#{word}")
     elsif search == "forward_match"#前一致
-      @post = Post.where("title LIKE? OR company_name LIKE OR target LIKE OR category LIKE", "#{word}%","#{word}%","#{word}%","#{word}")
+      @post = Post.where("title LIKE? OR introduction LIKE OR target LIKE OR category LIKE", "#{word}%","#{word}%","#{word}%","#{word}")
     elsif search == "backward_match"#後ろ一致
-      @post = Post.where("title LIKE? OR company_name LIKE OR target LIKE OR category LIKE", "%#{word}","%#{word}","%#{word}","#{word}")
+      @post = Post.where("title LIKE? OR introduction LIKE OR target LIKE OR category LIKE", "%#{word}","%#{word}","%#{word}","#{word}")
     elsif search == "patial_match"#部分一致
-      @post = Post.where("title LIKE? OR company_name LIKE OR target LIKE OR category LIKE", "%#{word}%","%#{word}%","%#{word}%","#{word}")
+      @post = Post.where("title LIKE? OR introduction LIKE OR target LIKE OR category LIKE", "%#{word}%","%#{word}%","%#{word}%","#{word}")
     else
       @post = Post.all
     end

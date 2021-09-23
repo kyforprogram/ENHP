@@ -5,7 +5,7 @@
 <div class="col-md-6.mx-auto">
   <div class="form-inline mb-2">
     <small class="col-md-3 text-muted">
-      <%= notification.created_at.strftime('%Y/%m/%d %H:%M') %>
+      <%= notification.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
     </small>
     <%= link_to user_path(visitor) do %>
       <strong><%= visitor.name %></strong>さんが

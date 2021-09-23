@@ -1,30 +1,38 @@
 <div class="container">
+  <div>
+   <h1>投稿詳細画面</h1>
+  </div>
   <div class="row">
-    <div class="col-2">
+    <div class="col-4">
+      <%= render 'users/shared/user_info', user: @post.user %>
     </div>
-    <div class="col-10">
-      <h1>投稿詳細画面</h1><span >閲覧数: <%= @post.view_counts.count %></span>
-      <div class="card">
-        <%= attachment_image_tag @post, :image, :fill, 60, 60, fallback: "noimage.png", size:'200x200' %>
-        <span id="likes_<%= @post.id %>"><%= render "users/likes/likes", post: @post %></span>
-        <%= @post.title %>
-        <%= @post.company_name %>
+    <div class="col-8">
+      <div class="card border-primary w-70">
+        <div class="card-header border-primary">
+          <%= @post.title %>
+        </div>
+
+        <div class="card-body">
+        <%= attachment_image_tag @post, :image, fallback: "noimage.png", class:"card-img-top" %>
         <%= render 'users/shared/post_category', post: @post %>
         <%= @post.introduction %>
         <%= @post.assignment %>
         <%= render_with_hashtags(@post.target) %>
-        <%= link_to user_path(@post.user.id) do%>
-          <%= attachment_image_tag @post.user, :profile_image, :fill, 60, 60, fallback: "noimage.png", size:'60x60' %>
-          <%= @post.user.name %>
-        <% end %>
         <%= @post.user.introduction %>
+        </div>
+        <span id="likes_<%= @post.id %>"><%= render "users/likes/likes", post: @post %></span>
+        <span>閲覧数: <%= @post.view_counts.count %></span>
+
         <% if @post.user == current_user %>
-          <div>
-            <%= link_to '編集', edit_post_path(@post), class:"btn btn-primary far fa-edit", 'data-turbolinks': false %>
+          <div class="card-footer">
+              <div>
+                <%= link_to '編集', edit_post_path(@post), class:"btn btn-primary far fa-edit", 'data-turbolinks': false %>
+                <%= link_to '削除', post_path(@post), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-outline-danger fas fa-trash-alt" %>
+                <p class="text-right"><%= @post.created_at.strftime("%Y-%m-%d") %></p>
+              </div>
           </div>
-          <div>
-            <%= link_to '削除', post_path(@post), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-outline-danger fas fa-trash-alt" %>
-          </div>
+        <% else %>
+        <p class="text-right"><%= @post.created_at.strftime("%Y-%m-%d") %></p>
         <% end %>
       </div>
       <div id="post_comment_index_<%= @post.id %>">

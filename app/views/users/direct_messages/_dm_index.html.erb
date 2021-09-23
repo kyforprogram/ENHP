@@ -1,29 +1,25 @@
-<% direct_messages.each do |direct_message| %>
-  <% if direct_message.user == current_user %>
-    <tr class="row justify-content-center">
-      <td class="col-2  mt-3">
-      </td>
-      <td class="col-9 mt-3">
-        <%= direct_message.user.name %> <br>
+<% @direct_messages.each do |direct_message| %>
+    <% if direct_message.user == current_user %>
+    <div class="message-date"><%= direct_message.created_at.strftime("%Y.%m.%d") %></div>
+      <div class="balloon_l">
+        <div class="faceicon">
+          <%= attachment_image_tag direct_message.user, :profile_image, fallback: "noimage.png", class: "mr-3 align-self-start" %>
+          </br>
+        </div>
+        <p class="says">
+          <%= direct_message.message %>
+        </p>
+      </div>
+    <% else %>
+    <div class="message-date"><%= direct_message.created_at.strftime("%Y.%m.%d") %></div>
+      <div class="balloon_r">
+        <div class="faceicon">
+          <%= attachment_image_tag direct_message.user, :profile_image, fallback: "noimage.png", class: "mr-3 align-self-start" %>
+          </br>
+        </div>
         <div class="says">
-          <p><%= safe_join(direct_message.message.split("\n"),tag(:br)) %></p>
-          <span><%=  direct_message.created_at.strftime('%Y/%m/%d %H:%M') %></span>
+          <%= direct_message.message %>
         </div>
-      </td>
-    </tr>
-  <% else %>
-    <tr class="row justify-content-center">
-      <td class="col-9 mt-3">
-        <div class="col-11 float-right">
-          <%= direct_message.user.name %> <br>
-        </div>
-        <div class="other-user-says">
-          <p><%= safe_join(direct_message.message.split("\n"),tag(:br)) %></p>
-          <span><%=  direct_message.created_at.strftime('%Y/%m/%d %H:%M') %></span>
-        </div>
-      </td>
-      <td class="col-2 mt-3">
-      </td>
-    </tr>
+      </div>
+    <% end %>
   <% end %>
-<% end %>

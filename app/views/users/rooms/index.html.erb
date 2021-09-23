@@ -6,7 +6,7 @@
           <div class="user-right">
             <%= link_to direct_message_path(entry.room.id) do %>
               <%= entry.user.name %>さんからのメッセージ
-                <small> 更新日 <%= entry.room.direct_messages.order(created_at: :desc).first.try(:created_at) %></small><br>
+                <small> 更新日 <%= entry.room.direct_messages.order(created_at: :desc).first.try(:created_at).strftime("%Y-%m-%d %H:%M:%S") %></small><br>
             <% end %>
               <%= entry.room.direct_messages.order(created_at: :desc).first.try(:message) %>
           </div>
