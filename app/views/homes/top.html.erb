@@ -1,14 +1,25 @@
 <div class="home-content wrapper home">
 </div>
 <div class="wrapper">
-  <h2 class="top-content page-title">オープンイノベーション</h2>
+  <p class="top-content page-title">オープンイノベーション</p>
   <p class="page-title-p">アイデア、サービス、ノウハウ、データ、知識<br>
     革新的なビジネスモデル、研究成果、製品開発、サービス開発、組織改革、行政改革、地域活性化<br>
     ソーシャルイノベーション、国際化、プロセス改善等につなげよう！
   </p>
 </div>
+
 <div class="wrapper">
-<% @categories.each do |category| %>
-<
-<% end %>
+  <p class="page-title-p pt-3">登録カテゴリー一覧</p>
+  <div class="card-deck">
+  <% @categories.each do |category| %>
+    <div class="col-4 mt-1 mx-auto">
+      <div class="card border-info">
+        <div class="card-header border-info text-center">
+          <%= category.name %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
 </div>
+

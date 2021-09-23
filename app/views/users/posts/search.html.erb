@@ -1,7 +1,6 @@
-<div data-turbolinks='false'>
   <div class="container">
     <div class="row">
-      <div calss="col-2">
+      <div calss="col-3">
       <div class="item-categories">
       <h2>
         カテゴリー一覧
@@ -26,32 +25,45 @@
       </div>
     </div>
     </div>
-      <div class="col-12">
-        <h2 class='title'><%= @category.name %></h2>
-        <div class='row'>
-        <% @posts.each do |post| %>
-          <div class="col-6 mt-5">
-            <div class="card border-info">
-                <div class="card-header border-info">
-                  <h5 class="card-title"><%= post.title.truncate(30) %></h5>
-                </div>
-                  <%= link_to post_path(post.id) do %>
-                    <%= attachment_image_tag post, :image, fallback: "noimage.png", class:"card-img-top" %>
-                  <% end %>
-                  <div>
-                    <%= render 'users/shared/post_category', post: post %>
+    <div class="col-9">
+        <div class="card-deck">
+          <% @posts.each do |post| %>
+            <div class="col-6 mt-1 mx-auto">
+              <div class="card border-info">
+                  <div class="card-header border-info">
+                    <h5 class="card-title"><%= post.title %></h5>
                   </div>
-                  <div class="card-footer">
-                    <span id="likes_<%= post.id %>">
-                      <%= render "users/likes/likes", post: post %>
-                    </span>
-                    <%= render_with_hashtags(post.target) %>
-                  </div>
+
+                    <%= link_to post_path(post.id) do %>
+                      <%= attachment_image_tag post, :image, fallback: "noimage.png", class:"card-img-top" %>
+                    <% end %>
+                    <div>
+                      <%= render 'users/shared/post_category', post: post %>
+                    </div>
+                    <div class="card-body">
+                      <h4 class="card-title"><strong>紹介文</strong></h4>
+                      <p class="card-text"><%= post.introduction %></p>
+                    </div>
+                    <div class="card-body">
+                      <h4 class="card-title">課題</h4>
+                      <p class="card-text"><%= post.assignment %></p>
+                    </div>
+                    <div class="card-footer">
+                      <span id="likes_<%= post.id %>">
+                        <%= render "users/likes/likes", post: post %>
+                      </span>
+                      <%= render_with_hashtags(post.target) %>
+                    </div>
+              </div>
             </div>
-          </div>
+          <% end %>
+        </div>
+      </div>
+
+        <% if @posts.empty? %>
+          <p class="none-posts">該当しませんでした。検索条件を変えて、再度お試しください。</p>
         <% end %>
         </div>
       </div>
     </div>
   </div>
-</div>

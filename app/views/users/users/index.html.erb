@@ -4,7 +4,7 @@
   </h2>
   <div class="card-deck mt-3">
   <% @users.each do |user| %>
-    <div class="col-4">
+    <div class="col-3">
       <div class="card text-center">
       <%= link_to user_path(user.id) do %>
         <%= attachment_image_tag user, :profile_image, fallback: "noimage.png", class:"card-img-top" %>

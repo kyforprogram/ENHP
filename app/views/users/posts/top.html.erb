@@ -1,33 +1,32 @@
-  <div data-turbolinks='false'>
-    <div class="container">
-      <div class="row">
-        <div class="col-3 mx-auto">
-          <div class="item-categories">
-          <h2>
-            カテゴリー一覧
-          </h2>
-          <%= link_to  top_posts_path, class: "category-button", id: 'categoBtn', 'data-turbolinks': false do %>
-            カテゴリーから探す
-          <% end %>
-          <div id="tree_menu">
-            <ul class="categoryTree list-unstyled">
-              <% @parents.each do |parent| %>
-                <li class="category_parent">
-                  <%= link_to search_post_path(parent),'data-turbolinks': false do %>
-                    <input type="button" value="<%= parent.name %>" name="<%= parent.id %>" class="parent_btn">
-                  <% end %>
-                </li>
+
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <div class="mt-4 item-categories">
+      <h6>
+        カテゴリー一覧
+      </h6>
+      <%= link_to  top_posts_path, class: "category-button", id: 'categoBtn', 'data-turbolinks': false do %>
+        カテゴリーから探す
+      <% end %>
+      <div id="tree_menu">
+        <ul class="categoryTree list-unstyled">
+          <% @parents.each do |parent| %>
+            <li class="category_parent">
+              <%= link_to search_post_path(parent),'data-turbolinks': false do %>
+                <input type="button" value="<%= parent.name %>" name="<%= parent.id %>" class="parent_btn">
               <% end %>
-            </ul>
-            <ul class="categoryTree-child">
-            </ul>
-            <ul class="categoryTree-grandchild">
-            </ul>
-          </div>
-        </div>
-        </div>
-        <div class="col-9">
-        </div>
+            </li>
+          <% end %>
+        </ul>
+        <ul class="categoryTree-child">
+        </ul>
+        <ul class="categoryTree-grandchild">
+        </ul>
       </div>
     </div>
+    </div>
+    <div class="col-9">
+    </div>
   </div>
+</div>

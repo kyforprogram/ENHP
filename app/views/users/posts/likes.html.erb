@@ -1,23 +1,69 @@
 <div class="container">
+  <h2>
+    お気に入り一覧
+  </h2>
   <div class="row">
-    <div class="col-3">
-    </div>
-    <div class ="cpol-8">
-      <div class="card mx-auto mb-4 embed-responsive shadow-sm ">
-      <% @post_likes.each do |postlike| %>
-        <%= link_to post_path(postlike) do %>
-          <%= attachment_image_tag postlike, :image, fallback: "noimage.png", class:"card-img-top"; %>
-        <% end %>
-        <h5 class="card-title"><%= postlike.title %></h5>
-        <div>
-          <%= render 'users/shared/post_category', post: postlike %>
-        </div>
-        <div>
-          <span id="likes_<%= postlike.id %>"><%= render "users/likes/likes", post: postlike %></span>
-        </div>
+    <div class="col-2">
+    <%= render 'users/shared/user_info', user: current_user %>
+
+    <div class="item-categories">
+      <h2>
+      カテゴリー一覧
+      </h2>
+      <%= link_to  top_posts_path, class: "category-button", id: 'categoBtn', 'data-turbolinks': false do %>
+        カテゴリーから探す
       <% end %>
+      <div id="tree_menu">
+        <ul class="categoryTree list-unstyled">
+        <% @parents.each do |parent| %>
+          <li class="category_parent">
+            <%= link_to search_post_path(parent),'data-turbolinks': false do %>
+              <input type="button" value="<%= parent.name %>" name="<%= parent.id %>" class="parent_btn">
+            <% end %>
+          </li>
+        <% end %>
+        </ul>
+        <ul class="categoryTree-child">
+        </ul>
+        <ul class="categoryTree-grandchild">
+        </ul>
       </div>
     </div>
+  </div>
+    <div class="col-10">
+        <div class="card-deck">
+          <% @post_likes.each do |post| %>
+            <div class="col-6 mt-1 mx-auto">
+              <div class="card border-info">
+                  <div class="card-header border-info">
+                    <h5 class="card-title"><%= post.title %></h5>
+                  </div>
+
+                    <%= link_to post_path(post.id) do %>
+                      <%= attachment_image_tag post, :image, fallback: "noimage.png", class:"card-img-top" %>
+                    <% end %>
+                    <div>
+                      <%= render 'users/shared/post_category', post: post %>
+                    </div>
+                    <div class="card-body">
+                      <h4 class="card-title"><strong>紹介文</strong></h4>
+                      <p class="card-text"><%= post.introduction %></p>
+                    </div>
+                    <div class="card-body">
+                      <h4 class="card-title">課題</h4>
+                      <p class="card-text"><%= post.assignment %></p>
+                    </div>
+                    <div class="card-footer">
+                      <span id="likes_<%= post.id %>">
+                        <%= render "users/likes/likes", post: post %>
+                      </span>
+                      <%= render_with_hashtags(post.target) %>
+                    </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
   </div>
 </div>
 
