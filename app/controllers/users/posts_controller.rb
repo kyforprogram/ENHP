@@ -1,5 +1,5 @@
 class Users::PostsController < ApplicationController
-before_action :authenticate_user!, only: %i[new create show edit update destroy]
+before_action :authenticate_user!
 before_action :set_post, only: %i[show edit update destroy]
 before_action :set_parents
 before_action :index_post, only: %i[top index]
@@ -11,8 +11,11 @@ before_action :index_post, only: %i[top index]
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to post_path(@post)
+    if @post.save
+      redirect_to post_path(@post)
+    else
+      render :new
+    end
   end
 
   def index
@@ -33,8 +36,11 @@ before_action :index_post, only: %i[top index]
   end
 
   def update
-    @post.update(post_params)
-    redirect_to post_path(@post)
+    if @post.update(post_params)
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -120,7 +126,7 @@ before_action :index_post, only: %i[top index]
 
   private
   def post_params
-    params.require(:post).permit(:title, :company_name, :image, :introduction, :assignment, :target, :category_id)
+    params.require(:post).permit(:title, :image, :introduction, :assignment, :target, :category_id)
   end
 
 end

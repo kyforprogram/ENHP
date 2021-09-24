@@ -4,12 +4,8 @@
       <% @entries.each do |entry| %>
         <div class="users-index">
           <div class="user-right">
-            <%= link_to direct_message_path(entry.room.id) do %>
-              <% if entry.user == current_user %>
-              <% end %>
-              <%= entry.user.name %>さんからのメッセージ
-                <small> 更新日 <%= entry.room.direct_messages.order(created_at: :desc).first.try(:created_at).strftime("%Y-%m-%d %H:%M:%S") %></small><br>
-            <% end %>
+              <%= entry.user.name %>さんとメッセージ
+                <small> 更新日 <%= entry.room.direct_messages.order(created_at: :desc).first.try(:created_at) %></small><br>
               <%= entry.room.direct_messages.order(created_at: :desc).first.try(:message) %>
           </div>
         </div>
