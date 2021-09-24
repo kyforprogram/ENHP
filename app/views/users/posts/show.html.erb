@@ -1,7 +1,12 @@
 <div class="container">
+  <%= render "/shared/error", model: @post_comment %>
+
+
   <div>
-   <h1>投稿詳細画面</h1>
+     <h1>投稿詳細画面</h1>
   </div>
+
+
   <div class="row">
     <div class="col-4">
       <%= render 'users/shared/user_info', user: @post.user %>
@@ -13,12 +18,12 @@
         </div>
 
         <div class="card-body">
-        <%= attachment_image_tag @post, :image, fallback: "noimage.png", class:"card-img-top" %>
-        <%= render 'users/shared/post_category', post: @post %>
-        <%= @post.introduction %>
-        <%= @post.assignment %>
-        <%= render_with_hashtags(@post.target) %>
-        <%= @post.user.introduction %>
+            <%= attachment_image_tag @post, :image, fallback: "noimage.png", class:"card-img-top" %>
+            <%= render 'users/shared/post_category', post: @post %>
+            <%= @post.introduction %>
+            <%= @post.assignment %>
+            <%= render_with_hashtags(@post.target) %>
+            <%= @post.user.introduction %>
         </div>
         <span id="likes_<%= @post.id %>"><%= render "users/likes/likes", post: @post %></span>
         <span>閲覧数: <%= @post.view_counts.count %></span>
@@ -35,9 +40,13 @@
         <p class="text-right"><%= @post.created_at.strftime("%Y-%m-%d") %></p>
         <% end %>
       </div>
+
+
       <div id="post_comment_index_<%= @post.id %>">
         <%= render "users/post_comments/index", post: @post %>
       </div>
+
+
       <span id="post_comment_count">コメント数：<%= @post.post_comments.count %></span>
       <%= form_with model:[@post, @post_comment] do |f| %>
         <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class:"form-control" %>

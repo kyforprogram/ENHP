@@ -13,8 +13,6 @@ before_action :find_post
     #redirect_to request.referer || post_path(params[:post_id])
   end
 
-  private
-
   def find_post
     @post = Post.find(params[:post_id])
   end

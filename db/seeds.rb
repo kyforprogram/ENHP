@@ -20,7 +20,7 @@ Admin.create!([
 User.create!([
   email: "a#{n+1}@a",
   password: "aaaaaa#{n+1}",
-  name: "Test#{n+1} test#{n*2}",
+  name: "日本太郎#{n+1}",
   company: "LTD CO ",
   ])
 end

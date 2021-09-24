@@ -15,8 +15,11 @@ before_action :set_user, only: %i[show edit update followings followers]
   end
 
   def update
-    @user.update(user_params)
-    redirect_to user_path(@user)
+    if @user.update(user_params)
+      redirect_to user_path(@user)
+    else
+      render :edit
+    end
   end
 
   def followings
@@ -29,15 +32,14 @@ before_action :set_user, only: %i[show edit update followings followers]
     @users = Kaminari.paginate_array(@users).page(params[:page]).per(8)
   end
 
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   private
 
   def user_params
-  params.require(:user).permit(:name, :profile_image, :introduction)
-  end
-
-  def set_user
-    @user = User.find(params[:id])
+  params.require(:user).permit(:name, :profile_image, :introduction, :company)
   end
 
 end

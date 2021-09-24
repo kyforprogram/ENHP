@@ -1,9 +1,4 @@
 class Users::DirectMessagesController < ApplicationController
-  
-  def index
-    my_room_ids = current_user.entries.pluck(:room_id)#自分のルームを取得
-    @another_entries = Entry.includes(:room, :user).where(room_id: my_room_ids).where.not(user_id: current_user.id)
-  end
 
   def show
     @user = User.find(params[:id])# どのユーザーとチャットするかを取得。

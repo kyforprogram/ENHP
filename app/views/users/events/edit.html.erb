@@ -1,3 +1,5 @@
+<div class="container">
+<%= render "/shared/error", model: @event %>
 <h2>スケジュール</h2>
 <div class="col-10 mx-auto ">
 <%= form_with model: @event, local: true do |f| %>
@@ -21,4 +23,6 @@
     <%= f.submit class: 'btn btn-success btn-block' %>
   </div>
 <% end %>
+</div>
+</div>
 </div>
