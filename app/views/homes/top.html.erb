@@ -1,3 +1,4 @@
+<div class="bg-white">
 <div class="home-content wrapper home">
 </div>
 <div class="wrapper">
@@ -7,7 +8,7 @@
     ソーシャルイノベーション、国際化、プロセス改善等につなげよう！
   </p>
 </div>
-
+</div>
 <div class="wrapper">
   <p class="page-title-p pt-3">登録カテゴリー一覧</p>
   <div class="card-deck">
@@ -31,8 +32,8 @@
   <% num += 1 %>
     <% if num <= 4 %>
     <div class="col-6 mt-1 mx-auto">
-      <div class="card border-info">
-          <div class="card-header border-info">
+      <div class="card bg-secondary text-white border-info">
+          <div class="card-header bg-transparent border-info">
             <h5 class="card-title"><%= post.title %></h5>
           </div>
             <%= link_to post_path(post.id) do %>
@@ -41,7 +42,7 @@
             <div class="card-body text-center">
             <%= attachment_image_tag post.user, :profile_image, :fill, 90, 90, fallback: "noimage.png", size:'90x90', class:"rounded-circle" %>
             <%= post.user.name %>
-            <small><%= post.created_at.strftime("%Y.%m.%d") %></small>
+            <small><%= post.created_at.strftime("%Y.%m.%d %H.%M") %></small>
             </div>
           </div>
        </div>

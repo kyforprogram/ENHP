@@ -8,10 +8,10 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :view_counts, dependent: :destroy
   has_many :notifications, dependent: :destroy
-  
+
   scope :recent, -> {order(created_at: :desc)}
 
-  # 投稿に対する通知機能-----------------------------------------------------------
+  # 投稿に対する通知機能-----------------------------------------------------------いいね-------------------------------------
   def create_notification_like!(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
     if temp.blank?
@@ -22,7 +22,7 @@ class Post < ApplicationRecord
       notification.save if notification.valid?
     end
   end
-
+  # 投稿に対する通知機能-----------------------------------------------------------コメント-------------------------------------
   def create_notification_comment!(current_user, post_comment_id)
     temp_ids = PostComment.select(:user_id).where(post_id: id).where.not(user_id: current_user.id).distinct
     temp_ids.each do |temp_id|

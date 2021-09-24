@@ -38,7 +38,7 @@ Rails.application.routes.draw do
       end
     end
     #DM機能
-    resources :direct_messages, only: %i[create index show]
+    resources :direct_messages, only: %i[create show]
     resources :rooms, only: %i[index]
     #検索機能
     get 'search' => 'searches#search'

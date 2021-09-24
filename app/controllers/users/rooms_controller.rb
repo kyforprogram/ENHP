@@ -4,4 +4,6 @@ class Users::RoomsController < ApplicationController
     # @another_entries = Entry.includes(:room, :user).where(room_id: my_room_ids).where.not(user_id: current_user.id)
     @another_entries = current_user.rooms
   end
+
+
 end
