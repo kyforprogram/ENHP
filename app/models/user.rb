@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy#いいね
   has_many :direct_messages, dependent: :destroy#DMの中間テーブル
   has_many :entries, dependent: :destroy#DMの中間テーブル
+  has_many :rooms, through: :entries
   has_many :relationships, foreign_key: :following_id# フォロー取得
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: :follower_id# フォロワー取得
   has_many :followings, through: :relationships, source: :follower# 自分がフォローしている人

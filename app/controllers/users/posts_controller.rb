@@ -74,6 +74,7 @@ before_action :index_post, only: %i[top index]
     end
   end
 
+
   def search
     @posts = []
     @category = Category.find_by(id: params[:id])
