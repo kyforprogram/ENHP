@@ -16,7 +16,7 @@ Admin.create!([
   password: "aaaaaa"
   ])
 
-4.times do |n|
+50.times do |n|
 User.create!([
   email: "a#{n+1}@a",
   password: "aaaaaa#{n+1}",
@@ -30,10 +30,16 @@ Post.create!([
   title: "TITLE",
   introduction: "HELLO WORLD",
   assignment: "ビジネス相手を探している",
-  target: "#ハッシュタグ#{n+1}",
+  target: "#ハッシュタグ",
   user_id: "1"
   ])
 end
 
+20.times do |n|
+  Like.create!([
+    user_id: "1",
+    post_id: "#{n+1}"
+    ])
+end
 
 

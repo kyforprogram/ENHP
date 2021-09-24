@@ -45,11 +45,13 @@ before_action :index_post, only: %i[top index]
   def likes
     likes = Like.where(user_id: current_user.id).pluck(:post_id)# ログイン中のユーザーのお気に入りのpost_idカラムを取得
     @post_likes = Post.find(likes)# postsテーブルから、お気に入り登録済みのレコードを取得
+    @post_likes = Kaminari.paginate_array(@post_likes).page(params[:page])
   end
   # ハッシュタグ機能ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
   def hashtag
     @tag = Hashtag.find_by(hashname: params[:name])
     @posts = @tag.posts
+    @posts = Kaminari.paginate_array(@posts).page(params[:page])
   end
   # カテゴリー機能ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
   def get_category_children
@@ -91,7 +93,6 @@ before_action :index_post, only: %i[top index]
       find_item(category)
     end
   end
-
   def find_item(category)
     category.each do |id|
       post_array = Post.where(category_id: id).order(created_at: :desc)
@@ -99,6 +100,7 @@ before_action :index_post, only: %i[top index]
         post_array.each do |post|
           if post.present?
             @posts.push(post)
+            @posts = Kaminari.paginate_array(@posts).page(params[:page])
           end
         end
       end

@@ -17,10 +17,13 @@
     <% else %>
       <%= render 'shared/header' %>
     <% end %>
-   
+
     <main class="mx-auto" style="padding-top:60px">
     <% if flash[:notice] %>
       <div class="flash mt-2"><%= flash[:notice] %></div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="alert mt-2"><%= flash[:alert] %></div>
     <% end %>
     <%= yield %>
     </main>

@@ -17,6 +17,11 @@ class User < ApplicationRecord
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy#active_notifications：自分からの通知
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy#passive_notifications：相手からの通知
   has_many :events, dependent: :destroy#スケジュール機能
+  
+  with_options presence: true do
+    validates :title
+    validates :body, length: { maximum: 200 }
+  end
 
 
   def is_followed_by?(user)# フォローしてたらtrueを返す

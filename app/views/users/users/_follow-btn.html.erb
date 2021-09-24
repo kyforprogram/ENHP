@@ -1,3 +1,4 @@
+<small>
 <% if user != current_user %>
   <% if current_user.is_followed_by?(user) %>
     <%=link_to user_relationships_path(user), method: :delete, remote: :true do %>
@@ -9,3 +10,4 @@
     <% end %>
   <% end %>
 <% end %>
+</small>
