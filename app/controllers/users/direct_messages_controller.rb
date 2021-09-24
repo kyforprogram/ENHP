@@ -1,5 +1,5 @@
 class Users::DirectMessagesController < ApplicationController
-
+before_action :authenticate_user!
   def show
     @user = User.find(params[:id])# どのユーザーとチャットするかを取得。
     rooms = current_user.entries.pluck(:room_id)# カレントユーザーのuser_roomにあるroom_idの値の配列をroomsに代入。
