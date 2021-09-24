@@ -8,6 +8,8 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :view_counts, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  
+  scope :recent, -> {order(created_at: :desc)}
 
   # 投稿に対する通知機能-----------------------------------------------------------
   def create_notification_like!(current_user)
