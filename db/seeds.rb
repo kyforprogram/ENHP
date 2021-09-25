@@ -22,6 +22,7 @@ User.create!([
   password: "aaaaaa#{n+1}",
   name: "ID#{n+1}",
   company: "LTD CO ",
+  introduction: "はじめまして！　私の名前はID#{n+1}と申します　よろしくお願いいたします。"
   ])
 end
 
