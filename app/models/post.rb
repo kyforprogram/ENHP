@@ -11,6 +11,12 @@ class Post < ApplicationRecord
 
   scope :recent, -> {order(created_at: :desc)}
 
+  # バリデーション-------------------------------------------------------------------------------------------------------------
+  validates :title, presence: true, length: { in: 1..75 }
+  validates :introduction, presence: true, length: { in: 1..300 }
+  validates :assignment, presence: true, length: { in: 1..300 }
+  validates :target, presence: true, length: { in: 1..300 }
+
   # 投稿に対する通知機能-----------------------------------------------------------いいね-------------------------------------
   def create_notification_like!(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'like'])

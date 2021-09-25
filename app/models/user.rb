@@ -19,7 +19,10 @@ class User < ApplicationRecord
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy#passive_notifications：相手からの通知
   has_many :events, dependent: :destroy#スケジュール機能
 
-
+  # バリデーション-------------------------------------------------------------------------------------------------------------
+  validates :name, presence: true, length: { in: 1..75 }
+  validates :company, presence: true, length: { in: 1..75 }
+  validates :introduction, presence: true, length: { in: 1..100 }
 
   def is_followed_by?(user)# フォローしてたらtrueを返す
     followings.include?(user)# find_byよりincludeの方がN＋１問題を解消できる
