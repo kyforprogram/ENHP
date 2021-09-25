@@ -19,10 +19,10 @@ Admin.create!([
 50.times do |n|
 User.create!([
   email: "a#{n+1}@a",
-  password: "aaaaaa#{n+1}",
-  name: "ID#{n+1}",
-  company: "LTD CO ",
-  introduction: "はじめまして！　私の名前はID#{n+1}と申します　よろしくお願いいたします。"
+  password: "aaaaaa",
+  name: "日本太郎#{n+1}",
+  company: "日本太郎カンパニー#{n+1}",
+  introduction: "はじめまして！　私の名前は日本太郎#{n+1}と申します　よろしくお願いいたします。"
   ])
 end
 
@@ -33,7 +33,7 @@ Post.create!([
   assignment: "ビジネス相手を探している",
   target: "#ハッシュタグ",
   category_id:"#{n+1}",
-  user_id: "1"
+  user_id: "#{n+1}"
   ])
 end
 
