@@ -12,7 +12,7 @@ before_action :index_post, only: %i[top index]
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), notice: "successfully."
     else
       render :new
     end
@@ -30,17 +30,19 @@ before_action :index_post, only: %i[top index]
     view_counts.post_id = @post.id
     view_counts.save
     end
+    @post_comments = @post.post_comments
+    @post_comments = Kaminari.paginate_array(@post_comments).page(params[:page]).per(6)
   end
 
   def edit
     unless @post.user == current_user
-      redirect_to root_path
+      redirect_to root_path, alert: "unexpect error"
     end
   end
 
   def update
     if @post.update(post_params)
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), notice: "successfully."
     else
       render :edit
     end
@@ -50,18 +52,21 @@ before_action :index_post, only: %i[top index]
     @post.destroy
     redirect_to posts_path
   end
+
   # お気に入り一覧ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
   def likes
     likes = Like.where(user_id: current_user.id).pluck(:post_id)# ログイン中のユーザーのお気に入りのpost_idカラムを取得
     @post_likes = Post.find(likes)# postsテーブルから、お気に入り登録済みのレコードを取得
     @post_likes = Kaminari.paginate_array(@post_likes).page(params[:page])
   end
+
   # ハッシュタグ機能ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
   def hashtag
     @tag = Hashtag.find_by(hashname: params[:name])
     @posts = @tag.posts
     @posts = Kaminari.paginate_array(@posts).page(params[:page])
   end
+
   # カテゴリー機能ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
   def get_category_children
     @category_children = Category.find("#{params[:parent_id]}").children
@@ -69,7 +74,6 @@ before_action :index_post, only: %i[top index]
   def get_category_grandchildren
     @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
-
   def top
     respond_to do |format|
       format.html
@@ -84,8 +88,6 @@ before_action :index_post, only: %i[top index]
       end
     end
   end
-
-
   def search
     @posts = []
     @category = Category.find_by(id: params[:id])
@@ -117,6 +119,7 @@ before_action :index_post, only: %i[top index]
     end
   end
 
+  # before_action-------------------------------------------------------------------------------------
   def set_post
    @post = Post.find(params[:id])
   end

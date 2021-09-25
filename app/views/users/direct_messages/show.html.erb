@@ -11,5 +11,6 @@
       <div id="message">
         <%= render 'users/direct_messages/dm_index', direct_messages: @direct_messages %>
       </div>
+      <%= paginate @direct_messages %>
   </div>
 </div>

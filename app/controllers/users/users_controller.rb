@@ -13,13 +13,13 @@ before_action :set_user, only: %i[show edit update followings followers]
 
   def edit
     unless @user == current_user
-      redirect_to root_path
+      redirect_to root_path, alert: "unexpect error"
     end
   end
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(@user)
+      redirect_to user_path(@user), notice: "successfully."
     else
       render :edit
     end
