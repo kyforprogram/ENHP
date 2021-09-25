@@ -64,7 +64,7 @@ before_action :index_post, only: %i[top index]
   def hashtag
     @tag = Hashtag.find_by(hashname: params[:name])
     @posts = @tag.posts
-    @posts = Kaminari.paginate_array(@posts).page(params[:page])
+    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(12)
   end
 
   # カテゴリー機能ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
