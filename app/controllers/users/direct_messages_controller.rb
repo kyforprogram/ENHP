@@ -21,6 +21,7 @@ before_action :authenticate_user!
     end
 
     @direct_messages = @room.direct_messages.order(created_at: :desc)
+    @direct_messages = Kaminari.paginate_array(@direct_messages).page(params[:page]).per(8)
     @direct_message = DirectMessage.new(room_id: @room.id)
   end
 

@@ -7,9 +7,9 @@
     <%= render 'users/shared/user_info', user: current_user %>
 
     <div class="item-categories">
-      <h2>
+      <h5>
       カテゴリー一覧
-      </h2>
+      </h5>
       <%= link_to  top_posts_path, class: "category-button", id: 'categoBtn', 'data-turbolinks': false do %>
         カテゴリーから探す
       <% end %>

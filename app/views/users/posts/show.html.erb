@@ -13,17 +13,31 @@
     </div>
     <div class="col-8">
       <div class="card border-primary w-70">
-        <div class="card-header border-primary">
+        <div class="card-header card-title border-primary">
           <%= @post.title %>
         </div>
-
-        <div class="card-body">
             <%= attachment_image_tag @post, :image, fallback: "noimage.png", class:"card-img-top" %>
+        <div class="card-body">
+            <h5>カテゴリー</h5>
             <%= render 'users/shared/post_category', post: @post %>
-            <%= @post.introduction %>
+        </div>
+        <div class="card-body">
+            <h5>紹介文</h5>
+            <p class="small"><%= @post.introduction %></p>
+        </div>
+        <div class="card-body">
+            <h5>課題</h5>
             <%= @post.assignment %>
-            <%= render_with_hashtags(@post.target) %>
+        </div>
+        <div class="card-body">
+            <h5>ユーザー</h5>
+            <%= attachment_image_tag @post.user, :profile_image, :fill, 40, 40, fallback: "noimage.png", size:"40x40", class:"rounded-circle" %>
+            <%= @post.user.name %>
             <%= @post.user.introduction %>
+        </div>
+        <div class="card-body">
+            <h5>ハッシュタグ</h5>
+            <%= render_with_hashtags(@post.target) %>
         </div>
         <span id="likes_<%= @post.id %>"><%= render "users/likes/likes", post: @post %></span>
         <span>閲覧数: <%= @post.view_counts.count %></span>
@@ -46,11 +60,17 @@
         <%= render "users/post_comments/index", post: @post %>
       </div>
 
-
+      <%= paginate @post_comments %>
       <span id="post_comment_count">コメント数：<%= @post.post_comments.count %></span>
-      <%= form_with model:[@post, @post_comment] do |f| %>
-        <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class:"form-control" %>
-        <%= f.submit %>
+       <%= form_with model:[@post, @post_comment] do |f| %>
+        <div class="row">
+          <div class="col-10">
+            <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class:"form-control" %>
+          </div>
+          <div class="col-2">
+            <%= f.submit "コメント投稿", class:"btn btn-primary mt-3" %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
