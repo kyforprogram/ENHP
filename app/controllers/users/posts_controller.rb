@@ -31,7 +31,7 @@ before_action :index_post, only: %i[top index]
     view_counts.save
     end
     @post_comments = @post.post_comments
-    @post_comments = Kaminari.paginate_array(@post_comments).page(params[:page]).per(6)
+    @post_comments = Kaminari.paginate_array(@post_comments).page(params[:page]).per(30)
   end
 
   def edit

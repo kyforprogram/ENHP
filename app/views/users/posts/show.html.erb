@@ -13,8 +13,8 @@
     </div>
     <div class="col-8">
       <div class="card border-primary w-70">
-        <div class="card-header card-title border-primary">
-          <%= @post.title %>
+        <div class="card-header border-primary">
+          <p><strong><%= @post.title %></strong></p>
         </div>
             <%= attachment_image_tag @post, :image, fallback: "noimage.png", class:"card-img-top" %>
         <div class="card-body">
