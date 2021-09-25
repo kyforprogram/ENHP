@@ -32,6 +32,7 @@ Post.create!([
   introduction: "HELLO WORLD",
   assignment: "ビジネス相手を探している",
   target: "#ハッシュタグ",
+  category_id:"#{n+1}",
   user_id: "1"
   ])
 end
