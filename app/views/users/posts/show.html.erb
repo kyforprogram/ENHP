@@ -31,7 +31,7 @@
         </div>
         <div class="card-body">
             <h5>ユーザー</h5>
-            <%= attachment_image_tag @post.user, :profile_image, :fill, 40, 40, fallback: "noimage.png", size:"40x40", class:"rounded-circle" %>
+            <%= attachment_image_tag @post.user, :profile_image, :fill, 60, 60, fallback: "noimage.png", size:"60x60", class:"rounded-circle" %>
             <%= @post.user.name %>
             <%= @post.user.introduction %>
         </div>

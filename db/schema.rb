@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 2021_09_18_162605) do
   end
 
   create_table "direct_messages", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "room_id"
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
     t.text "message", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(version: 2021_09_18_162605) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "room_id"
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_entries_on_room_id"
@@ -80,8 +80,8 @@ ActiveRecord::Schema.define(version: 2021_09_18_162605) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_id"
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 2021_09_18_162605) do
   end
 
   create_table "post_comments", force: :cascade do |t|
-    t.text "comment"
+    t.text "comment", null: false
     t.integer "user_id", null: false
     t.integer "post_id", null: false
     t.datetime "created_at", null: false
@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(version: 2021_09_18_162605) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "name"
+    t.string "name", null: false
     t.string "profile_image_id"
     t.string "company"
     t.text "introduction"
