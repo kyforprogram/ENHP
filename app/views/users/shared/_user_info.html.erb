@@ -1,6 +1,6 @@
 
       <div>
-        <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "noimage.png", size:'200x200' %><br>
+        <%= attachment_image_tag user, :profile_image, :fill, 90, 90, fallback: "noimage.png", size:'90x90', class:"rounded-circle" %><br>
         <%= link_to user_path(user) do %>
         <i class="fas fa-user"></i>:<%= user.name %><br>
         <% end %>
@@ -19,8 +19,6 @@
       </div>
 
       <div class="pt-2">
-
-
       <% if user.id == current_user.id %>
         <%= link_to '編集', edit_user_path(user), class: "btn btn-primary fas fa-user-edit" %>
       <% end %>
