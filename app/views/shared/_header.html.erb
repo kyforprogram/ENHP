@@ -28,7 +28,7 @@
                 <%= link_to "マイページ", user_path(current_user), class: 'fas fa-id-badge dropdown-item text-dark' %>
                 <%= link_to "プロフィール編集", edit_user_path(current_user), class: "fas fa-user-edit dropdown-item text-dark" %>
                 <%= link_to "カレンダー", my_calendar_path, class:"far fa-calendar-alt dropdown-item text-dark" %>
-                <%= link_to "メッセージ一覧", rooms_path, class:"fas fa-sms dropdown-item text-dark" %>
+                <%= link_to "メッセージ一覧", direct_messages_path, class:"fas fa-sms dropdown-item text-dark" %>
               </div>
             </li>
             <li class="nav-item">

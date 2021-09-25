@@ -33,6 +33,9 @@ before_action :index_post, only: %i[top index]
   end
 
   def edit
+    unless @post.user == current_user
+      redirect_to root_path
+    end
   end
 
   def update
