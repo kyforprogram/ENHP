@@ -1,7 +1,7 @@
 <div class="container top-bg">
     <%= render "/shared/error", model: @contact %>
 
-  <div class="mt-5">
+  <div class="mt-5 contact-contain">
     <span class="fs-3  offset-md-1 bg-light page-title">問い合わせ</span>
   </div>
   <%= form_with model: @contact, url: contacts_confirm_path, method: :get, local: true do |f|  %>
@@ -25,6 +25,8 @@
         <%= f.label :メッセージ, class:"col-2 mt-3" %>
         <%= f.text_area :message, class:"offset-1 col-3" %>
       </div>
-        <%= f.submit '確認画面に進む' %>
-
+      <div class="text-right mr-5">
+        <%= f.submit '確認画面に進む', class:"btn btn-info" %>
+      </div>
   <% end %>
+</div>
