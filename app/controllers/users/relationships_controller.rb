@@ -14,9 +14,11 @@ class Users::RelationshipsController < ApplicationController
     following.destroy
     #redirect_to request.referrer
   end
-  
-  private
+
+
   def find_user
     @user = User.find(params[:user_id])
   end
+
+  private
 end

@@ -8,11 +8,11 @@ before_action :authenticate_user!
     @event = Event.new(event_params)
     @event.user_id = current_user.id
     if @event.save
-      redirect_to my_calendar_path
+      redirect_to my_calendar_path, notice: "successfully."
     else
       render :new
     end
-  
+
   end
 
   def index
@@ -26,14 +26,14 @@ before_action :authenticate_user!
   def edit
     @event = Event.find(params[:id])
     unless @event.user == current_user
-      redirect_to root_path
+      redirect_to root_path, alert: "unexpect error"
     end
   end
 
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
-      redirect_to my_calendar_path
+      redirect_to my_calendar_path, notice: "successfully."
     else
       render :edit
     end
