@@ -13,7 +13,7 @@
         <% when 'follow' then %>
         <%= link_to "あなたをフォローしました", user_path(visitor), style: "font-weight: bold;" %>
           <!--<span style="font-weight: bold;">あなたをフォローしました</span>-->
-        <% when 'favorite' then %>
+        <% when 'like' then %>
           <%= link_to "あなたの投稿にいいねしました", notification.post, style: "font-weight: bold;" %>
         <% when 'comment' then %>
           <% if notification.post.user_id == visited.id %>

@@ -38,7 +38,7 @@ class Post < ApplicationRecord
     end
     notification.save if notification.valid?
   end
-  # ハッシュタグ機能---------------------------------------------------
+  # ハッシュタグ機能-----------------------------------------------------------------------------------------------------------
   after_create do
     post = Post.find_by(id: self.id)
     hashtags = self.target.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
@@ -59,7 +59,7 @@ class Post < ApplicationRecord
   end
   # いいね機能----------------------------------------
   def liked_by?(user)
-    likes.where(user_id: user.id).exists?
+    likes.includes(:user).where(user_id: user.id).exists?
   end
   # 検索機能star--------------------------------------
   def self.search(search, word)
