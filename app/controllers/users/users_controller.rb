@@ -12,6 +12,9 @@ before_action :set_user, only: %i[show edit update followings followers]
   end
 
   def edit
+    unless @user == current_user
+      redirect_to root_path
+    end
   end
 
   def update
