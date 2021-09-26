@@ -18,7 +18,7 @@ class User < ApplicationRecord
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy#active_notifications：自分からの通知
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy#passive_notifications：相手からの通知
   has_many :events, dependent: :destroy#スケジュール機能
-  
+
    # deletedカラムがfalseであるものを取得する
     scope :active, -> { where(is_deleted: false) }
     # created_atカラムを降順で取得する
@@ -27,8 +27,9 @@ class User < ApplicationRecord
     scope :recent, -> { active.sorted }
 
   # バリデーション-------------------------------------------------------------------------------------------------------------
-  validates :name, presence: true, length: { in: 0..50 }
-
+  validates :name, presence: true, length: { in: 1..50 }
+  validates :introduction, presence: true, on: :update
+  validates :introduction, length: {in: 1..300 }, on: :update
 
 
   def is_followed_by?(user)# フォローしてたらtrueを返す
