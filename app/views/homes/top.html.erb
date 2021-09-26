@@ -13,11 +13,11 @@
   </div>
 </div>
 <div class="wrapper">
-  <p class="page-title-p pt-3">登録カテゴリー一覧</p><br>
   <div class="text-center">
-    <span><%= video_tag "category.mp4", autoplay: true, loop: true, muted: true, size: "500x300" %></span>
+    <p class="page-title-p pt-3 font-weight-bold">カテゴリー機能</p>
+    <span><%= video_tag "category.mp4", autoplay: true, loop: true, muted: true, size: "700x500" %></span>
   </div>
-
+  <p class="page-title-p pt-3">登録カテゴリー一覧</p>
   <span class="small">＊全部で251種類</span>
   <div class="card-deck">
   <% @categories.each do |category| %>
