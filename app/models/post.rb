@@ -12,8 +12,10 @@ class Post < ApplicationRecord
   # created_atカラムを降順で取得する
   default_scope { order(created_at: :desc) }
   # deletedカラムがfalseであるものを取得する
-  scope :active, -> { where("posts.user_id IN (SELECT users.id FROM users WHERE users.is_deleted = 0)") }
+  scope :sorted, -> { order(created_at: :desc) }
+  scope :active, -> { where("posts.user_id IN (SELECT users.id FROM users WHERE users.is_deleted = 0)") }#boolean (0 = false, 1 = true)
   scope :default_order, -> { order("posts.created_at desc, posts.id desc") }
+  scope :recent, -> { sorted.active }
 
   # バリデーション-------------------------------------------------------------------------------------------------------------
   validates :title, presence: true, length: { in: 1..75 }

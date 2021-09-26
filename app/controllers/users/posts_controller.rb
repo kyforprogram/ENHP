@@ -19,7 +19,7 @@ before_action :index_post, only: %i[top index]
   end
 
   def index
-    @posts = Post.active.page(params[:page]).per(6)#boolean (0 = false, 1 = true)
+    @posts = Post.recent.page(params[:page]).per(6)#recentはpost.rbの１８行目
   end
 
   def show
