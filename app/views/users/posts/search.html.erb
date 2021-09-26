@@ -65,7 +65,7 @@
           <h2 class="text-center">New posts</h2>
           <div class="card-group">
             <% num = 0 %>
-            <% @posts = Post.where("posts.user_id IN (SELECT users.id FROM users WHERE users.is_deleted = 0)") %>
+            <% @posts = Post.active %>
             <% @posts.each do |post| %>
               <% num += 1 %>
                 <% if num <= 6 %>
