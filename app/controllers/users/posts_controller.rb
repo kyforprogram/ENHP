@@ -56,7 +56,7 @@ before_action :index_post, only: %i[top index]
   # お気に入り一覧ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
   def likes
     likes = Like.where(user_id: current_user.id).pluck(:post_id)# ログイン中のユーザーのお気に入りのpost_idカラムを取得
-    @post_likes = Post.find(likes)# postsテーブルから、お気に入り登録済みのレコードを取得
+    @post_likes = Post.includes(:category).find(likes)# postsテーブルから、お気に入り登録済みのレコードを取得
     @post_likes = Kaminari.paginate_array(@post_likes).page(params[:page])
   end
 
@@ -91,23 +91,23 @@ before_action :index_post, only: %i[top index]
   def search
     @posts = []
     @category = Category.find_by(id: params[:id])
-    if @category.ancestry == nil#第一階層
-      category = Category.find_by(id: params[:id]).descendant_ids
+    if @category.ancestry == nil#第一階層-------------------------------------開始--------------------------------------------------
+      category = Category.find_by(id: params[:id]).descendant_ids#親から検索rootは含まれない
       category << @category.id#@category.id = root.id
       if category.empty?
-        @posts = Post.includes(:user).where(category_id: @category.id).order(created_at: :desc)
+        @posts = Post.where(category_id: @category.id).order(created_at: :desc)
       else
         find_item(category)
       end
     else
-      category = Category.find_by(id: params[:id]).descendant_ids#第二階層親、子
+      category = Category.find_by(id: params[:id]).descendant_ids#第二階層（親、子）-----------------開始---------------------------
       category << @category.id#@category.id = root.id
       find_item(category)
     end
   end
   def find_item(category)
     category.each do |id|
-      post_array = Post.includes(:user).where(category_id: id).order(created_at: :desc)
+      post_array = Post.where(category_id: id).order(created_at: :desc)
       if post_array.present?
         post_array.each do |post|
           if post.present?
