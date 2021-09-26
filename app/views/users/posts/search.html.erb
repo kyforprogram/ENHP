@@ -65,7 +65,7 @@
             <h2 class="text-center">New posts</h2>
             <div class="card-group">
             <% num = 0 %>
-            <% @posts = @posts = Post.recent %>
+            <% @posts = Post.recent %>
             <% @posts.each do |post| %>
             <% num += 1 %>
               <% if num <= 6 %>
