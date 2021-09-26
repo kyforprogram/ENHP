@@ -19,7 +19,7 @@ before_action :index_post, only: %i[top index]
   end
 
   def index
-    @posts = Post.recent.page(params[:page]).per(6)#recentはpost.rbの１８行目
+    @posts = Post.includes(:category).recent.page(params[:page]).per(6)#recentはpost.rbの１８行目
   end
 
   def show
@@ -95,7 +95,7 @@ before_action :index_post, only: %i[top index]
       category = Category.find_by(id: params[:id]).descendant_ids
       category << @category.id#@category.id = root.id
       if category.empty?
-        @posts = Post.where(category_id: @category.id).order(created_at: :desc)
+        @posts = Post.includes(:user).where(category_id: @category.id).order(created_at: :desc)
       else
         find_item(category)
       end
@@ -107,7 +107,7 @@ before_action :index_post, only: %i[top index]
   end
   def find_item(category)
     category.each do |id|
-      post_array = Post.where(category_id: id).order(created_at: :desc)
+      post_array = Post.includes(:user).where(category_id: id).order(created_at: :desc)
       if post_array.present?
         post_array.each do |post|
           if post.present?
@@ -121,13 +121,13 @@ before_action :index_post, only: %i[top index]
 
   # before_action-------------------------------------------------------------------------------------
   def set_post
-   @post = Post.find(params[:id])
+   @post = Post.includes(:user).find(params[:id])
   end
   def set_parents
     @parents = Category.where(ancestry: nil)
   end
   def index_post
-    @posts = Post.order(created_at: :desc).page(params[:page]).per(10)
+    @posts = Post.includes(:user).order(created_at: :desc).page(params[:page]).per(10)
   end
 
   private

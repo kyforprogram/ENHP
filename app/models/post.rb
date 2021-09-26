@@ -8,7 +8,9 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :view_counts, dependent: :destroy
   has_many :notifications, dependent: :destroy
-
+  
+  
+  # スコープ設定---------------------------------------------------------------------------------------------------------------
   # created_atカラムを降順で取得する
   default_scope { order(created_at: :desc) }
   # deletedカラムがfalseであるものを取得する
@@ -69,11 +71,11 @@ class Post < ApplicationRecord
       post.hashtags << tag
     end
   end
-  # いいね機能----------------------------------------
+  # いいね機能----------------------------------------------------------------------------------------------------------------
   def liked_by?(user)
     likes.includes(:user).where(user_id: user.id).exists?
   end
-  # 検索機能star--------------------------------------
+  # 検索機能star--------------------------------------------------------------------------------------------------------------
   def self.search(search, word)
     if search == "perfect_match"#完全一致
       @post = Post.where("title LIKE? OR introduction LIKE OR target LIKE OR category LIKE", "#{word}","#{word}","#{word}","#{word}")
