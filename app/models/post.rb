@@ -8,13 +8,13 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :view_counts, dependent: :destroy
   has_many :notifications, dependent: :destroy
-  
-    # deletedカラムがfalseであるものを取得する
-  scope :active, -> { includes(:user).where(is_deleted: false) }
-  # created_atカラムを降順で取得する
-  scope :sorted, -> { order(created_at: :desc) }
 
-  scope :recent, -> {order(created_at: :desc)}
+  # # deletedカラムがfalseであるものを取得する
+  # scope :active, -> { includes(:user).where(is_deleted: false) }
+  # # created_atカラムを降順で取得する
+  # scope :sorted, -> { order(created_at: :desc) }
+
+  # scope :recent, -> { active, sorted }
 
   # バリデーション-------------------------------------------------------------------------------------------------------------
   validates :title, presence: true, length: { in: 1..75 }
