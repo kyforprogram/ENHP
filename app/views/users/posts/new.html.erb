@@ -1,5 +1,4 @@
-
-  <div class="container">
+<div class="container">
     <%= render "/shared/error", model: @post %>
     <div class="row mx-auto">
       <div class="col">
@@ -9,6 +8,7 @@
             <%= f.label :"タイトル", class:"col-sm-3 col-form-label" %>
             <%= f.text_field :title, autofocus: true, class:"form-control" %>
           </div>
+
           <div class="mb-3 row">
           <%= f.label "職業カテゴリー", class:"col-sm-3 col-form-label"  %>
           <div class="append__category">
@@ -23,25 +23,30 @@
             </div>
           </div>
          </div>
+
           <div class="mb-3 row">
-          <%= f.label :"画像", class:"col-sm-3 col-form-label"  %>
-          <%= f.attachment_field :image %>
+            <%= f.label :"画像", class:"col-sm-3 col-form-label"  %>
+            <%= f.attachment_field :image %>
           </div>
+
           <div class="mb-3 row">
-          <%= f.label :紹介文, class:"col-sm-3 col-form-label"  %>
-          <%= f.text_area :introduction, autofocus: true, size: "10x10", class: "form-control" %>
+            <%= f.label :紹介文, class:"col-sm-3 col-form-label"  %>
+            <%= f.text_area :introduction, autofocus: true, size: "10x10", class: "form-control" %>
           </div>
+
           <div class="mb-3 row">
-          <%= f.label :課題, class:"col-sm-3 col-form-label"  %>
-          <%= f.text_area :assignment, autofocus: true,  size: "10x10", class:"form-control" %>
+            <%= f.label :課題, class:"col-sm-3 col-form-label"  %>
+            <%= f.text_area :assignment, autofocus: true,  size: "10x10", class:"form-control" %>
           </div>
+
           <div class="mb-3 row">
-          <%= f.label "#ハッシュタグ", class:"col-sm-3 col-form-label"  %>
-          <small>#IT ＃農業　＃専門商社　＃ビジネスパートナー募集　#繊維専門　</small>
-          <%= f.text_area :target, autofocus: true, size: "10x10", placeholder:"#IT ＃農業　＃専門商社　＃ビジネスパートナー募集　#繊維専門",class:"form-control" %>
+            <%= f.label "#ハッシュタグ", class:"col-sm-3 col-form-label"  %>
+            <small>#IT ＃農業　＃専門商社　＃ビジネスパートナー募集　#繊維専門　</small>
+            <%= f.text_area :target, autofocus: true, size: "10x10", placeholder:"#IT ＃農業　＃専門商社　＃ビジネスパートナー募集　#繊維専門",class:"form-control" %>
           </div>
+
           <div class="text-center">
-          <%= f.submit "登録", class:"px-5 btn btn-success" %>
+            <%= f.submit "登録", class:"px-5 btn btn-success" %>
           </div>
         <% end %>
       </div>

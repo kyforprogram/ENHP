@@ -1,28 +1,35 @@
 <div class="container">
-<%= render "/shared/error", model: @event %>
-<h2>スケジュール</h2>
-<div class="col-10 mx-auto ">
-<%= form_with model: @event, local: true do |f| %>
-  <div class="form-group">
-    <%= f.label :title, 'スケジュール名' %>
-    <%= f.text_field :title, class: 'form-control' %>
+  <%= render "/shared/error", model: @event %>
+  <h2>スケジュール</h2>
+  <div class="col-10 mx-auto ">
+    
+    <%= form_with model: @event, local: true do |f| %>
+    
+      <div class="form-group">
+        <%= f.label :title, 'スケジュール名' %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :body, 'スケジュール内容' %>
+        <%= f.text_area :body, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :start_date, '開始日時' %>
+        <%= f.datetime_field :start_date, class: 'form-control datetime-form' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :end_date, '終了日時' %>
+        <%= f.datetime_field :end_date, class: 'form-control datetime-form' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.submit class: 'btn btn-success btn-block' %>
+      </div>
+      
+    <% end %>
+    
   </div>
-  <div class="form-group">
-    <%= f.label :body, 'スケジュール内容' %>
-    <%= f.text_area :body, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :start_date, '開始日時' %>
-    <%= f.datetime_field :start_date, class: 'form-control datetime-form' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :end_date, '終了日時' %>
-    <%= f.datetime_field :end_date, class: 'form-control datetime-form' %>
-  </div>
-  <div class="form-group">
-    <%= f.submit class: 'btn btn-success btn-block' %>
-  </div>
-<% end %>
-</div>
-</div>
 </div>

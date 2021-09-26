@@ -1,27 +1,31 @@
 <% @direct_messages.each do |direct_message| %>
-    <% if direct_message.user == current_user %>
-    <div class="message-date"><%= direct_message.created_at.strftime('%Y/%m/%d %H:%M') %></div>
-      <div class="balloon_l">
-        <div class="faceicon">
-          <%= attachment_image_tag direct_message.user, :profile_image, fallback: "noimage.png", class: "mr-3 align-self-start" %><br>
-          <p><small><%= direct_message.user.name %></small></p>
-          </br>
-        </div>
-        <p class="says">
-          <%= direct_message.message %>
-        </p>
+  <% if direct_message.user == current_user %>
+    <div class="message-date">
+      <%= direct_message.created_at.strftime('%Y/%m/%d %H:%M') %>
+    </div>
+    <div class="balloon_l">
+      <div class="faceicon">
+        <%= attachment_image_tag direct_message.user, :profile_image, fallback: "noimage.png", class: "mr-3 align-self-start" %><br>
+        <p><small><%= direct_message.user.name %></small></p>
+        </br>
       </div>
-    <% else %>
-    <div class="message-date"><%= direct_message.created_at.strftime('%Y/%m/%d %H:%M') %></div>
-      <div class="balloon_r">
-        <div class="faceicon">
-          <%= attachment_image_tag direct_message.user, :profile_image, fallback: "noimage.png", class: "mr-3 align-self-start" %>
-          <p><small><%= direct_message.user.name %></small></p>
-          </br>
-        </div>
-        <div class="says">
-          <%= direct_message.message %>
-        </div>
+      <p class="says">
+        <%= direct_message.message %>
+      </p>
+    </div>
+  <% else %>
+    <div class="message-date">
+      <%= direct_message.created_at.strftime('%Y/%m/%d %H:%M') %>
+    </div>
+    <div class="balloon_r">
+      <div class="faceicon">
+        <%= attachment_image_tag direct_message.user, :profile_image, fallback: "noimage.png", class: "mr-3 align-self-start" %>
+        <p><small><%= direct_message.user.name %></small></p>
+        </br>
       </div>
-    <% end %>
+      <div class="says">
+        <%= direct_message.message %>
+      </div>
+    </div>
   <% end %>
+<% end %>

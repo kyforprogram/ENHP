@@ -4,29 +4,29 @@
   </div>
   <div class="row">
     <div class="col text-center">
-    <%= form_with model:@user, url: admins_user_path(@user.id), local:true do |f| %>
-    <div class="form-group">
-      <%= f.label :プロフィール画像, class:"col-2 mt-3" %>
-      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "noimage.png", size:'100x100'%>
-      <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :"会員ステータス", class:"col-sm-3 col-form-label" %>
-      <div class="col">
-        <%= f.radio_button :is_deleted, false, class:"form-check-input" %>
-        <%= f.label :is_deleted, '有効', value: false, class:"form-check-label" %><br>
-        <%= f.radio_button :is_deleted, true, class:"form-check-input" %>
-        <%= f.label :is_deleted, "退会", value: true, class:"form-check-label" %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-4">
-      </div>
-      <div class="col-4">
-        <%= f.submit "変更する", "data-confirm" => "変更してよろしいですか?", class:"btn btn-danger" %>
-      </div>
-    </div>
-    <% end %>
+      <%= form_with model:@user, url: admins_user_path(@user.id), local:true do |f| %>
+        <div class="form-group">
+          <%= f.label :プロフィール画像, class:"col-2 mt-3" %>
+          <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "noimage.png", size:'100x100'%>
+          <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :"会員ステータス", class:"col-sm-3 col-form-label" %>
+          <div class="col">
+            <%= f.radio_button :is_deleted, false, class:"form-check-input" %>
+            <%= f.label :is_deleted, '有効', value: false, class:"form-check-label" %><br>
+            <%= f.radio_button :is_deleted, true, class:"form-check-input" %>
+            <%= f.label :is_deleted, "退会", value: true, class:"form-check-label" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+          </div>
+          <div class="col-4">
+            <%= f.submit "変更する", "data-confirm" => "変更してよろしいですか?", class:"btn btn-danger" %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Enhp</title>
+    <title>オープンイノベーション</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -11,21 +11,24 @@
   </head>
   <body>
     <div class="app-wrapper">
-    <% if admin_signed_in? %>
-      <%= render 'shared/admin_header' %>
-    <% else %>
-      <%= render 'shared/header' %>
-    <% end %>
-    <main class="mx-auto" style="padding-top:60px">
-    <% if flash[:notice] %>
-      <div class="flash mt-2"><%= flash[:notice] %></div>
-    <% end %>
-    <% if flash[:alert] %>
-      <div class="alert mt-2"><%= flash[:alert] %></div>
-    <% end %>
-    <%= yield %>
-    </main>
-    <%= render 'shared/footer' %>
+
+      <% if admin_signed_in? %>
+        <%= render 'shared/admin_header' %>
+      <% else %>
+        <%= render 'shared/header' %>
+      <% end %>
+
+      <main class="mx-auto" style="padding-top:60px">
+        <% if flash[:notice] %>
+          <div class="flash mt-2"><%= flash[:notice] %></div>
+        <% end %>
+        <% if flash[:alert] %>
+          <div class="alert mt-2"><%= flash[:alert] %></div>
+        <% end %>
+        <%= yield %>
+      </main>
+
+      <%= render 'shared/footer' %>
      </div>
   </body>
 </html>

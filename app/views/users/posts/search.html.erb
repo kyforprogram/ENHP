@@ -1,76 +1,75 @@
-  <div class="container">
-    <div class="row">
-      <div calss="col-3">
-      <div class="item-categories">
-      <h2>
-        カテゴリー一覧
-      </h2>
-      <%= link_to  top_posts_path, class: "category-button", id: 'categoBtn' do %>
-        カテゴリーから探す
-      <% end %>
-      <div id="tree_menu">
-        <ul class="categoryTree">
-          <% @parents.each do |parent| %>
-            <li class="category_parent">
-              <%= link_to search_post_path(parent), 'data-turbolinks': false do %>
-                <input type="button" value="<%= parent.name %>" name="<%= parent.id %>" class="parent_btn">
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-        <ul class="categoryTree-child">
-        </ul>
-        <ul class="categoryTree-grandchild">
-        </ul>
-      </div>
+<div class="container">
+  <div class="row">
+    <div calss="col-3">
+    <div class="item-categories">
+    <h2>
+      カテゴリー一覧
+    </h2>
+    <%= link_to  top_posts_path, class: "category-button", id: 'categoBtn' do %>
+      カテゴリーから探す
+    <% end %>
+    <div id="tree_menu">
+      <ul class="categoryTree">
+        <% @parents.each do |parent| %>
+          <li class="category_parent">
+            <%= link_to search_post_path(parent), 'data-turbolinks': false do %>
+              <input type="button" value="<%= parent.name %>" name="<%= parent.id %>" class="parent_btn">
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+      <ul class="categoryTree-child">
+      </ul>
+      <ul class="categoryTree-grandchild">
+      </ul>
     </div>
+  </div>
     </div>
     <div class="col-9">
-        <div class="card-deck">
-          <% @posts.each do |post| %>
-            <div class="col-6 mt-1 mx-auto">
-              <div class="card border-info">
-                  <div class="card-header border-info">
-                    <h5 class="card-title"><%= post.title %></h5>
-                  </div>
-
-                    <%= link_to post_path(post.id) do %>
-                      <%= attachment_image_tag post, :image, fallback: "noimage.png", class:"card-img-top" %>
-                    <% end %>
-                    <div>
-                      <%= render 'users/shared/post_category', post: post %>
-                    </div>
-                    <div class="card-body">
-                      <h4 class="card-title"><strong>紹介文</strong></h4>
-                      <p class="card-text"><%= post.introduction %></p>
-                    </div>
-                    <div class="card-body">
-                      <h4 class="card-title">課題</h4>
-                      <p class="card-text"><%= post.assignment %></p>
-                    </div>
-                    <div class="card-footer">
-                      <span id="likes_<%= post.id %>">
-                        <%= render "users/likes/likes", post: post %>
-                      </span>
-                      <%= render_with_hashtags(post.target) %>
-                    </div>
+      <div class="card-deck">
+        <% @posts.each do |post| %>
+          <div class="col-6 mt-1 mx-auto">
+            <div class="card border-info">
+              <div class="card-header border-info">
+                <h5 class="card-title"><%= post.title %></h5>
               </div>
+                <%= link_to post_path(post.id) do %>
+                  <%= attachment_image_tag post, :image, fallback: "noimage.png", class:"card-img-top" %>
+                <% end %>
+                <div>
+                  <%= render 'users/shared/post_category', post: post %>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title"><strong>紹介文</strong></h4>
+                  <p class="card-text"><%= post.introduction %></p>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">課題</h4>
+                  <p class="card-text"><%= post.assignment %></p>
+                </div>
+                <div class="card-footer">
+                  <span id="likes_<%= post.id %>">
+                    <%= render "users/likes/likes", post: post %>
+                  </span>
+                  <%= render_with_hashtags(post.target) %>
+                </div>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
-        <% if @posts.empty? %>
-          <p class="font-none font-weight-bold">該当しませんでした。検索条件を変えて、再度お試しください。</p>
-          <div class="row mt-5">
-            <h2 class="text-center">New posts</h2>
-            <div class="card-group">
+    </div>
+    <div class="row">
+      <% if @posts.empty? %>
+        <p class="font-none font-weight-bold">該当しませんでした。検索条件を変えて、再度お試しください。</p>
+        <div class="row mt-5">
+          <h2 class="text-center">New posts</h2>
+          <div class="card-group">
             <% num = 0 %>
             <% @posts = Post.recent %>
             <% @posts.each do |post| %>
-            <% num += 1 %>
-              <% if num <= 6 %>
-              <!--<div class="col">-->
-                <div class="card border-info">
+              <% num += 1 %>
+                <% if num <= 6 %>
+                  <div class="card border-info">
                     <div class="card-header border-info">
                       <h5 class="card-title"><%= post.title.truncate(30) %></h5>
                     </div>
@@ -78,19 +77,16 @@
                       <%= link_to post_path(post.id) do %>
                         <%= attachment_image_tag post, :image, fallback: "noimage.png", class:"card-img-top" %>
                       <% end %>
-
                       <%= attachment_image_tag post.user, :profile_image, :fill, 90, 90, fallback: "noimage.png", size:'90x90', class:"rounded-circle" %>
                       <%= post.user.name %>
                       <small><%= post.created_at.strftime("%Y.%m.%d") %></small>
-                      </div>
                     </div>
-                 <!--</div>-->
-              <% end %>
+                  </div>
+                <% end %>
             <% end %>
-            </div>
           </div>
-        <% end %>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
+</div>
