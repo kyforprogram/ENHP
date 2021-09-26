@@ -9,12 +9,13 @@ class Post < ApplicationRecord
   has_many :view_counts, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
-  # # deletedカラムがfalseであるものを取得する
-  # scope :active, -> { includes(:user).where(is_deleted: false) }
-  # # created_atカラムを降順で取得する
-  # scope :sorted, -> { order(created_at: :desc) }
+  # deletedカラムがfalseであるものを取得する
+  # scope :active, -> { where("posts.user_id IN (SELECT users.id FROM users WHERE users.is_deleted = false)") }
+  scope :active, -> { where(is_deleted: :false) }
+  # created_atカラムを降順で取得する
+  scope :sorted, -> { order(created_at: :desc) }
 
-  # scope :recent, -> { active, sorted }
+  # scope :recent, -> { includes(:user).where(is_deleted: false) }
 
   # バリデーション-------------------------------------------------------------------------------------------------------------
   validates :title, presence: true, length: { in: 1..75 }

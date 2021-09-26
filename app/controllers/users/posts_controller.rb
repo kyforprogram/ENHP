@@ -19,7 +19,9 @@ before_action :index_post, only: %i[top index]
   end
 
   def index
-    @posts = Post.includes(:user, :category).recent.page(params[:page])
+    @posts = Post.where("posts.user_id IN (SELECT users.id FROM users WHERE users.is_deleted = 0)").page(params[:page]).per(6)#boolean (0 = false, 1 = true)
+    # @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(6)
+    # @posts = Post.includes(:user).active
   end
 
   def show
