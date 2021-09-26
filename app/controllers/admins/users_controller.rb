@@ -3,7 +3,7 @@ before_action :authenticate_admin!
 before_action :find_user, only: %i[show edit update]
 
   def index
-    @users = User.all
+    @users = User.all.page(params[:page]).per(50)
   end
 
   def show
@@ -20,7 +20,7 @@ before_action :find_user, only: %i[show edit update]
   private
 
   def user_params
-    params.require(:user).permit(:email, :name, :profile_image, :introduction, :job_category, :is_deleted)
+    params.require(:user).permit(:name, :profile_image, :introduction, :is_deleted)
   end
 
   def find_user

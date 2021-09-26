@@ -1,7 +1,7 @@
 class HomesController < ApplicationController
 
   def top
-    @posts = Post.order(created_at: :desc)
+    @posts = Post.includes(:category, :user).recent.limit(4)
     @categories = Category.where(ancestry: nil)
   end
 end

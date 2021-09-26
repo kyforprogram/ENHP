@@ -8,7 +8,7 @@ before_action :set_user, only: %i[show edit update followings followers]
   end
 
   def index
-    @users = User.where.not(id: current_user.id).page(params[:page]).per(12)
+    @users = User.where.not(id: current_user.id, is_deleted: true).page(params[:page]).per(12)
   end
 
   def edit

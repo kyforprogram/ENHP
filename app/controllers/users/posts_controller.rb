@@ -19,7 +19,7 @@ before_action :index_post, only: %i[top index]
   end
 
   def index
-    @posts = Post.page(params[:page])
+    @posts = Post.includes(:user, :category).recent.page(params[:page])
   end
 
   def show
