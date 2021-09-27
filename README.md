@@ -1,24 +1,39 @@
-# README
+# オープンイノベーション
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+SNS系サービスの「オープンイノベーション」は、これまでに無かった、 「オープンイノベーション」を目的にしたサービスです。 例えば、企業の情報はもちろんのこと、現状抱えている課題、出会いたい相手などを手軽に投稿することができ、 抱えている課題や、今求めているターゲットなどの共通点から、価値観の共有する仲間を、かんたんに見つけることができます。 企業のかたは勿論ですが、企業以外の自治体や銀行の方も、 「オープンイノベーション」を使えば、価値観を共有したいユーザーと出会えるでしょう！				
 
-Things you may want to cover:
+### サイトテーマ
 
-* Ruby version
+SNS系　オープンイノベーション
 
-* System dependencies
+### テーマを選んだ理由
 
-* Configuration
+コロナ渦で人の動きが抑制されている中でネット出会える場所、情報を発信する場所、情報共有する場所が必要です。
+tweetなどは幅が広いため、ピンポイントで相手を探せるような場所が必要だと考えています。
+サイトを通じてあらゆる分野の企業や企業以外の方も繋げることで、コロナが長引いている中でも新たなビジネスなどを生み出せると思ったからです。
 
-* Database creation
+### ターゲットユーザ
 
-* Database initialization
+新たなビジネスを生み出したい人や、探している人「企業の方や企業以外の方も」
 
-* How to run the test suite
+### 主な利用シーン
+"現状抱えている課題などを共有や情報発信し、あらゆる検索機能を使って相手を探しだす"				
 
-* Services (job queues, cache servers, search engines, etc.)
+## 設計書
 
-* Deployment instructions
+https://docs.google.com/spreadsheets/d/1sx8dP7804gPvn6gQOmv5QhQivdAk0zZQ0CvzesuM3YQ/edit#gid=977420151
 
-* ...
+## チャレンジ要素一覧
+
+https://docs.google.com/spreadsheets/d/1lN3U02E3H56-GNC-YNgQlkzEz80kES2gUTjRqgcDB3A/edit#gid=0
+
+## 開発環境
+
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JS ライブラリ：jQuery
+- IDE：Cloud9
+
+## 使用素材
