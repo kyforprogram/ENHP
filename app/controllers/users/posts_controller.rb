@@ -88,7 +88,7 @@ before_action :index_post, only: %i[top index]
       end
     end
   end
-
+  # カテゴリー検索機能----------------------------------------------------------------------------------------------------------
   def search
     @new_posts = Post.includes(:user, :category).recent
     @posts = []
@@ -99,12 +99,12 @@ before_action :index_post, only: %i[top index]
       if category.empty?
         @posts = Post.where(category_id: @category.id).order(created_at: :desc)
       else
-        find_item(category)
+        find_item(category)#110行目
       end
     else
       category = Category.find_by(id: params[:id]).descendant_ids#第二階層（親、子）-----------------開始---------------------------
       category << @category.id#@category.id = root.id
-      find_item(category)
+      find_item(category)#110行目
     end
   end
   def find_item(category)
