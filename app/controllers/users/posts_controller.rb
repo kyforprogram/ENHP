@@ -88,8 +88,9 @@ before_action :index_post, only: %i[top index]
       end
     end
   end
-  
+
   def search
+    @new_posts = Post.includes(:user, :category).recent
     @posts = []
     @category = Category.find_by(id: params[:id])
     if @category.ancestry == nil#第一階層-------------------------------------開始--------------------------------------------------
