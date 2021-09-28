@@ -7,7 +7,7 @@
       <div class="col-3">
         <div class="card text-center">
         <%= link_to user_path(user.id) do %>
-          <%= attachment_image_tag user, :profile_image, fallback: "noimage.png", class:"card-img-top" %>
+          <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "noimage.png", size: "20x200", class:"card-img-top rounded-circle" %>
         <% end %>
           <%= user.name %><br>
           <%= user.company %>
