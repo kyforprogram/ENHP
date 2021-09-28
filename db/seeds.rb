@@ -33,7 +33,7 @@ Post.create!([
   introduction: "HELLO WORLD",
   image: File.open("./app/assets/images/icon.jpg"),
   assignment: "オープンイノベーションを活用して新たな価値あるものを作りたい",
-  target: "#オープンイノベーション　#HELLO",
+  target: "#オープンイノベーション　#HELLO #HELLO WORLD",
   category_id:"#{n+1}",
   user_id: "#{n+1}"
   ])

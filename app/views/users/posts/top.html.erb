@@ -33,10 +33,10 @@
         <% @posts.each do |post| %>
           <% num += 1 %>
           <% if num <= 6 %>
-            <div class="col-4 mt-1 mx-auto">
+            <div class="col-6 mt-1 mx-auto">
               <div class="card border-info">
                   <div class="card-header border-info">
-                    <h5 class="card-title"><%= post.title %></h5>
+                    <h5 class="card-title"><%= post.title.truncate(60) %></h5>
                   </div>
 
                   <div class="card-body text-center">

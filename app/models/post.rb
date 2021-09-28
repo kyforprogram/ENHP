@@ -8,8 +8,8 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :view_counts, dependent: :destroy
   has_many :notifications, dependent: :destroy
-  
-  
+
+
   # スコープ設定---------------------------------------------------------------------------------------------------------------
   # created_atカラムを降順で取得する
   default_scope { order(created_at: :desc) }
@@ -20,10 +20,10 @@ class Post < ApplicationRecord
   scope :recent, -> { sorted.active }
 
   # バリデーション-------------------------------------------------------------------------------------------------------------
-  validates :title, presence: true, length: { in: 1..75 }
-  validates :introduction, presence: true, length: { in: 1..300 }
-  validates :assignment, presence: true, length: { in: 1..300 }
-  validates :target, presence: true, length: { in: 1..300 }
+  validates :title, presence: true, length: { in: 1..200 }
+  validates :introduction, presence: true, length: { in: 1..1500 }
+  validates :assignment, presence: true, length: { in: 1..1500 }
+  validates :target, presence: true, length: { in: 1..200 }
 
   # 投稿に対する通知機能-----------------------------------------------------------いいね-------------------------------------
   def create_notification_like!(current_user)

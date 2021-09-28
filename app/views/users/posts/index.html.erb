@@ -34,10 +34,10 @@
     <div class="col-9">
         <div class="card-deck">
           <% @posts.each do |post| %>
-            <div class="col-6  mx-auto">
+            <div class="col-12  mx-auto">
               <div class="card border-info mt-2">
                   <div class="card-header border-info">
-                    <h5 class="card-title"><%= post.title.truncate(30) %></h5>
+                    <h5 class="card-title font-weight-bold"><%= post.title %></h5>
                   </div>
                   <%= link_to post_path(post.id) do %>
                     <%= attachment_image_tag post, :image, fallback: "noimage.png", class:"card-img-top" %>
@@ -46,10 +46,10 @@
                     <%= render 'users/shared/post_category', post: post %>
                   </div>
                   <div class="card-body">
-                    <h4 class="card-title"><strong>紹介文</strong></h4>
-                    <small><p class="card-text"><%= post.introduction %></p></small>
-                    <h4 class="card-title">課題</h4>
-                    <small><p class="card-text"><%= post.assignment %></p></small>
+                    <h4 class="card-title font-weight-bold"><strong>紹介文</strong></h4>
+                    <small><p class="card-text"><%= simple_format post.introduction.truncate(200) %></p></small>
+                    <h4 class="card-title font-weight-bold">課題</h4>
+                    <small><p class="card-text"><%= simple_format post.assignment.truncate(200) %></p></small>
                   </div>
                   <div class="card-footer">
                     <span id="likes_<%= post.id %>">

@@ -3,7 +3,7 @@
     お気に入り一覧
   </h2>
   <div class="row">
-    <div class="col-2">
+    <div class="col-3">
       <%= render 'users/shared/user_info', user: current_user %>
       <div class="item-categories">
         <h5>
@@ -29,15 +29,15 @@
         </div>
       </div>
     </div>
-    <div class="col-10">
+    <div class="col-9">
         <div class="card-deck">
           <% @post_likes.each do |post| %>
-            <div class="col-6 mt-1 mx-auto">
+            <div class="col-12 mt-1 mx-auto">
               
               <div class="card border-info">
                 
                   <div class="card-header border-info">
-                    <h5 class="card-title"><%= post.title.truncate(30) %></h5>
+                    <h5 class="card-title"><%= post.title %></h5>
                   </div>
 
                     <%= link_to post_path(post.id) do %>
@@ -50,12 +50,12 @@
                     
                     <div class="card-body">
                       <h4 class="card-title"><strong>紹介文</strong></h4>
-                      <p class="card-text"><%= post.introduction %></p>
+                      <p class="card-text"><%= post.introduction.truncate(200) %></p>
                     </div>
                     
                     <div class="card-body">
                       <h4 class="card-title">課題</h4>
-                      <p class="card-text"><%= post.assignment %></p>
+                      <p class="card-text"><%= post.assignment.truncate(200) %></p>
                     </div>
                     
                     <div class="card-footer">

@@ -12,36 +12,36 @@
         <div class="card-header border-primary">
           <p><strong><%= @post.title %></strong></p>
         </div>
-        
+
         <%= attachment_image_tag @post, :image, fallback: "noimage.png", class:"card-img-top" %>
-        
+
         <div class="card-body">
             <h5>カテゴリー</h5>
             <%= render 'users/shared/post_category', post: @post %>
         </div>
-        
+
         <div class="card-body">
             <h5>紹介文</h5>
-            <p class="small"><%= @post.introduction %></p>
+            <p class="small"><%= simple_format @post.introduction %></p>
         </div>
-        
+
         <div class="card-body">
             <h5>課題</h5>
-            <%= @post.assignment %>
+            <p class="small"><%= simple_format @post.assignment %></p>
         </div>
-        
+
         <div class="card-body">
             <h5>ユーザー</h5>
+            <%= @post.user.name %><br>
             <%= attachment_image_tag @post.user, :profile_image, :fill, 60, 60, fallback: "noimage.png", size:"60x60", class:"rounded-circle" %>
-            <%= @post.user.name %>
-            <%= @post.user.introduction %>
+            <%= simple_format @post.user.introduction %>
         </div>
-        
+
         <div class="card-body">
             <h5>ハッシュタグ</h5>
             <%= render_with_hashtags(@post.target) %>
         </div>
-        
+
         <span id="likes_<%= @post.id %>"><%= render "users/likes/likes", post: @post %></span>
         <span>閲覧数: <%= @post.view_counts.count %></span>
 
