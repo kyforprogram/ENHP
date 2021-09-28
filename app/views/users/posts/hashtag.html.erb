@@ -7,7 +7,7 @@
           <div class="col-6 mt-1">
             <div class="card border-info">
                 <div class="card-header bg-transparent border-info">
-                  <h5 class="card-title"><%= post.title.truncate(70) %></h5>
+                  <h5 class="card-title font-weight-bold"><%= post.title.truncate(70) %></h5>
                 </div>
                   <%= link_to post_path(post.id) do %>
                     <%= attachment_image_tag post, :image, fallback: "noimage.png", class:"card-img-top" %>

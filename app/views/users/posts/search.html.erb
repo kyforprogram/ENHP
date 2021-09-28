@@ -41,11 +41,11 @@
                 </div>
                 <div class="card-body">
                   <h4 class="card-title"><strong>紹介文</strong></h4>
-                  <p class="card-text"><%= post.introduction.truncate(200) %></p>
+                  <p class="card-text"><%= simple_format post.introduction.truncate(200) %></p>
                 </div>
                 <div class="card-body">
                   <h4 class="card-title">課題</h4>
-                  <p class="card-text"><%= post.assignment.truncate(200) %></p>
+                  <p class="card-text"><%= simple_format post.assignment.truncate(200) %></p>
                 </div>
                 <div class="card-footer">
                   <span id="likes_<%= post.id %>">
