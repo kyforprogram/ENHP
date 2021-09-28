@@ -11,18 +11,17 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy#いいね
   has_many :direct_messages, dependent: :destroy#DMの中間テーブル
   has_many :entries, dependent: :destroy#DMの中間テーブル
-  has_many :rooms, through: :entries
-  has_many :relationships, foreign_key: :following_id# フォロー取得
-  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: :follower_id# フォロワー取得
-  has_many :followings, through: :relationships, source: :follower# 自分がフォローしている人
-  has_many :followers, through: :reverse_of_relationships, source: :following# 自分をフォローしている人
+  has_many :rooms, through: :entries#中間テーブルEntryを通ってuser取得
+  has_many :relationships, foreign_key: :following_id
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: :follower_id
+  has_many :followings, through: :relationships, source: :follower
+  has_many :followers, through: :reverse_of_relationships, source: :following
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy#active_notifications：自分からの通知
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy#passive_notifications：相手からの通知
   has_many :events, dependent: :destroy#スケジュール機能
 
-  
+
   default_scope { order(created_at: :desc) }
-  scope :others, -> { where.not(user_id: current_user.id) }
   # deletedカラムがfalseであるものを取得する
   scope :active, -> { where(is_deleted: false) }
   # created_atカラムを降順で取得する

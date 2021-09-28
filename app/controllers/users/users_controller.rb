@@ -8,7 +8,7 @@ before_action :find_user, only: %i[show edit update followings followers]
   end
 
   def index
-    @users = User.recent.page(params[:page]).per(12)#recentはuser.rb、２９行目
+    @users = User.where.not(id: current_user.id).recent.page(params[:page]).per(12)#recentはuser.rb、30行目
   end
 
   def edit
