@@ -20,14 +20,15 @@ class User < ApplicationRecord
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy#passive_notifications：相手からの通知
   has_many :events, dependent: :destroy#スケジュール機能
 
-
-    default_scope { order(created_at: :desc) }
-    # deletedカラムがfalseであるものを取得する
-    scope :active, -> { where(is_deleted: false) }
-    # created_atカラムを降順で取得する
-    scope :sorted, -> { order(created_at: :desc) }
-    # activeとsortedを合わせたもの
-    scope :recent, -> { active.sorted }
+  
+  default_scope { order(created_at: :desc) }
+  scope :others, -> { where.not(user_id: current_user.id) }
+  # deletedカラムがfalseであるものを取得する
+  scope :active, -> { where(is_deleted: false) }
+  # created_atカラムを降順で取得する
+  scope :sorted, -> { order(created_at: :desc) }
+  # activeとsortedを合わせたもの
+  scope :recent, -> { active.sorted }
 
   # バリデーション-------------------------------------------------------------------------------------------------------------
   validates :name, presence: true, length: { in: 1..50 }

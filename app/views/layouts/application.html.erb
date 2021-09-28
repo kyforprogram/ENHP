@@ -10,8 +10,9 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
-  <body>
-    <div class="app-wrapper">
+
+  <body class="d-flex flex-column vh-100">
+    <!--<div class="app-wrapper">-->
 
       <% if admin_signed_in? %>
         <%= render 'shared/admin_header' %>
@@ -19,7 +20,8 @@
         <%= render 'shared/header' %>
       <% end %>
 
-      <main class="mx-auto" style="padding-top:60px">
+      <!--<main class="mx-auto" style="padding-top:60px">-->
+      <main class="mb-auto mt-5">
         <% if flash[:notice] %>
           <div class="flash mt-2"><%= flash[:notice] %></div>
         <% end %>
@@ -30,6 +32,6 @@
       </main>
 
       <%= render 'shared/footer' %>
-     </div>
+     <!--</div>-->
   </body>
 </html>
