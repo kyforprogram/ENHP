@@ -12,26 +12,17 @@
   </head>
 
   <body class="d-flex flex-column vh-100">
-    <!--<div class="app-wrapper">-->
 
-      <% if admin_signed_in? %>
-        <%= render 'shared/admin_header' %>
-      <% else %>
-        <%= render 'shared/header' %>
-      <% end %>
+      <%= render 'shared/header' %>
 
-      <!--<main class="mx-auto" style="padding-top:60px">-->
       <main class="mb-auto mt-5">
-        <% if flash[:notice] %>
-          <div class="flash mt-2"><%= flash[:notice] %></div>
-        <% end %>
-        <% if flash[:alert] %>
-          <div class="alert mt-2"><%= flash[:alert] %></div>
-        <% end %>
+
+        <%= render 'shared/flash_alert' %>
         <%= yield %>
+
       </main>
 
       <%= render 'shared/footer' %>
-     <!--</div>-->
+
   </body>
 </html>
