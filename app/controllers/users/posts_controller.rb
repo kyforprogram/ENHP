@@ -63,7 +63,7 @@ before_action :index_post, only: %i[top index]
   # ハッシュタグ機能ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
   def hashtag
     @tag = Hashtag.find_by(hashname: params[:name])
-    @posts = @tag.posts
+    @posts = @tag.posts.includes(:user)
     @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(12)
   end
 
@@ -132,6 +132,7 @@ before_action :index_post, only: %i[top index]
     @posts = Post.includes(:user).order(created_at: :desc).page(params[:page]).per(10)
   end
 
+  # private----------------------------------------------------------------------------------------------
   private
   def post_params
     params.require(:post).permit(:title, :image, :introduction, :assignment, :target, :category_id)

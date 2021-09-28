@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   attachment :profile_image#画像refile用
 
+  # アソシエーション------------------------------------------------------------------------------------------------------------
   has_many :posts, dependent: :destroy#投稿
   has_many :posts_comments, dependent: :destroy#コメント
   has_many :likes, dependent: :destroy#いいね
@@ -19,7 +20,9 @@ class User < ApplicationRecord
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy#passive_notifications：相手からの通知
   has_many :events, dependent: :destroy#スケジュール機能
 
-   # deletedカラムがfalseであるものを取得する
+
+    default_scope { order(created_at: :desc) }
+    # deletedカラムがfalseであるものを取得する
     scope :active, -> { where(is_deleted: false) }
     # created_atカラムを降順で取得する
     scope :sorted, -> { order(created_at: :desc) }
@@ -36,7 +39,7 @@ class User < ApplicationRecord
     followings.include?(user)# find_byよりincludeの方がN＋１問題を解消できる
   end
 
-  #フォロー通知機能------------------------------------------------------
+  #フォロー通知機能-----------------------------------------------------------------------------------------------------
   def create_notification_follow!(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
     if temp.blank?
@@ -44,7 +47,7 @@ class User < ApplicationRecord
       notification.save if notification.valid?
     end
   end
-  # ユーザー検索機能--------------------------------------
+  # ユーザー検索機能-------------------------------------------------------------------------------------------------------
   def self.search(search, word)
     if search == "perfect_match"#完全一致
       @user = User.where("name LIKE? OR company LIKE", "#{word}","#{word}")
