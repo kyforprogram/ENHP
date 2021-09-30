@@ -52,6 +52,7 @@ class Post < ApplicationRecord
     end
     notification.save if notification.valid?
   end
+  
   # ハッシュタグ機能-----------------------------------------------------------------------------------------------------------
   after_create do
     post = Post.find_by(id: self.id)
@@ -71,11 +72,13 @@ class Post < ApplicationRecord
       post.hashtags << tag
     end
   end
+  
   # いいね機能----------------------------------------------------------------------------------------------------------------
   def liked_by?(user)
     likes.includes(:user).where(user_id: user.id).exists?
   end
-  # 検索機能star--------------------------------------------------------------------------------------------------------------
+  
+  # 検索機能start--------------------------------------------------------------------------------------------------------------
   def self.search(search, word)
     if search == "perfect_match"#完全一致
       @post = Post.where("title LIKE? OR introduction LIKE OR target LIKE OR category LIKE", "#{word}","#{word}","#{word}","#{word}")
@@ -89,4 +92,5 @@ class Post < ApplicationRecord
       @post = Post.all
     end
   end
+  
 end

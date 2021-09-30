@@ -36,15 +36,15 @@ before_action :find_user, only: %i[show edit update followings followers]
     @users = Kaminari.paginate_array(@users).page(params[:page]).per(8)
   end
 
-  # before_action-------------------------------------------------------------------
-  def find_user
-    @user = User.active.find(params[:id])
-  end
-
   # private-------------------------------------------------------------------------
   private
   def user_params
-  params.require(:user).permit(:name, :profile_image, :introduction, :company)
+    params.require(:user).permit(:name, :profile_image, :introduction, :company)
+  end
+
+  # before_action-------------------------------------------------------------------
+  def find_user
+    @user = User.active.find(params[:id])
   end
 
 end

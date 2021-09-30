@@ -12,7 +12,15 @@ before_action :find_post
     Like.find_by(user_id: current_user.id, post_id: params[:post_id]).destroy
     #redirect_to request.referer || post_path(params[:post_id])
   end
-
+  
+  
+  
+  private
+  
+  
+  
+  
+  # before_action---------------------------------------------------------------------
   def find_post
     @post = Post.find(params[:post_id])
   end
