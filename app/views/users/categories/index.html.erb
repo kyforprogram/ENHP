@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+
+    </div>
+    <div class="col-9">
+       <h1> カテゴリー一覧 %></h1>
+      <ul class="categories">
+        <% @parents.each do |parent| %>
+          <%= link_to "#{parent.name}", categories_path(parent) %>
+        <% end %>
+      </ul>
+
+      <ul class="categories__children">
+        <%= @parent.children.each do |child| %>
+          <%= link_to "#{child.name}", categories_path(child) %>
+        <% end %>
+      </ul>
+      <ul class"categories__grandchildren">
+        <%= @child.children.each do |grandchild| %>
+          <%= link_to "#{grandchild.name}", categories_path(grandchild) %>
+        <% end %>
+      </ul>
+
+    </div>
+  </div>
+</div>

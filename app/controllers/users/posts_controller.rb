@@ -94,8 +94,9 @@ before_action :index_post, only: %i[top index]
     @new_posts = Post.includes(:user, :category).recent
     @posts = []
     @category = Category.find_by(id: params[:id])
-    if @category.ancestry == nil#第一階層-------------------------------------開始--------------------------------------------------
-      category = Category.find_by(id: params[:id]).descendant_ids#親から検索rootは含まれない
+    #第一階層---------------------------------------------------------------------------------------開始
+    if @category.ancestry == nil# 親カテゴリーを選択していた場合の処理
+      category = Category.find_by(id: params[:id]).descendant_ids#親から検索開始するためrootは含まれない
       category << @category.id#@category.id = root.id
       if category.empty?
         @posts = Post.where(category_id: @category.id).order(created_at: :desc)
@@ -103,7 +104,8 @@ before_action :index_post, only: %i[top index]
         find_item(category)#posts.controllerの110行目
       end
     else
-      category = Category.find_by(id: params[:id]).descendant_ids#第二階層（親、子）-----------------開始---------------------------
+    #第二階層（親、子）-----------------------------------------------------------------------------開始
+      category = Category.find_by(id: params[:id]).descendant_ids
       category << @category.id#@category.id = root.id
       find_item(category)#posts.controllerの110行目
     end
