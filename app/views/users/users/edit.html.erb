@@ -1,31 +1,28 @@
-<div class="container top-bg">
+<div class="container mt-5 mb-5 top-bg">
 <%= render "/shared/error", model: @user %>
   <div class="mt-5">
     <span class="fs-3  offset-md-1 bg-light page-title">会員情報編集</span>
   </div>
-
     <%= form_with model:@user, local:true do |f| %>
-    <div class="form-group">
-    <%= f.label :"プロフィール画像", class:"col-2 mt-3" %>
-    <%= attachment_image_tag @user, :profile_image, :fill, 30, 30, fallback: "noimage.png", size:'200x200'%>
-    <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
-    </div>
-    <div class="form-group">
-    <%= f.label :"表示名", class:"col-2 mt-3" %>
-    <%= f.text_field :name, class:" col-3" %>
-    </div>
-    <div class="form-group">
-    <%= f.label :"表示名", class:"col-2 mt-3" %>
-    <%= f.text_field :company, class:" col-3" %>
-    </div>
-    <div class="form-group">
-    <%= f.label :"自己紹介", class:"col-2 mt-3" %>
-    <%= f.text_area :introduction, size: "50x10", class:"offset-2 form-control" %>
-    </div>
-    <div class="text-center">
-      <%= f.submit "             保存              ", class:"btn btn-success" %>
-    </div>
-
+      <div class="form-group">
+        <%= f.label :"プロフィール画像", class:"col-2 mt-3" %>
+        <%= attachment_image_tag @user, :profile_image, fallback: "noimage.png", class:"profile_image_css" %>
+        <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :"表示名", class:"col-2 mt-3" %>
+        <%= f.text_field :name, class:" col-3" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :"所属【企業・自治体】", class:"col-2 mt-3" %>
+        <%= f.text_field :company, class:" col-3" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :"自己紹介", class:"col-2 mt-3" %>
+        <%= f.text_area :introduction, size: "50x10", class:"offset-2 form-control" %>
+      </div>
+      <div class="text-center">
+        <%= f.submit "             保存              ", class:"btn btn-success" %>
+      </div>
     <% end %>
-
 </div>

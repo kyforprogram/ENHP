@@ -1,10 +1,45 @@
+<!--------------------------------------------------------管理者ヘッダー----------------------------------------------------------------------------------------------------------------->
+<% if admin_signed_in? %>
+<header class="shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <a class="navbar-brand p-3" href="/"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav mx-auto">
+          <li>
+            <%= link_to "USERS", admins_users_path, class: 'fas fa-user-friends  dropdown-item text-dark' %>
+          </li>
+          <li>
+            <%= link_to "ログアウト" , destroy_admin_session_path, method: :delete, class: 'fas fa-door-open  dropdown-item text-dark' %>
+          </li>
+        </ul>
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <%= form_with url: search_path, method: :get, class: "search-form", local: true do |f| %>
+            <%= f.text_field :word %>
+            <%= f.select :category, options_for_select([['---選択してください---',''],['User','1'],['Post','2']]) %>
+            <%= f.select :search, options_for_select([["完全一致","perfect"], ["前方一致","forward"], ["後方一致","backward"], ["部分一致","partial"]]) %>
+            <button type="submit" name="commit" value="検索" id="search-btn">
+              <i class="fas fa-search"></i>
+            </button>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<% else %><!-----------------------------------------------------------ユーザー--------------------------------------------------------------------------------------------------------------->
 <header class="shadow-sm">
   <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #1d1b3f">
-      <div class="container">
-        <%= link_to image_tag("logo.png", size: "50x40"), root_path, class: "image mt-2" %>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="fas fa-bars fontawesome"></span>
-          </button>
+    <div class="container">
+      <%= link_to image_tag("logo.png", size: "50x40"), root_path, class: "image mt-2" %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fas fa-bars fontawesome"></span>
+      </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <% if user_signed_in? %>
           <ul class="navbar-nav mx-auto">
@@ -48,12 +83,12 @@
           <ul class="navbar-nav mx-auto">
             <li class="nav-item">
               <%= form_with url: search_path, method: :get, class: "search-form", local: true do |f| %>
-              <%= f.text_field :word %>
-              <%= f.select :category, options_for_select([['---選択してください---',''],['User','1'],['Post','2']]) %>
-              <%= f.select :search, options_for_select([["完全一致","perfect"], ["前方一致","forward"], ["後方一致","backward"], ["部分一致","partial"]]) %>
-              <button type="submit" name="commit" value="検索" id="search-btn">
-                <i class="fas fa-search"></i>
-              </button>
+                <%= f.text_field :word %>
+                <%= f.select :category, options_for_select([['---選択してください---',''],['User','1'],['Post','2']]) %>
+                <%= f.select :search, options_for_select([["完全一致","perfect"], ["前方一致","forward"], ["後方一致","backward"], ["部分一致","partial"]]) %>
+                <button type="submit" name="commit" value="検索" id="search-btn">
+                  <i class="fas fa-search"></i>
+                </button>
               <% end %>
             </li>
           </ul>
@@ -67,3 +102,4 @@
     </div>
   </nav>
 </header>
+<% end %>

@@ -1,25 +1,24 @@
-<div class="container">
-    <div>
-      <% if @user == current_user %>
-        <h2>MyPage</h2>
-      <% else %>
-        <h2><%= @user.name %>さんのページ</h2>
-      <% end %>
-    </div>
+<div class="container mt-5 mb-5">
+  <div>
+    <% if @user == current_user %>
+      <h2>MyPage</h2>
+    <% else %>
+      <h2><%= @user.name %>さんのページ</h2>
+    <% end %>
+  </div>
   <div class="row">
     <div class="col-4 mt-5">
-      <div>
       <div class="text-center">
         <%= attachment_image_tag @user, :profile_image, :fill, 90, 90, fallback: "noimage.png", size:'90x90', class:"rounded-circle" %>
       </div>
-        <div class="card-body text-center">
-          <p><strong>Name</strong></p>
-          <%= @user.name %>
-          <p class="pt-2"><strong>Info</strong></p>
-          <%= @user.company %>
-          <p class="pt-2"><strong>Introduction</strong></p>
-          <%= @user.introduction %>
-        </div>
+      <div class="card-body text-center">
+        <p><strong>Name</strong></p>
+        <%= @user.name %>
+        <p class="pt-2"><strong>Info</strong></p>
+        <%= @user.company %>
+        <p class="pt-2"><strong>Introduction</strong></p>
+        <%= @user.introduction %>
+      </div>
       <div class="text-center">
         <%= link_to followings_user_path(@user) do %>
           <span id="follow_count"> フォロー：<%= @user.followings.count %></span>
@@ -30,7 +29,6 @@
         <div id="follow_btn_<%= @user.id %>">
           <%= render 'users/users/follow-btn', user: @user %>
         </div>
-      </div>
       </div>
       <div class="text-center mt-3">
         <% if @user.id == current_user.id %>

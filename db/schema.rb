@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(version: 2021_09_18_162605) do
   end
 
   create_table "direct_messages", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "room_id"
-    t.text "message"
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
+    t.text "message", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_direct_messages_on_room_id"
@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(version: 2021_09_18_162605) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "room_id"
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_entries_on_room_id"
@@ -63,11 +63,11 @@ ActiveRecord::Schema.define(version: 2021_09_18_162605) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "title"
-    t.text "body"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.integer "user_id", null: false
+    t.string "title", null: false
+    t.text "body", null: false
+    t.datetime "start_date", null: false
+    t.datetime "end_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -80,8 +80,8 @@ ActiveRecord::Schema.define(version: 2021_09_18_162605) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_id"
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -102,9 +102,9 @@ ActiveRecord::Schema.define(version: 2021_09_18_162605) do
   end
 
   create_table "post_comments", force: :cascade do |t|
-    t.text "comment"
-    t.integer "user_id"
-    t.integer "post_id"
+    t.text "comment", null: false
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -119,13 +119,13 @@ ActiveRecord::Schema.define(version: 2021_09_18_162605) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.string "image_id"
-    t.text "introduction"
-    t.text "assignment"
-    t.string "target"
-    t.integer "category_id"
-    t.integer "user_id"
+    t.text "introduction", null: false
+    t.text "assignment", null: false
+    t.string "target", null: false
+    t.integer "category_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -139,7 +139,6 @@ ActiveRecord::Schema.define(version: 2021_09_18_162605) do
 
   create_table "rooms", force: :cascade do |t|
     t.integer "user_id"
-    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_rooms_on_user_id"
@@ -151,7 +150,7 @@ ActiveRecord::Schema.define(version: 2021_09_18_162605) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "name"
+    t.string "name", null: false
     t.string "profile_image_id"
     t.string "company"
     t.text "introduction"
@@ -163,8 +162,8 @@ ActiveRecord::Schema.define(version: 2021_09_18_162605) do
   end
 
   create_table "view_counts", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_id"
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

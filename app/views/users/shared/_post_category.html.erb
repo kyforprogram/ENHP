@@ -3,7 +3,6 @@
 <% else %>
   <!--ルートは必ず表示されるから-->
   <%= post.category.root.name %></br>
-
   <%# if post.category.has_children? && post.category.has_parent? %>
   <% if post.category.has_parent? %>
     <small><%= post.category.name %></small>

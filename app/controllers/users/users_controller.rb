@@ -1,6 +1,6 @@
 class Users::UsersController < ApplicationController
 before_action :authenticate_user!
-before_action :set_user, only: %i[show edit update followings followers]
+before_action :find_user, only: %i[show edit update followings followers]
 
   def show
     @posts = @user.posts.all
@@ -8,7 +8,7 @@ before_action :set_user, only: %i[show edit update followings followers]
   end
 
   def index
-    @users = User.where.not(id: current_user.id).page(params[:page]).per(12)
+    @users = User.where.not(id: current_user.id).recent.page(params[:page]).per(12)#recentはuser.rb、30行目
   end
 
   def edit
@@ -25,24 +25,26 @@ before_action :set_user, only: %i[show edit update followings followers]
     end
   end
 
+  #フォロー-------------------------------------------------------------------------
   def followings
-    @users = @user.followings
+    @users = @user.followings.active
     @users = Kaminari.paginate_array(@users).page(params[:page]).per(8)
   end
 
   def followers
-    @users = @user.followers
+    @users = @user.followers.active
     @users = Kaminari.paginate_array(@users).page(params[:page]).per(8)
   end
 
-  def set_user
-    @user = User.find(params[:id])
+  # private-------------------------------------------------------------------------
+  private
+  def user_params
+    params.require(:user).permit(:name, :profile_image, :introduction, :company)
   end
 
-  private
-
-  def user_params
-  params.require(:user).permit(:name, :profile_image, :introduction, :company)
+  # before_action-------------------------------------------------------------------
+  def find_user
+    @user = User.active.find(params[:id])
   end
 
 end

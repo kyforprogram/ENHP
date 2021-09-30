@@ -1,16 +1,24 @@
 <div class="bg-white">
-<div class="home-content wrapper home">
+  <div class="home-content wrapper home">
+  </div>
+  <div class="wrapper">
+    <p class="top-content page-title">
+      オープンイノベーション
+    </p>
+    <p class="page-title-p">
+      アイデア、サービス、ノウハウ、データ、知識<br>
+      革新的なビジネスモデル、研究成果、製品開発、サービス開発、組織改革、行政改革、地域活性化<br>
+      ソーシャルイノベーション、国際化、プロセス改善等につなげよう！
+    </p>
+  </div>
 </div>
 <div class="wrapper">
-  <p class="top-content page-title">オープンイノベーション</p>
-  <p class="page-title-p">アイデア、サービス、ノウハウ、データ、知識<br>
-    革新的なビジネスモデル、研究成果、製品開発、サービス開発、組織改革、行政改革、地域活性化<br>
-    ソーシャルイノベーション、国際化、プロセス改善等につなげよう！
-  </p>
-</div>
-</div>
-<div class="wrapper">
+  <div class="text-center">
+    <p class="page-title-p pt-3 font-weight-bold">カテゴリー機能</p>
+    <span><%= video_tag "category.mp4", autoplay: true, loop: true, muted: true, size: "700x500" %></span>
+  </div>
   <p class="page-title-p pt-3">登録カテゴリー一覧</p>
+  <span class="small">＊全部で251種類</span>
   <div class="card-deck">
   <% @categories.each do |category| %>
     <div class="col-4 mt-1 mx-auto">
@@ -23,7 +31,6 @@
   <% end %>
   </div>
 </div>
-
 <div class="wrapper mt-4">
   <h2 class="text-center">New posts</h2>
   <div class="card-deck">
@@ -40,9 +47,9 @@
               <%= attachment_image_tag post, :image, fallback: "noimage.png", class:"card-img-top" %>
             <% end %>
             <div class="card-body text-center">
-            <%= attachment_image_tag post.user, :profile_image, :fill, 90, 90, fallback: "noimage.png", size:'90x90', class:"rounded-circle" %>
-            <%= post.user.name %>
-            <small><%= post.created_at.strftime("%Y.%m.%d %H.%M") %></small>
+              <%= attachment_image_tag post.user, :profile_image, :fill, 90, 90, fallback: "noimage.png", size:'90x90', class:"rounded-circle" %>
+              <%= post.user.name %>
+              <small><%= post.created_at.strftime("%Y.%m.%d %H.%M") %></small>
             </div>
           </div>
        </div>
@@ -50,3 +57,5 @@
   <% end %>
   </div>
 </div>
+
+

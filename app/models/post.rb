@@ -9,13 +9,27 @@ class Post < ApplicationRecord
   has_many :view_counts, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
-  scope :recent, -> {order(created_at: :desc)}
+
+  # スコープ設定---------------------------------------------------------------------------------------------------------------
+  # created_atカラムを降順で取得する
+  default_scope { order(created_at: :desc) }
+  # deletedカラムがfalseであるものを取得する
+  scope :sorted, -> { order(created_at: :desc) }
+  scope :active, -> { where("posts.user_id IN (SELECT users.id FROM users WHERE users.is_deleted = 0)") }#boolean (0 = false, 1 = true)
+  scope :default_order, -> { order("posts.created_at desc, posts.id desc") }
+  scope :recent, -> { sorted.active }
+
+  # バリデーション-------------------------------------------------------------------------------------------------------------
+  validates :title, presence: true, length: { in: 1..200 }
+  validates :introduction, presence: true, length: { in: 1..1500 }
+  validates :assignment, presence: true, length: { in: 1..1500 }
+  validates :target, presence: true, length: { in: 1..200 }
 
   # 投稿に対する通知機能-----------------------------------------------------------いいね-------------------------------------
   def create_notification_like!(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
     if temp.blank?
-      notification = current_user.active_notifications.new(post_id: id, visited_id: user_id,action: 'like')
+      notification = current_user.active_notifications.new(post_id: id, visited_id: user_id, action: 'like')
       if notification.visitor_id == notification.visited_id
         notification.checked = true
       end
@@ -38,6 +52,7 @@ class Post < ApplicationRecord
     end
     notification.save if notification.valid?
   end
+  
   # ハッシュタグ機能-----------------------------------------------------------------------------------------------------------
   after_create do
     post = Post.find_by(id: self.id)
@@ -57,11 +72,13 @@ class Post < ApplicationRecord
       post.hashtags << tag
     end
   end
-  # いいね機能----------------------------------------
+  
+  # いいね機能----------------------------------------------------------------------------------------------------------------
   def liked_by?(user)
     likes.includes(:user).where(user_id: user.id).exists?
   end
-  # 検索機能star--------------------------------------
+  
+  # 検索機能start--------------------------------------------------------------------------------------------------------------
   def self.search(search, word)
     if search == "perfect_match"#完全一致
       @post = Post.where("title LIKE? OR introduction LIKE OR target LIKE OR category LIKE", "#{word}","#{word}","#{word}","#{word}")
@@ -75,4 +92,5 @@ class Post < ApplicationRecord
       @post = Post.all
     end
   end
+  
 end

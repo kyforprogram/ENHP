@@ -1,6 +1,6 @@
 class Users::PostCommentsController < ApplicationController
 before_action :authenticate_user!
-before_action :find_post, only: [:create, :destroy]
+before_action :find_post, only: %i[create destroy]
 
   def create
     comment = PostComment.new(post_comments_params)
@@ -16,12 +16,14 @@ before_action :find_post, only: [:create, :destroy]
     #redirect_to request.referer || post_path(params[:post_id])
   end
 
-  def find_post
-    @post = Post.find(params[:post_id])
-  end
-
   private
   def post_comments_params
     params.require(:post_comment).permit(:comment)
   end
+
+  #before_action-----------------------------------------------------------  
+  def find_post
+    @post = Post.find(params[:post_id])
+  end
+  
 end

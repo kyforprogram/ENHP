@@ -1,4 +1,4 @@
-<div class="container top-bg">
+<div class="container  mb-5 mt-5 top-bg">
   <div class="mt-5">
     <span class="fs-3 fst-italic offset-md-1 bg-light signup-form">新規会員登録</span>
   </div>
@@ -11,7 +11,7 @@
         </div>
         <div class="row mt-3">
           <%= f.label :メールアドレス, class:"offset-1 col-2" %>
-          <%= f.email_field :email, class:"col-3", autofocus: true, placeholder:"sample.example.com", autocomplete: "email" %>
+          <%= f.email_field :email, class:"col-3", autofocus: true, placeholder:"sample@example.com", autocomplete: "email" %>
         </div>
         <div class="row mt-3">
           <%= f.label :パスワード（6文字以上）, class:"col-3" %>
@@ -22,7 +22,7 @@
           <%= f.password_field :password_confirmation, class:"col-2", autocomplete: "new-password" %>
         </div>
         <div class="actions">
-          <%= f.submit "新規登録", class:"btn btn-signup offset-3 mt-4" %>
+          <%= f.submit "新規登録", class:"btn btn-primary offset-3 mt-4" %>
         </div>
       <% end %>
 

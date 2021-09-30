@@ -1,5 +1,7 @@
 class Users::EventsController < ApplicationController
 before_action :authenticate_user!
+before_action :find_event, only: %i[show edit update destroy]
+
   def new
     @event = Event.new
   end
@@ -20,18 +22,15 @@ before_action :authenticate_user!
   end
 
   def show
-    @event = Event.find(params[:id])
   end
 
   def edit
-    @event = Event.find(params[:id])
     unless @event.user == current_user
       redirect_to root_path, alert: "unexpect error"
     end
   end
 
   def update
-    @event = Event.find(params[:id])
     if @event.update(event_params)
       redirect_to my_calendar_path, notice: "successfully."
     else
@@ -40,8 +39,7 @@ before_action :authenticate_user!
   end
 
   def destroy
-    @event = Event.find(params[:id])
-    @event.destroy
+    @event.destroy if @event
     redirect_to my_calendar_path
   end
 
@@ -52,4 +50,10 @@ before_action :authenticate_user!
   def event_params
     params.require(:event).permit(:title, :body, :start_date, :end_date)
   end
+
+  # before_action----------------------------------------------------------
+  def find_event
+    @event = Event.find(params[:id])
+  end
+
 end

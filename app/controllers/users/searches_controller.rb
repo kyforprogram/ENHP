@@ -4,13 +4,10 @@ class Users::SearchesController < ApplicationController
     @category = params[:category]
     search = params[:search]
     word = params[:word]
-
     if @category == "2"
-      @post = Post.search(search, word)
+      @posts = Post.includes(:category).search(search, word).page(params[:page]).per(6)
     else
-      @user = User.search(search, word)
+      @user = User.search(search, word).page(params[:page]).per(6)
     end
   end
-  
-  
 end

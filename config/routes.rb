@@ -16,22 +16,37 @@ Rails.application.routes.draw do
   scope module: :users do
     # 投稿機能
     resources :posts do
+      # 投稿コメント機能
       resources :post_comments, only: %i[create destroy]
+      # 投稿いいね機能
       resource :likes, only: %i[create destroy]
+      # カテゴリー検索機能
       collection do
         get 'top'
         get 'get_category_children', defaults: { format: 'json' }
         get 'get_category_grandchildren', defaults: { format: 'json' }
       end
       member do
-      get 'search'
+        get 'search'
       end
+      #お気に入り一覧
       get 'likes'
     end
-
+    # ハッシュタグ機能
     get 'post/hashtag/:name' => 'posts#hashtag'
+    # カテゴリー一覧
+    resources :categories, only: [:index] do
+    member do
+      get 'parent'
+      get 'child'
+      get 'grandchild'
+    end
+  end
+    
+    
     # ユーザー機能
     resources :users, only: %i[index show edit update] do
+      #フォローフォロワー機能
       resource :relationships, only: %i[create destroy]
       member do
         get :followings, :followers

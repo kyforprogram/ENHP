@@ -16,22 +16,26 @@ Admin.create!([
   password: "aaaaaa"
   ])
 
-50.times do |n|
+20.times do |n|
 User.create!([
   email: "a#{n+1}@a",
-  password: "aaaaaa#{n+1}",
-  name: "ID#{n+1}",
-  company: "LTD CO ",
+  password: "aaaaaa",
+  name: "日本太郎#{n+1}",
+  profile_image: File.open("./app/assets/images/profile_image.jpg"),
+  company: "日本太郎カンパニー#{n+1}",
+  introduction: "はじめまして！　私の名前は日本太郎#{n+1}と申します　よろしくお願いいたします。"
   ])
 end
 
-50.times do |n|
+20.times do |n|
 Post.create!([
   title: "TITLE",
   introduction: "HELLO WORLD",
-  assignment: "ビジネス相手を探している",
-  target: "#ハッシュタグ",
-  user_id: "1"
+  image: File.open("./app/assets/images/icon.jpg"),
+  assignment: "オープンイノベーションを活用して新たな価値あるものを作りたい",
+  target: "#オープンイノベーション　#HELLO #HELLO WORLD",
+  category_id:"#{n+1}",
+  user_id: "#{n+1}"
   ])
 end
 
