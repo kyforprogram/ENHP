@@ -23,7 +23,6 @@ twitterなどは幅が広いため、ピンポイントで相手を探せるよ�
 ## 設計書
 
 https://docs.google.com/spreadsheets/d/1sx8dP7804gPvn6gQOmv5QhQivdAk0zZQ0CvzesuM3YQ/edit#gid=977420151
-https://docs.google.com/spreadsheets/d/1lN3U02E3H56-GNC-YNgQlkzEz80kES2gUTjRqgcDB3A/edit#gid=0
 
 ## チャレンジ要素一覧
 
