@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     sessions:      'users/sessions',
     registrations: 'users/registrations'
   }
+  post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
+
   namespace :admins do
     resources :users, only: %i[index show edit update]
   end
