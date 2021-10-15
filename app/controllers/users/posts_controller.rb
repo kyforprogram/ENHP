@@ -1,6 +1,6 @@
 class Users::PostsController < ApplicationController
 before_action :authenticate_user!
-before_action :set_post, only: %i[show edit update destroy]
+before_action :find_post, only: %i[show edit update destroy]
 before_action :set_parents
 before_action :index_post, only: %i[top index]
 
@@ -122,7 +122,7 @@ before_action :index_post, only: %i[top index]
   end
 
   # before_action-------------------------------------------------------------------------------------
-  def set_post
+  def find_post
    @post = Post.includes(:user).find(params[:id])
   end
   def set_parents

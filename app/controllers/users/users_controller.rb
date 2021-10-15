@@ -44,7 +44,7 @@ before_action :find_user, only: %i[show edit update followings followers]
   # private-------------------------------------------------------------------------
   private
   def user_params
-  params.require(:user).permit(:name, :profile_image, :introduction, :company)
+    params.require(:user).permit(:name, :profile_image, :introduction, :company)
   end
 
 end
