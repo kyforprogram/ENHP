@@ -1,4 +1,5 @@
 class Users::SearchesController < ApplicationController
+before_action :authenticate_user!
 
   def search
     @category = params[:category]
