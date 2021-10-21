@@ -1,16 +1,17 @@
 <div class='container mt-5 mb-5'>
-<div class='row mt-5 mb-5'>
-  <div class="col-sm-8 px-5 px-sm-0 mx-auto">
-      <div class="form-inline justify-content-center">
-        <%= form_with model: @direct_message do |f| %>
-          <%= f.text_field :message, placeholder: "メッセージを作成", class: "form-control" %>
-          <%= f.hidden_field :room_id %>
-          <%= f.submit 'send', class: 'btn btn-outline-secondary btn-sm' %>
-        <% end %>
-      </div>
-      <div id="message">
-        <%= render 'users/direct_messages/dm_index', direct_messages: @direct_messages %>
-      </div>
-      <%= paginate @direct_messages %>
+  <div class='row mt-5 mb-5'>
+    <div class="col-sm-8 px-5 px-sm-0 mx-auto">
+        <div class="form-inline justify-content-center">
+          <%= form_with model: @direct_message do |f| %>
+            <%= f.text_field :message, placeholder: "メッセージを作成", class: "form-control" %>
+            <%= f.hidden_field :room_id %>
+            <%= f.submit 'send', class: 'btn btn-outline-secondary btn-sm' %>
+          <% end %>
+        </div>
+        <div id="message">
+          <%= render 'users/direct_messages/dm_index', direct_messages: @direct_messages %>
+        </div>
+        <%= paginate @direct_messages %>
+    </div>
   </div>
 </div>
