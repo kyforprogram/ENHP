@@ -53,5 +53,7 @@ Rails.application.routes.draw do
     #スケジュール機能
     resources :events
     get 'my_calendar' => 'events#my_calendar'
+    # カテゴリー機能
+    resources :category, only: %i[show]
   end
 end

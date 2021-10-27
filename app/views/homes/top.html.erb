@@ -19,17 +19,22 @@
   <p class="page-title-p pt-3">登録カテゴリー一覧</p>
   <span class="small">＊全部で251種類</span>
   <div class="card-deck">
-  <% @root_categories.each do |root_category| %>
+  <%# @root_categories.each do |root_category| %>
+  <% @categories.each do |category| %>
     <div class="col-4 mt-1 mx-auto">
       <div class="card border-info">
         <div class="card-header border-info text-center">
-          <%= root_category.name %>
+          <%#= root_category.name %>
+          
         </div>
       </div>
     </div>
+
   <% end %>
   </div>
 </div>
+
+
 <div class="wrapper mt-4">
   <h2 class="text-center">New posts</h2>
   <div class="card-deck">
