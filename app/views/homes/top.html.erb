@@ -16,23 +16,63 @@
   </div>
 </div>
 <div class="wrapper">
-  <p class="page-title-p pt-3">登録カテゴリー一覧</p>
+  <h4 class="page-title-p pt-3">登録カテゴリー一覧</h4>
   <span class="small">＊全部で251種類</span>
-  <div class="card-deck">
+  <!--<div class="card-deck">-->
   <%# @root_categories.each do |root_category| %>
-  <% @categories.each do |category| %>
-    <div class="col-4 mt-1 mx-auto">
-      <div class="card border-info">
-        <div class="card-header border-info text-center">
-          <%#= root_category.name %>
-          
+  <!--<%# @categories.each do |category| %>-->
+  <!--  <div class="col-4 mt-1 mx-auto">-->
+  <!--    <div class="card border-info">-->
+  <!--      <div class="card-header border-info text-center">-->
+  <!--        <%#= category.name %>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <!--  <%# category.children.each%>-->
+  <!--<%# end %>-->
+  <!--</div>-->
+  <!--  <%# @categories.each do |category| %>-->
+  <!--    <%#= category.name %>-->
+  <!--    <%# category.children.each do |child| %>-->
+  <!--      <%#= child.name %>-->
+  <!--      <%#child.children.each do |grandchild| %>-->
+  <!--        <%#= grandchild.name %>-->
+  <!--      <%# end %>-->
+  <!--    <%# end %>-->
+  <!--  <%# end %>-->
+  <div class="col mt-1 mx-auto">
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-default">
+        <% @categories.each do |category| %>
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+            <%= category.name %>
+            </a>
+          </h4>
         </div>
+        <% category.children.each do |child| %>
+        <div id="collapse3" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+              <%= child.name %>
+            </a>
+          </div>
+        </div>
+        <% child.children.each do |grandchild| %>
+        <div id="collapse5" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <%= grandchild.name %>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+        <% end %>
       </div>
     </div>
-
-  <% end %>
   </div>
 </div>
+
 
 
 <div class="wrapper mt-4">
