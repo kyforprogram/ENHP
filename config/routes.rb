@@ -26,7 +26,7 @@ Rails.application.routes.draw do
         get 'get_category_grandchildren', defaults: { format: 'json' }
       end
       member do
-      get 'search'
+        get 'search'
       end
       get 'likes'
     end
@@ -54,6 +54,15 @@ Rails.application.routes.draw do
     resources :events
     get 'my_calendar' => 'events#my_calendar'
     # カテゴリー機能
-    resources :category, only: %i[show]
+    resources :categories, only: %i[show] do
+      collection do
+        get 'top'
+        get 'get_category_children', defaults: { format: 'json' }
+        get 'get_category_grandchildren', defaults: { format: 'json' }
+      end
+      member do
+        get 'search'
+      end
+    end
   end
 end

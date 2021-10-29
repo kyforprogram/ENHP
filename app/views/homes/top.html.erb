@@ -17,6 +17,7 @@
 </div>
 <div class="wrapper">
   <h4 class="page-title-p pt-3">登録カテゴリー一覧</h4>
+  <a class="btn btn-success justify-content-center" data-toggle="collapse" data-parent="#accordion" href="#collapse3">全部を表示する</a><br>
   <span class="small">＊全部で251種類</span>
   <!--<div class="card-deck">-->
   <%# @root_categories.each do |root_category| %>
@@ -46,23 +47,29 @@
         <% @categories.each do |category| %>
         <div class="panel-heading">
           <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-            <%= category.name %>
-            </a>
+            <!--<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">-->
+            <%= link_to  category_path(category) do %>
+              <%= category.name %>
+            <% end %>
+            <!--</a>-->
           </h4>
         </div>
         <% category.children.each do |child| %>
         <div id="collapse3" class="panel-collapse collapse in">
           <div class="panel-body">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+            <%= link_to  category_path(child) do %>
               <%= child.name %>
+            <% end %>
             </a>
           </div>
         </div>
         <% child.children.each do |grandchild| %>
-        <div id="collapse5" class="panel-collapse collapse in">
+        <div id="collapse3" class="panel-collapse collapse in">
           <div class="panel-body">
-            <%= grandchild.name %>
+            <%= link_to  category_path(grandchild) do %>
+              <%= grandchild.name %>
+            <% end %>
           </div>
         </div>
         <% end %>
