@@ -17,7 +17,8 @@
 </div>
 <div class="wrapper">
   <h4 class="page-title-p pt-3">登録カテゴリー一覧</h4>
-  <a class="btn btn-success justify-content-center" data-toggle="collapse" data-parent="#accordion" href="#collapse3">全部を表示する</a><br>
+  <a id="btn_show" class="btn btn-success justify-content-center" data-toggle="collapse" data-parent="#accordion" href="#collapse3">全部を表示する</a>
+  <a id="btn_hide" class="btn btn-danger" data-toggle="collapse" data-parent="#accordion" href="#collapse3">隠す</a>
   <span class="small">＊全部で251種類</span>
   <!--<div class="card-deck">-->
   <%# @root_categories.each do |root_category| %>
@@ -104,3 +105,21 @@
   <% end %>
   </div>
 </div>
+<script>
+$(function() {
+  $('#btn_show').click(function(){
+    $('#btn_hide').fadeIn();
+    $('#btn_hide').css('display','block')
+    $('a#btn_hide').css('width','fit-content')
+  });
+
+});
+</script>
+<script>
+$(function() {
+  $('#btn_hide').click(function(){
+    $('#btn_hide').fadeOut();
+  });
+
+});
+</script>
