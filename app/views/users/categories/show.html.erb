@@ -3,7 +3,7 @@
     <div class="col-2">
       <div class="item-categories">
         <h5>
-          
+
         </h5>
         <%= link_to  top_posts_path, class: "category-button", id: 'categoBtn' do %>
           カテゴリーから探す
@@ -47,6 +47,9 @@
            </div>
         <% end %>
         </div>
+      </div>
+      <div class="mt-5">
+        <%= paginate @posts %>
       </div>
     </div>
   </div>
