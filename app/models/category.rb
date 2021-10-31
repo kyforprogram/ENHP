@@ -2,6 +2,11 @@ class Category < ApplicationRecord
   has_ancestry
   has_many :posts, dependent: :destroy
   
+  scope :sorted, -> { order(created_at: :desc) }
+  scope :active, -> { where("posts.user_id IN (SELECT users.id FROM users WHERE users.is_deleted = 0)") }#boolean (0 = false, 1 = true)
+  scope :default_order, -> { order("posts.created_at desc, posts.id desc") }
+  scope :recent, -> { sorted.active }
+  
   def set_posts
     # 親カテゴリーの場合
     if self.root?

@@ -53,27 +53,29 @@ before_action :index_post, only: %i[top index]
     redirect_to posts_path
   end
 
-  # お気に入り一覧ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+  # お気に入り一覧------------------------------------------------------------------------------------------------------------
   def likes
     likes = Like.where(user_id: current_user.id).pluck(:post_id)# ログイン中のユーザーのお気に入りのpost_idカラムを取得
     @post_likes = Post.includes(:category).find(likes)# postsテーブルから、お気に入り登録済みのレコードを取得
     @post_likes = Kaminari.paginate_array(@post_likes).page(params[:page])
   end
 
-  # ハッシュタグ機能ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+  # ハッシュタグ機能-----------------------------------------------------------------------------------------------------------
   def hashtag
     @tag = Hashtag.find_by(hashname: params[:name])
     @posts = @tag.posts.includes(:user)
     @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(12)
   end
 
-  # カテゴリー機能ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+  # カテゴリー機能-------------------------------------------------------------------------------------------------------------
   def get_category_children
     @category_children = Category.find("#{params[:parent_id]}").children
   end
+  
   def get_category_grandchildren
     @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
+  
   def top
     respond_to do |format|
       format.html
@@ -120,7 +122,6 @@ before_action :index_post, only: %i[top index]
       end
     end
   end
-
   # before_action-------------------------------------------------------------------------------------
   def find_post
    @post = Post.includes(:user).find(params[:id])
