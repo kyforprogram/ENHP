@@ -1,13 +1,19 @@
 <div class="bg-white">
   <div class="home-content wrapper home">
   </div>
+  <p class="top-content page-title">
+    ようこそ
+  </p>
   <div class="wrapper">
     <p class="top-content page-title">
       オープンイノベーション
+    </p><br>
+    <p class="top-content page-title">
+    プラットフォームへ
     </p>
     <p class="page-title-p">
       ビジネスパートナーを探して<br>
-      新たな価値を作り出そう<br>
+      新たな価値を作り<br>
       オープンイノベーションを促進させよう<br>
       アイデア、サービス、ノウハウ、データ、知識<br>
       革新的なビジネスモデル、研究成果、製品開発、サービス開発、組織改革、行政改革、地域活性化<br>
@@ -20,28 +26,6 @@
   <a id="btn_show" class="btn btn-success justify-content-center" data-toggle="collapse" data-parent="#accordion" href="#collapse3">全部を表示する</a>
   <a id="btn_hide" class="btn btn-danger" data-toggle="collapse" data-parent="#accordion" href="#collapse3">隠す</a>
   <span class="small">＊全部で251種類</span>
-  <!--<div class="card-deck">-->
-  <%# @root_categories.each do |root_category| %>
-  <!--<%# @categories.each do |category| %>-->
-  <!--  <div class="col-4 mt-1 mx-auto">-->
-  <!--    <div class="card border-info">-->
-  <!--      <div class="card-header border-info text-center">-->
-  <!--        <%#= category.name %>-->
-  <!--      </div>-->
-  <!--    </div>-->
-  <!--  </div>-->
-  <!--  <%# category.children.each%>-->
-  <!--<%# end %>-->
-  <!--</div>-->
-  <!--  <%# @categories.each do |category| %>-->
-  <!--    <%#= category.name %>-->
-  <!--    <%# category.children.each do |child| %>-->
-  <!--      <%#= child.name %>-->
-  <!--      <%#child.children.each do |grandchild| %>-->
-  <!--        <%#= grandchild.name %>-->
-  <!--      <%# end %>-->
-  <!--    <%# end %>-->
-  <!--  <%# end %>-->
   <div class="col mt-1 mx-auto">
     <div class="panel-group" id="accordion">
       <div class="panel panel-default">
@@ -100,18 +84,4 @@
   <% end %>
   </div>
 </div>
-<script>
-$(function() {
-  $('#btn_show').click(function(){
-    $('#btn_hide').fadeIn();
-    $('a#btn_hide').css('width','fit-content')
-  });
-});
-</script>
-// <script>
-// $(function() {
-//   $('#btn_hide').click(function(){
-//     $('#btn_hide').fadeOut();
-//   });
-// });
-// </script>
+<script src="script.js"></script>
