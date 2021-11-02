@@ -80,3 +80,31 @@ footer{
 .video-wrapper {
   width: 800px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// レスポンシブ対応---------------------------------------------------------------------------------
+@media screen and (max-width: 600px){
+  p.header-title {
+    display: none;
+  }
+}

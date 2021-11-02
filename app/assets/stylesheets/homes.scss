@@ -21,15 +21,14 @@
 .page-title {
   text-transform: uppercase;
   position: center;
-  font-size: 5rem;
+  font-size: 2rem;
   font-family: "philsopher", serif;
   text-transform: uppercase;
   font-weight: bolder;
   color: rgb(0, 0, 0);
-}
-.page-title-p {
   text-align: center;
 }
+
 
 // 登録カテゴリー一覧の折り畳み
 .panel-default>.panel-heading {
@@ -49,4 +48,30 @@ p.header-title {
     /* margin-left: auto; */
     margin-left: auto;
     padding-top: 8px;
+}
+
+@media screen and (max-width: 600px) {
+  .home{
+    min-height: 25vh;
+    background-size: 100%;
+  }
+  .page-title {
+  text-transform: uppercase;
+  position: center;
+  font-size: 30px;
+  font-family: "philsopher", serif;
+  text-transform: uppercase;
+  font-weight: bolder;
+  color: rgb(0, 0, 0);
+  }
+  .card {
+    width: 100%;
+  }
+
+  h5 {
+    font-size: 14px;
+  }
+  a {
+    font-size: 1rem;
+  }
 }
