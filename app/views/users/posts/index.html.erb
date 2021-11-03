@@ -3,7 +3,7 @@
     投稿一覧
   </h2>
   <div class="row">
-    <div class="col-3">
+    <div class="col-12 col-md-3">
       <% if user_signed_in? %>
         <%= render 'users/shared/user_info', user: current_user %>
       <% end %>
@@ -31,7 +31,7 @@
         </div>
       </div>
     </div>
-    <div class="col-9">
+    <div class="col-12 col-md-9">
         <div class="card-deck">
           <% @posts.each do |post| %>
             <div class="col-12  mx-auto">
