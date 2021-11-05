@@ -75,3 +75,31 @@ p.header-title {
     font-size: 1rem;
   }
 }
+
+li {
+  list-style-type: none;
+}
+.accordion {
+  text-align: center;
+  background-color: #e2dbe1;
+  border: 1px solid;
+  color: #fff;
+  width: 70%;
+  margin: 0 auto;
+  cursor: pointer;
+  padding: 10px;
+}
+.inner {
+  padding: 0;
+  display: none;
+}
+.inner li {
+  cursor: pointer;
+  border: 1px solid;
+  width: 70%;
+  margin: 0 auto;
+  padding: 5px;
+}
+.open {
+  display: block;
+}
