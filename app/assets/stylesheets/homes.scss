@@ -68,15 +68,20 @@ li {
   display: none;
 }
 .inner li {
+  display: block;
   cursor: pointer;
   border: 1px solid;
   width: 70%;
   margin: 0 auto;
   padding: 5px;
 }
-.open {
+.inner a {
   display: block;
+  text-align: center;
+  padding: 2px 0;
+  border-style: outset;
 }
+
 
 @media screen and (max-width: 600px) {
   .home{

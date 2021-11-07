@@ -23,24 +23,33 @@
 </div>
 <div class="wrapper pt-3">
   <% @categories.each do |category| %>
-  <ul id="accordion">
-    <li>
-      <p class="accordion">
-        <%= link_to  category_path(category) do %>
-          <%= category.name %>
-        <% end %>
-      </p>
-      <ul class="inner">
-        <li class="content1">
-          <% category.children.each do |child| %>
-            <%= link_to  category_path(child) do %>
-              <%= child.name %>
-            <% end %>
+    <ul id="accordion">
+      <li>
+        <p class="accordion">
+          <%= link_to  category_path(category) do %>
+            <%= category.name %>
           <% end %>
-        </li>
-      </ul>
-    </li>
-  </ul>
+        </p>
+        <ul class="inner">
+          <% category.children.each do |child| %>
+          <li class="content1">
+              <%= link_to  category_path(child) do %>
+                <%= child.name %>
+              <% end %>
+              <ul>
+                <% child.children.each do |grandchild| %>
+                <li>
+                  <%= link_to  category_path(grandchild) do %>
+                    <%= grandchild.name %>
+                  <% end %>
+                </li>
+                <% end %>
+              </ul>
+          </li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
   <% end %>
 </div>
 <div class="wrapper mt-4">
