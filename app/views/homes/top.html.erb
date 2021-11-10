@@ -22,6 +22,7 @@
   </div>
 </div>
 <div class="wrapper pt-3">
+  <h3 class="text-center">カテゴリー一覧</h3>
   <% @categories.each do |category| %>
     <ul id="accordion">
       <li>
@@ -29,6 +30,7 @@
           <%= link_to  category_path(category) do %>
             <%= category.name %>
           <% end %>
+          <!--<span class="mr-0">+</span>-->
         </p>
         <ul class="inner">
           <% category.children.each do |child| %>
